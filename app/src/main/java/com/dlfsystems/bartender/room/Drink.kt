@@ -15,7 +15,11 @@ data class Drink(@PrimaryKey(autoGenerate = true) val id: Long,
             entity = Spirit::class,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("spiritId")
-        )))
+        )),
+        indices = arrayOf(
+            Index(value = ["drinkId"]),
+            Index(value = ["spiritId"])
+        ))
 data class DrinkIngredient(@PrimaryKey(autoGenerate = true) val id: Long,
                             val drinkId: Long,
                             val spiritId: Long,
@@ -27,5 +31,5 @@ interface DrinkDao {
     fun getAll(): List<Drink>
 
     @Insert
-    fun addDrink(drink: Drink)
+    fun add(drink: Drink)
 }

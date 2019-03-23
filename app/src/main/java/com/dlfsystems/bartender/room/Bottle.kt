@@ -7,7 +7,11 @@ import androidx.room.*
             entity = Spirit::class,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("spiritId")
-        )))
+        )),
+        indices = arrayOf(
+            Index(value = ["spiritId"]),
+            Index(value = ["active"])
+        ))
 data class Bottle(@PrimaryKey(autoGenerate = true) val id: Long,
                         val name: String,
                         val spiritId: Long,
@@ -21,5 +25,9 @@ interface BottleDao {
     fun getAll(): List<Bottle>
 
     @Insert
-    fun addBottle(bottle: Bottle)
+    fun add(bottle: Bottle)
+
+    @Query("SELECT * FROM bottles WHERE spiritId = :spirit")
+    fun getBottlesForSpirit(spirit: Long): List<Bottle>
+
 }

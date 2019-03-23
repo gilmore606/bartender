@@ -8,6 +8,7 @@ import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragmentStateChanger
 import com.dlfsystems.bartender.nav.Rudder
 import com.dlfsystems.bartender.fragments.CatalogFragment
+import com.dlfsystems.bartender.room.BarDB
 import com.zhuinden.simplestack.BackstackDelegate
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.StateChange
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val barDB = BarDB.getInstance(this)
 
         fragmentStateChanger = FragmentStateChanger(supportFragmentManager, R.id.base_frame)
         backstackDelegate.setStateChanger(this)

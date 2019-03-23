@@ -13,5 +13,5 @@ interface SpiritDao {
     fun getAll(): List<Spirit>
 
     @Insert
-    fun addSpirit(spirit: Spirit)
+    fun add(spirit: Spirit)
 }
