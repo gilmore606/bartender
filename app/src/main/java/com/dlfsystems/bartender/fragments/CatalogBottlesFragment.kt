@@ -1,5 +1,6 @@
 package com.dlfsystems.bartender.fragments
 
+import android.util.Log
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.Action

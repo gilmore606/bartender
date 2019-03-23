@@ -2,6 +2,7 @@ package com.dlfsystems.bartender
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragmentStateChanger
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
         fragmentStateChanger = FragmentStateChanger(supportFragmentManager, R.id.base_frame)
         backstackDelegate.setStateChanger(this)
 
-        disposables += Rudder.navDest.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread())
+        disposables += Rudder.navDest.observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 navigateTo(it)
             }
