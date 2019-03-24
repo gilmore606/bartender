@@ -1,78 +1,82 @@
 package com.dlfsystems.bartender.room
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dlfsystems.bartender.ioThread
 
-@Database(entities = [(Bottle::class), (Drink::class), (Spirit::class)], version = 1)
+@Database(entities = [(Drink::class), (Bottle::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
-    abstract fun bottleDao(): BottleDao
     abstract fun drinkDao(): DrinkDao
-    abstract fun spiritDao(): SpiritDao
+    abstract fun bottleDao(): BottleDao
 
     companion object {
-        private var INSTANCE: BarDB? = null
+        @Volatile
+        private var instance: BarDB? = null
 
-        fun getInstance(context: Context): BarDB? {
-            if (INSTANCE == null) {
-                synchronized(BarDB::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, BarDB::class.java, "bar.db")
-                        .addCallback(object : Callback() {
-                            override fun onCreate(db: SupportSQLiteDatabase) {
-                                super.onCreate(db)
-                                ioThread {
-                                    (db as BarDB).initialPopulate(context)
-                                }
-                            }
-                        })
-                        .build()
-                }
+        fun getInstance(context: Context): BarDB {
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also { instance = it }
             }
-            return INSTANCE
+        }
+
+        private fun buildDatabase(context: Context): BarDB {
+            Log.d("bartender", "FNORD building db")
+            return Room.databaseBuilder(context, BarDB::class.java, "bar.db")
+                .addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        ioThread {
+                            initialPopulate(context)
+                        }
+                    }
+                })
+                .build()
         }
 
         fun destroyInstance() {
-            INSTANCE = null
+            instance = null
         }
-    }
 
-    // TODO: populate from files for real
-    fun initialPopulate(context: Context) {
-        val spiritDao = getInstance(context)!!.spiritDao()
-        spiritDao.add(Spirit(1, "Vodka", "vodka"))
-        spiritDao.add(Spirit(2, "Gin", "gin"))
-        spiritDao.add(Spirit(3, "Rum", "rum"))
-        spiritDao.add(Spirit(4, "Tequila", "tequila"))
-        spiritDao.add(Spirit(5, "Whiskey", "whiskey"))
-        spiritDao.add(Spirit(12, "Agave Syrup", "agave_syrup"))
-        spiritDao.add(Spirit(13, "Ale", "ale"))
-        spiritDao.add(Spirit(18, "Amaretto", "amaretto"))
-        spiritDao.add(Spirit(20, "Angostura Bitters", "angostura_bitters"))
-        spiritDao.add(Spirit(24, "Aperol", "aperol"))
-        spiritDao.add(Spirit(26, "Apple Brandy", "apple_brandy"))
-        spiritDao.add(Spirit(31, "Applejack", "applejack"))
-        spiritDao.add(Spirit(35, "Aquavit", "aquavit"))
-        spiritDao.add(Spirit(43, "Irish Cream", "irish_cream"))
-        spiritDao.add(Spirit(52, "Beer", "beer"))
-        spiritDao.add(Spirit(53, "Benedictine", "benedictine"))
-        spiritDao.add(Spirit(67, "Blue Curacao", "blue_curacao"))
-        spiritDao.add(Spirit(71, "Bourbon", "bourbon"))
-        spiritDao.add(Spirit(74, "Brandy", "brandy"))
-        spiritDao.add(Spirit(80, "Butterscotch Schnapps", "butterscotch_schnapps"))
-        spiritDao.add(Spirit(81, "Cachaca", "cachaca"))
-        spiritDao.add(Spirit(83, "Campari", "campari"))
-        spiritDao.add(Spirit(89, "Soda Water", "soda_water"))
-        spiritDao.add(Spirit(96, "Chambord", "chambord"))
-        spiritDao.add(Spirit(97, "Sparkling Wine", "sparkling_wine"))
-        spiritDao.add(Spirit(100, "Cherry Brandy", "cherry_brandy"))
-        spiritDao.add(Spirit(103, "Cherry Liqueur", "cherry_liqueur"))
-        spiritDao.add(Spirit(120, "Cider", "cider"))
-        spiritDao.add(Spirit(121, "Cinnamon Schnapps", "cinnamon_schnapps"))
-        spiritDao.add(Spirit(124, "Clamato", "clamato"))
-        spiritDao.add(Spirit(128, "Cola", "coca_cola"))
-        spiritDao.add(Spirit(175, "Cynar", "cynar"))
+        // TODO: populate from files for real
+        fun initialPopulate(context: Context) {
+            Log.d("bartender", "FNORD initial population of database")
+            val bottleDao = getInstance(context)!!.bottleDao()
+            bottleDao.add(Bottle(1, "Vodka", "vodka"))
+            bottleDao.add(Bottle(2, "Gin", "gin"))
+            bottleDao.add(Bottle(3, "Rum", "rum"))
+            bottleDao.add(Bottle(4, "Tequila", "tequila"))
+            bottleDao.add(Bottle(5, "Whiskey", "whiskey"))
+            bottleDao.add(Bottle(12, "Agave Syrup", "agave_syrup"))
+            bottleDao.add(Bottle(13, "Ale", "ale"))
+            bottleDao.add(Bottle(18, "Amaretto", "amaretto"))
+            bottleDao.add(Bottle(20, "Angostura Bitters", "angostura_bitters"))
+            bottleDao.add(Bottle(24, "Aperol", "aperol"))
+            bottleDao.add(Bottle(26, "Apple Brandy", "apple_brandy"))
+            bottleDao.add(Bottle(31, "Applejack", "applejack"))
+            bottleDao.add(Bottle(35, "Aquavit", "aquavit"))
+            bottleDao.add(Bottle(43, "Irish Cream", "irish_cream"))
+            bottleDao.add(Bottle(52, "Beer", "beer"))
+            bottleDao.add(Bottle(53, "Benedictine", "benedictine"))
+            bottleDao.add(Bottle(67, "Blue Curacao", "blue_curacao"))
+            bottleDao.add(Bottle(71, "Bourbon", "bourbon"))
+            bottleDao.add(Bottle(74, "Brandy", "brandy"))
+            bottleDao.add(Bottle(80, "Butterscotch Schnapps", "butterscotch_schnapps"))
+            bottleDao.add(Bottle(81, "Cachaca", "cachaca"))
+            bottleDao.add(Bottle(83, "Campari", "campari"))
+            bottleDao.add(Bottle(89, "Soda Water", "soda_water"))
+            bottleDao.add(Bottle(96, "Chambord", "chambord"))
+            bottleDao.add(Bottle(97, "Sparkling Wine", "sparkling_wine"))
+            bottleDao.add(Bottle(100, "Cherry Brandy", "cherry_brandy"))
+            bottleDao.add(Bottle(103, "Cherry Liqueur", "cherry_liqueur"))
+            bottleDao.add(Bottle(120, "Cider", "cider"))
+            bottleDao.add(Bottle(121, "Cinnamon Schnapps", "cinnamon_schnapps"))
+            bottleDao.add(Bottle(124, "Clamato", "clamato"))
+            bottleDao.add(Bottle(128, "Cola", "cola"))
+            bottleDao.add(Bottle(175, "Cynar", "cynar"))
+        }
     }
 }

@@ -12,18 +12,18 @@ data class Drink(@PrimaryKey(autoGenerate = true) val id: Long,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("drinkId")
         ), ForeignKey(
-            entity = Spirit::class,
+            entity = Bottle::class,
             parentColumns = arrayOf("id"),
-            childColumns = arrayOf("spiritId")
+            childColumns = arrayOf("bottleId")
         )),
         indices = arrayOf(
             Index(value = ["drinkId"]),
-            Index(value = ["spiritId"])
+            Index(value = ["bottleId"])
         ))
 data class DrinkIngredient(@PrimaryKey(autoGenerate = true) val id: Long,
                             val drinkId: Long,
-                            val spiritId: Long,
-                            val amount: Float)
+                            val bottleId: Long,
+                            val amount: String)
 @Dao
 interface DrinkDao {
 

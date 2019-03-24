@@ -5,7 +5,9 @@
               android:layout_height="match_parent">
 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
           android:text="Bottles fragment" />
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/bottles_bottle_button"
-            android:text="click a bottle" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bottles_recycler"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
 </LinearLayout>

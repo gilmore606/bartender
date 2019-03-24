@@ -15,6 +15,24 @@
                 android:text="DRINKS"
                 android:id="@+id/catalog_button_drinks" />
 
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="MY BAR"
+                android:visibility="gone" android:layout_gravity="right"
+                android:id="@+id/catalog_button_bottles_mine" />
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="+ADD"
+                android:visibility="gone" android:layout_gravity="right"
+                android:id="@+id/catalog_button_bottles_add" />
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="ALL"
+                android:visibility="gone" android:layout_gravity="right"
+                android:id="@+id/catalog_button_drinks_all" />
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="FAVES"
+                android:visibility="gone"
+                android:layout_gravity="right"
+                android:id="@+id/catalog_button_drinks_favorites" />
 
     </LinearLayout>
 
