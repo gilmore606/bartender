@@ -103,5 +103,11 @@ abstract class BarDB : RoomDatabase() {
                 getInstance(context).bottleDao().setActive(bottleId, if (active) 1 else 0)
             }
         }
+
+        fun setDrinkFavorite(context: Context, drinkId: Long, favorite: Boolean) {
+            ioThread {
+                getInstance(context).drinkDao().setFavorite(drinkId, if (favorite) 1 else 0)
+            }
+        }
     }
 }

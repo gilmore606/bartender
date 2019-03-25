@@ -40,6 +40,9 @@ interface DrinkDao {
 
     @Insert
     fun add(drink: Drink)
+
+    @Query("UPDATE drinks SET favorite=:favorite WHERE id=:drinkId")
+    fun setFavorite(drinkId: Long, favorite: Int)
 }
 
 @Dao
