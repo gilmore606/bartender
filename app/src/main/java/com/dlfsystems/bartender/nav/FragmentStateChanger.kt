@@ -26,23 +26,17 @@ class FragmentStateChanger(
         else
             stateChange.topPreviousState<BaseKey>()?.getBackAnimation() ?: FragAnimPair(0, 0)
 
-        for (oldKey in previousState) {
-            val fragment = fragmentManager.findFragmentByTag(oldKey.fragmentTag)
-            if (fragment != null) {
-                if (!newState.contains(oldKey)) {
-                    removeList.add(fragment)
-                } else if (!fragment.isHidden) {
-                    hideList.add(fragment)
-                }
+        previousState.forEach { oldKey ->
+            fragmentManager.findFragmentByTag(oldKey.fragmentTag)?.also {
+                if (!newState.contains(oldKey)) { removeList.add(it) }
+                else if (!it.isHidden) { hideList.add(it) }
             }
         }
-        for (newKey in newState) {
+        newState.forEach { newKey ->
             var fragment: androidx.fragment.app.Fragment? = fragmentManager.findFragmentByTag(newKey.fragmentTag)
             if (newKey == stateChange.topNewState<Any>()) {
                 if (fragment != null) {
-                    if (fragment.isHidden) {
-                        showList.add(fragment)
-                    }
+                    if (fragment.isHidden) showList.add(fragment)
                 } else {
                     fragment = newKey.newFragment()
                     addList.add(FragWithTag(fragment, newKey.fragmentTag))

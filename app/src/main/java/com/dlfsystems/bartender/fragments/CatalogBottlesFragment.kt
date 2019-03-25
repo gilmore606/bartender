@@ -22,12 +22,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.BottlesViewModel
+import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
+
 import io.reactivex.Observable
 
 class CatalogBottlesFragment : CatalogListFragment() {
 
     data class BottlesState(
-        val tab: CatalogFragment.BottleTabs = CatalogFragment.BottleTabs.ALL
+        val tab: BottleTabs = BottleTabs.ALL
     ) : BaseState()
 
 
@@ -43,7 +45,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 bottleImage.setImageDrawable(ContextCompat.getDrawable(view.context, bottle?.image ?: 0))
                 bottleOwned.setOnCheckedChangeListener { _,_ -> }
                 bottleOwned.isChecked = bottle?.active ?: false
-                bottleOwned.setOnCheckedChangeListener { buttonView, isChecked ->
+                bottleOwned.setOnCheckedChangeListener { _, isChecked ->
                     BarDB.setBottleActive(view.context, bottle?.id ?: 0, isChecked)
                 }
             }
@@ -86,7 +88,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(it.context)
                 recyclerAdapter = BottleAdapter(it.context)
                 recyclerView.adapter = recyclerAdapter
-                subscribeLiveData(bottlesViewModel, recyclerAdapter)
+                subscribeLiveData(bottlesViewModel)
             }
         }
 
@@ -96,18 +98,18 @@ class CatalogBottlesFragment : CatalogListFragment() {
             if (state.tab != previousState.tab) {
                 bottlesViewModel.getLiveData().removeObservers(bottlesFragment)
                 bottlesViewModel = when (state.tab) {
-                    (CatalogFragment.BottleTabs.ALL) -> { allBottlesViewModel }
-                    (CatalogFragment.BottleTabs.MINE) -> { activeBottlesViewModel }
-                    (CatalogFragment.BottleTabs.SHOP) -> { shopBottlesViewModel }
+                    (BottleTabs.ALL) -> { allBottlesViewModel }
+                    (BottleTabs.MINE) -> { activeBottlesViewModel }
+                    (BottleTabs.SHOP) -> { shopBottlesViewModel }
                     else -> { allBottlesViewModel }
                 }
-                subscribeLiveData(bottlesViewModel, recyclerAdapter)
+                subscribeLiveData(bottlesViewModel)
             }
         }
 
-        private fun subscribeLiveData(viewModel: BottlesViewModel, adapter: BottleAdapter) {
+        private fun subscribeLiveData(viewModel: BottlesViewModel) {
             viewModel.getLiveData().observe(bottlesFragment, Observer {
-                it?.let { adapter.submitList(it) }
+                it?.let { recyclerAdapter.submitList(it) }
             })
         }
     }

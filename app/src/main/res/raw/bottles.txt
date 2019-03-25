@@ -1,0 +1,134 @@
+1|Absinthe|absinthe|1
+2|Agave Syrup|agave_syrup|6
+3|Ale|ale|3
+4|Amaretto|amaretto|2
+5|Anejo Rum|anejo_rum|1
+6|Angostura Bitters|angostura_bitters|6
+7|Aperol|aperol|4
+8|Apple Brandy|apple_brandy|2
+9|Applejack|applejack|1
+10|Apricot Brandy|apricot_brandy|2
+11|Aquavit|aquavit|1
+12|Averna|averna|4
+13|Banana Liqueur|banana_liqueur|2
+14|Beer|beer|3
+15|Benedictine|benedictine|2
+16|Bitters|bitters|6
+17|Blue Curacao|blue_curacao|2
+18|Bourbon Whiskey|bourbon|1
+19|Brandy|brandy|1
+20|Brown Sugar|brown_sugar|6
+21|Butterscotch Schnapps|butterscotch_schnapps|2
+22|Cachaca|cachaca|1
+23|Calvados|calvados|1
+24|Campari|campari|4
+25|Chambord|chambord|2
+26|Cherry Brandy|cherry_brandy|1
+27|Cherry Liqueur|cherry_liqueur|2
+28|Cider|cider|3
+29|Cinnamon Schnapps|cinnamon_schnapps|2
+30|Clamato|clamato|5
+31|Cocchi Americano|cocchi_americano|4
+32|Coconut Liqueur|coconut_liqueur|2
+33|Coconut Rum|coconut_rum|1
+34|Coffee Liqueur|coffee_liqueur|2
+35|Cognac|cognac|1
+36|Cointreau|cointreau|2
+37|Cola|cola|5
+38|Cranberry Juice|cranberry_juice|5
+39|Cream Soda|cream_soda|5
+40|Creme de Cacao|creme_de_cacao|6
+41|Creme de Cassis|creme_de_cassis|6
+42|Creme de Menthe|creme_de_menthe|6
+43|Creme de Violette|creme_de_violette|6
+44|Cucumber|cucumber|6
+45|Curacao|curacao|2
+46|Cynar|cynar|4
+47|Dark Rum|dark_rum|1
+48|Drambuie|drambuie|2
+49|Dry Vermouth|dry_vermouth|4
+50|Egg White|egg_white|6
+51|Egg Yolk|egg_yolk|6
+52|Elderflower Liqueur|elderflower|2
+53|Falernum|falernum|6
+54|Fernet|fernet_branca|4
+55|Frangelico|frangelico|2
+56|Galliano|galliano|2
+57|Gin|gin|1
+58|Ginger|ginger|6
+59|Ginger Ale|ginger_ale|5
+60|Ginger Beer|ginger_beer|5
+61|Grand Marnier|grand_marnier|2
+62|Grapefruit Juice|grapefruit_juice|5
+63|Green Chartreuse|green_chartreuse|4
+64|Grenadine|grenadine|6
+65|Honey|honey|6
+66|Hot Sauce|hot_sauce|6
+67|Ice|ice|5
+68|Irish Cream|irish_cream|2
+69|Irish Whisky|irish_whiskey|1
+70|Jack Daniels|jack_daniels|1
+71|Jagermeister|jagermeister|4
+72|Kahlua|kahlua|2
+73|Kummel|kummel|2
+74|Lemon|lemon|6
+75|Lemon Juice|lemon_juice|6
+76|Lemonade|lemonade|5
+77|Lemon-lime Soda|lemonlime_soda|5
+78|Light Rum|light_rum|1
+79|Lillet|lillet|4
+80|Lime|lime|6
+81|Lime Juice|lime_juice|6
+82|Maple Syrup|maple_syrup|6
+83|Maraschino Cherries|maraschino_cherries|6
+84|Maraschino Liqueur|maraschino_liqueur|2
+85|Mezcal|mezcal|1
+86|Midori|midori|2
+87|Milk|milk|5
+88|Mint|mint|6
+89|Nutmeg|nutmeg|6
+90|Olives|olives|6
+91|Orange|orange|6
+92|Orange Bitters|orange_bitters|6
+93|Orange Juice|orange_juice|5
+94|Orange Liqueur|orange_liqueur|2
+95|Orgeat|orgeat|2
+96|Ouzo|ouzo|1
+97|Peach Schnapps|peach_schnapps|2
+98|Pernod|pernod|4
+99|Peychaud's Bitters|peychaud_bitters|6
+100|Pineapple Juice|pineapple_juice|5
+101|Pisang Ambon|pisang_ambon|2
+102|Pisco|pisco|2
+103|Port Wine|port|3
+104|Powdered Sugar|powdered_sugar|6
+105|Red Wine|red_wine|3
+106|Rosemary|rosemary|6
+107|Rum|rum|1
+108|151 Rum|rum_151|1
+109|Rye Whiskey|rye_whiskey|1
+110|Sake|sake|1
+111|Salt|salt|6
+112|Sambuca|sambuca|1
+113|Scotch Whisky|scotch_whisky|1
+114|Sherry|sherry|3
+115|Sloe Gin|sloe_gin|1
+116|Soda Water|soda_water|5
+117|Southern Comfort|southern_comfort|2
+118|Sparkling Wine|sparkling_wine|3
+119|Spiced Rum|spiced_rum|1
+120|Sugar|sugar|6
+121|Sugar Syrup|sugar_syrup|6
+122|Sweet & Sour Mix|sweet_sour|5
+123|Sweet Vermouth|sweet_vermouth|4
+124|Tequila|tequila|1
+125|Tomato Juice|tomato_juice|5
+126|Tonic Water|tonic_water|5
+127|Triple Sec|triple_sec|2
+128|Tuaca|tuaca|2
+129|Vodka|vodka|1
+130|Water|water|5
+131|Whiskey|whiskey|1
+132|White Wine|white_wine|3
+133|Worcestershire Sauce|worcestershire|6
+134|Yellow Chartreuse|yellow_chartreuse|4

@@ -1,0 +1,21 @@
+1|Old Fashioned|71|1 oz|20|2 dashes
+2|Manhattan|123|0.75 oz|18|2 1/2 oz|6|dash
+3|Mojito|78|2 oz|81|juice of 1 lime|120|2 tsp|88|2-4 leaves|116|to top
+4|Long Island Iced Tea|129|0.5 oz|78|1/2 oz|57|0.5 oz|124|0.5 oz|75|juice of 1/2 lemon|37|splash
+5|Negroni|57|1 oz|24|1 oz|123|1 oz
+6|Whiskey Sour|131|2 oz|75|juice of 1/2 lemon|104|0.5 tsp
+7|Dry Martini|57|2 oz|49|0.5 oz|90|1 olive
+8|Margarita|124|1.5 oz|127|0.5 oz|81|1 oz|111|to coat rim
+9|Moscow Mule|129|2 oz|81|2 oz|59|to top
+10|Alabama Slammer|117|1 oz|4|1 oz|115|0.5 oz|75|dash
+11|Alaska Cocktail|92|2 dashes|57|1.5 oz|134|0.75 oz
+12|Alexander|57|0.5 oz|40|0.5 oz|87|2 oz|89|dash
+13|Brandy Alexander|19|1 oz|40|1 oz|87|1 oz|89|dash
+14|Algonquin|131|1.5 oz|49|1 oz|100|1 oz
+15|Allies Cocktail|49|1 oz|57|1 oz|73|0.5 tsp
+16|Almeria|47|2 oz|72|1 oz|50|1
+17|Amaretto Rose|4|1.5 oz|81|0.5 oz|116|to top
+18|Amaretto Stinger|4|1.5 oz|42|0.75 oz
+19|Applecar|9|1 oz|127|1 oz|75|1 oz
+20|Arthur Tompkins|57|2 oz|61|0.5 oz|75|2 tsp
+21|Balmoral|113|1.5 oz|123|0.5 oz|49|0.5 oz|16|2 dashes

@@ -1,10 +1,12 @@
 package com.dlfsystems.bartender.room
 
+import androidx.paging.DataSource
 import androidx.room.*
 
 @Entity(tableName = "drinks")
-data class Drink(@PrimaryKey(autoGenerate = true) val id: Long,
-                       val name: String)
+data class Drink(@PrimaryKey val id: Long,
+                       val name: String,
+                        val favorite: Boolean = false)
 
 @Entity(tableName = "drink_ingredients",
         foreignKeys = arrayOf(ForeignKey(
@@ -20,7 +22,7 @@ data class Drink(@PrimaryKey(autoGenerate = true) val id: Long,
             Index(value = ["drinkId"]),
             Index(value = ["bottleId"])
         ))
-data class DrinkIngredient(@PrimaryKey(autoGenerate = true) val id: Long,
+data class DrinkIngredient(@PrimaryKey(autoGenerate = true) val id: Long = 1,
                             val drinkId: Long,
                             val bottleId: Long,
                             val amount: String)
@@ -30,6 +32,19 @@ interface DrinkDao {
     @Query("SELECT * FROM drinks")
     fun getAll(): List<Drink>
 
+    @Query("SELECT * FROM drinks")
+    fun getAllPaged(): DataSource.Factory<Int, Drink>
+
+    @Query("SELECT * FROM drinks WHERE favorite=1")
+    fun getFavoritesPaged(): DataSource.Factory<Int, Drink>
+
     @Insert
     fun add(drink: Drink)
+}
+
+@Dao
+interface DrinkIngredientDao {
+
+    @Insert
+    fun add(drinkIngredient: DrinkIngredient)
 }

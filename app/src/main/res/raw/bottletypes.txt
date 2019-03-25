@@ -1,0 +1,6 @@
+1|Spirit
+2|Liqueur
+3|Wine & Beer
+4|Amari
+5|Mixer
+6|Flavoring

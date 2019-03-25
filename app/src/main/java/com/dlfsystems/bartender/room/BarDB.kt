@@ -8,11 +8,13 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.ioThread
+import java.io.File
 
-@Database(entities = [(Drink::class), (Bottle::class)], version = 1)
+@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
     abstract fun drinkDao(): DrinkDao
     abstract fun bottleDao(): BottleDao
+    abstract fun drinkIngredientDao(): DrinkIngredientDao
 
     companion object {
         @Volatile
@@ -42,42 +44,58 @@ abstract class BarDB : RoomDatabase() {
             instance = null
         }
 
-        // TODO: populate from files for real
         fun initialPopulate(context: Context) {
             Log.d("bartender", "FNORD initial population of database")
-            val bottleDao = getInstance(context)!!.bottleDao()
-            bottleDao.add(Bottle(1, "Vodka", R.drawable.vodka))
-            bottleDao.add(Bottle(2, "Gin", R.drawable.gin))
-            bottleDao.add(Bottle(3, "Rum", R.drawable.rum))
-            bottleDao.add(Bottle(4, "Tequila", R.drawable.tequila))
-            bottleDao.add(Bottle(5, "Whiskey", R.drawable.whiskey))
-            bottleDao.add(Bottle(12, "Agave Syrup", R.drawable.agave_syrup))
-            bottleDao.add(Bottle(13, "Ale", R.drawable.ale))
-            bottleDao.add(Bottle(18, "Amaretto", R.drawable.amaretto))
-            bottleDao.add(Bottle(20, "Angostura Bitters", R.drawable.angostura_bitters))
-            bottleDao.add(Bottle(24, "Aperol", R.drawable.aperol))
-            bottleDao.add(Bottle(26, "Apple Brandy", R.drawable.apple_brandy))
-            bottleDao.add(Bottle(31, "Applejack", R.drawable.applejack))
-            bottleDao.add(Bottle(35, "Aquavit", R.drawable.aquavit))
-            bottleDao.add(Bottle(43, "Irish Cream", R.drawable.irish_cream))
-            bottleDao.add(Bottle(52, "Beer", R.drawable.beer))
-            bottleDao.add(Bottle(53, "Benedictine", R.drawable.benedictine))
-            bottleDao.add(Bottle(67, "Blue Curacao", R.drawable.blue_curacao))
-            bottleDao.add(Bottle(71, "Bourbon", R.drawable.bourbon))
-            bottleDao.add(Bottle(74, "Brandy", R.drawable.brandy))
-            bottleDao.add(Bottle(80, "Butterscotch Schnapps", R.drawable.butterscotch_schnapps))
-            bottleDao.add(Bottle(81, "Cachaca", R.drawable.cachaca))
-            bottleDao.add(Bottle(83, "Campari", R.drawable.campari))
-            bottleDao.add(Bottle(89, "Soda Water", R.drawable.soda_water))
-            bottleDao.add(Bottle(96, "Chambord", R.drawable.chambord))
-            bottleDao.add(Bottle(97, "Sparkling Wine", R.drawable.sparkling_wine))
-            bottleDao.add(Bottle(100, "Cherry Brandy", R.drawable.cherry_brandy))
-            bottleDao.add(Bottle(103, "Cherry Liqueur", R.drawable.cherry_liqueur))
-            bottleDao.add(Bottle(120, "Cider", R.drawable.cider))
-            bottleDao.add(Bottle(121, "Cinnamon Schnapps", R.drawable.cinnamon_schnapps))
-            bottleDao.add(Bottle(124, "Clamato", R.drawable.clamato))
-            bottleDao.add(Bottle(128, "Cola", R.drawable.cola))
-            bottleDao.add(Bottle(175, "Cynar", R.drawable.cynar))
+
+            val bottleDao = getInstance(context).bottleDao()
+
+            val bottleInputStream = context.resources.openRawResource(R.raw.bottles)
+            val bottleReader = bottleInputStream.bufferedReader()
+            var eof = false
+            while (!eof) {
+                val line = bottleReader.readLine()
+                if (line == null) eof = true
+                else {
+                    val chunks = line.split('|')
+                    val id = chunks[0].toLong()
+                    val name = chunks[1]
+                    val imageName = chunks[2]
+                    val imageId = context.resources.getIdentifier(imageName, "drawable", context.packageName)
+                    val btype = chunks[3].toLong()
+                    bottleDao.add(Bottle(id = id, name = name, image = imageId))
+                }
+            }
+
+            val drinkDao = getInstance(context).drinkDao()
+            val drinkIngredientDao = getInstance(context).drinkIngredientDao()
+
+            val drinkInputStream = context.resources.openRawResource(R.raw.drinks)
+            val drinkReader = drinkInputStream.bufferedReader()
+            eof = false
+            var ingredientId: Long = 1
+            while (!eof) {
+                val line = drinkReader.readLine()
+                if (line == null) eof = true
+                else {
+                    val chunks = line.split('|')
+                    val drinkId = chunks[0].toLong()
+                    val name = chunks[1]
+                    drinkDao.add(Drink(id = drinkId, name = name))
+
+                    var i = 2
+                    var eol = false
+                    while (!eol) {
+                        if (i >= chunks.size) eol = true
+                        else {
+                            val ingredient = chunks[i].toLong()
+                            val amount = chunks[i+1]
+                            drinkIngredientDao.add(DrinkIngredient(id = ingredientId, drinkId = drinkId, bottleId = ingredient, amount = amount))
+                            ingredientId++
+                            i += 2
+                        }
+                    }
+                }
+            }
         }
 
         fun setBottleActive(context: Context, bottleId: Long, active: Boolean) {
