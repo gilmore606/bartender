@@ -33,7 +33,7 @@ class BottleFragment : BaseFragment() {
     override val viewController = BottleView(this)
     override fun getDefaultState() = BottleState()
 
-    fun makeStateFromArguments(arguments: Bundle): BaseState =
+    override fun makeStateFromArguments(arguments: Bundle): BaseState =
             BottleState(
                 bottleId = arguments.getSerializable("bottleId") as Long
             )

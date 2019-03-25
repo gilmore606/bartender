@@ -58,6 +58,16 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     var previousState = getDefaultState()
 
     abstract fun getDefaultState(): BaseState
+    open fun makeStateFromArguments(arguments: Bundle) = getDefaultState()
+
+    open fun makeInitialState(bundle: Bundle?, arguments: Bundle?): BaseState {
+        if (arguments != null) {
+            return makeStateFromArguments(arguments)
+        }
+        return getDefaultState()
+    }
+
+    fun renderInitialState() { viewController.render(previousState, previousState) }
 
     open fun bindActions() {
         if (!disposables.isDisposed) disposables.dispose()
@@ -77,6 +87,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?) : View? {
+        previousState = makeInitialState(bundle, arguments)
         val view = viewController.getMainView(layoutResource, inflater, container)
         bindActions()
         return view
