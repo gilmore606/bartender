@@ -11,4 +11,7 @@ sealed class Action {
 
     class navToBottle(val bottleId: Int) : Action()
 
+    class bottleTab(val tab: CatalogFragment.BottleTabs) : Action()
+
+    class drinkTab(val tab: CatalogFragment.DrinkTabs) : Action()
 }

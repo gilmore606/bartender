@@ -7,18 +7,31 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 
-class BottlesViewModel constructor(application: Application)
-    : AndroidViewModel(application) {
+sealed class BottlesViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var bottlesLiveData: LiveData<PagedList<Bottle>>
-
+    var bottlesLiveData: LiveData<PagedList<Bottle>>
     init {
         val factory: DataSource.Factory<Int, Bottle> =
-                BarDB.getInstance(getApplication()).bottleDao().getAllPaged()
+            bottleFactory()
 
         val pagedListBuilder = LivePagedListBuilder<Int, Bottle>(factory, 50)
         bottlesLiveData = pagedListBuilder.build()
     }
 
-    fun getBottlesLiveData() = bottlesLiveData
+    fun getLiveData() = bottlesLiveData
+
+    abstract fun bottleFactory(): DataSource.Factory<Int, Bottle>
+
+    class All constructor(application: Application) : BottlesViewModel(application) {
+        override fun bottleFactory() =
+                BarDB.getInstance(getApplication()).bottleDao().getAllPaged()
+    }
+    class Active constructor(application: Application) : BottlesViewModel(application) {
+        override fun bottleFactory() =
+                BarDB.getInstance(getApplication()).bottleDao().getActivePaged()
+    }
+    class Shop constructor(application: Application) : BottlesViewModel(application) {
+        override fun bottleFactory() =
+                BarDB.getInstance(getApplication()).bottleDao().getShoppingPaged()
+    }
 }

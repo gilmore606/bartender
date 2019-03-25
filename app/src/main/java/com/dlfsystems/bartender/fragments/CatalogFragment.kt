@@ -1,17 +1,14 @@
 package com.dlfsystems.bartender.fragments
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.BaseFragment
-import com.dlfsystems.bartender.MainActivity
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.BaseKey
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.parcel.Parcelize
 
 // container fragment for the Bottles and Drinks list subscreens
@@ -19,9 +16,13 @@ import kotlinx.android.parcel.Parcelize
 class CatalogFragment : BaseFragment() {
 
     enum class Tabs { BOTTLES, DRINKS }
+    enum class BottleTabs { MINE, ALL, SHOP }
+    enum class DrinkTabs { ALL, FAVORITE }
 
     data class CatalogState(
-        val tab: Tabs = Tabs.BOTTLES
+        val tab: Tabs = Tabs.BOTTLES,
+        val bottleTab: BottleTabs = BottleTabs.ALL,
+        val drinkTab: DrinkTabs = DrinkTabs.ALL
     ) : BaseState()
 
 
@@ -34,23 +35,29 @@ class CatalogFragment : BaseFragment() {
 
     class CatalogView(val catalogFragment: Fragment) : BaseViewController() {
 
-        val bottlesFragment = CatalogBottlesFragment()
-        val drinksFragment = CatalogDrinksFragment()
+        var bottleAction = PublishSubject.create<Action>()
+        var drinkAction = PublishSubject.create<Action>()
+
+        val bottlesFragment = CatalogBottlesFragment().also { it.parentAction = bottleAction }
+        val drinksFragment = CatalogDrinksFragment().also { it.parentAction = drinkAction }
+
         var attachedSubFragments = false
 
         var buttonBottles: Button? = null
         var buttonDrinks: Button? = null
         var buttonBottlesMine: Button? = null
-        var buttonBottlesAdd: Button? = null
+        var buttonBottlesAll: Button? = null
         var buttonDrinksAll: Button? = null
         var buttonDrinksFavorites: Button? = null
+
+
 
         override fun subscribeActions() {
             mainView?.let {
                 buttonBottles = it.findViewById(R.id.catalog_button_bottles) as Button
                 buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as Button
                 buttonBottlesMine = it.findViewById(R.id.catalog_button_bottles_mine) as Button
-                buttonBottlesAdd = it.findViewById(R.id.catalog_button_bottles_add) as Button
+                buttonBottlesAll = it.findViewById(R.id.catalog_button_bottles_add) as Button
                 buttonDrinksAll = it.findViewById(R.id.catalog_button_drinks_all) as Button
                 buttonDrinksFavorites = it.findViewById(R.id.catalog_button_drinks_favorites) as Button
 
@@ -59,6 +66,22 @@ class CatalogFragment : BaseFragment() {
                 }
                 buttonDrinks?.setOnClickListener {
                     action.onNext(Action.tabTo(Tabs.DRINKS))
+                }
+                buttonBottlesAll?.setOnClickListener {
+                    action.onNext(Action.bottleTab(BottleTabs.ALL))
+                    bottleAction.onNext(Action.bottleTab(BottleTabs.ALL))
+                }
+                buttonBottlesMine?.setOnClickListener {
+                    action.onNext(Action.bottleTab(BottleTabs.MINE))
+                    bottleAction.onNext(Action.bottleTab(BottleTabs.MINE))
+                }
+                buttonDrinksAll?.setOnClickListener {
+                    action.onNext(Action.drinkTab(DrinkTabs.ALL))
+                    drinkAction.onNext(Action.drinkTab(DrinkTabs.ALL))
+                }
+                buttonDrinksFavorites?.setOnClickListener {
+                    action.onNext(Action.drinkTab(DrinkTabs.FAVORITE))
+                    drinkAction.onNext(Action.drinkTab(DrinkTabs.FAVORITE))
                 }
             }
         }
@@ -77,28 +100,17 @@ class CatalogFragment : BaseFragment() {
                 attachedSubFragments = true
             }
 
-            when (state.tab) {
-                (Tabs.BOTTLES) -> {
-                    mainView?.let {
-                        buttonBottles?.background = ContextCompat.getDrawable(mainView!!.context, R.drawable.button_background_lit)
-                        buttonDrinks?.background = ContextCompat.getDrawable(mainView!!.context, R.drawable.button_background_unlit)
-                        buttonBottlesAdd?.visibility = View.VISIBLE
-                        buttonBottlesMine?.visibility = View.VISIBLE
-                        buttonDrinksAll?.visibility = View.GONE
-                        buttonDrinksFavorites?.visibility = View.GONE
-                    }
-                }
-                (Tabs.DRINKS) -> {
-                    mainView?.let {
-                        buttonBottles?.background = ContextCompat.getDrawable(mainView!!.context, R.drawable.button_background_unlit)
-                        buttonDrinks?.background = ContextCompat.getDrawable(mainView!!.context, R.drawable.button_background_lit)
-                        buttonBottlesAdd?.visibility = View.GONE
-                        buttonBottlesMine?.visibility = View.GONE
-                        buttonDrinksAll?.visibility = View.VISIBLE
-                        buttonDrinksFavorites?.visibility = View.VISIBLE
-                    }
-                }
-            }
+            tintButton(buttonBottles, state.tab == Tabs.BOTTLES)
+            tintButton(buttonDrinks, state.tab == Tabs.DRINKS)
+            tintButton(buttonBottlesAll, state.bottleTab == BottleTabs.ALL)
+            tintButton(buttonBottlesMine, state.bottleTab == BottleTabs.MINE)
+            tintButton(buttonDrinksAll, state.drinkTab == DrinkTabs.ALL)
+            tintButton(buttonDrinksFavorites, state.drinkTab == DrinkTabs.FAVORITE)
+
+            buttonBottlesAll?.visibility = if (state.tab == Tabs.BOTTLES) View.VISIBLE else View.GONE
+            buttonBottlesMine?.visibility = buttonBottlesAll?.visibility ?: View.GONE
+            buttonDrinksAll?.visibility = if (state.tab == Tabs.DRINKS) View.VISIBLE else View.GONE
+            buttonDrinksFavorites?.visibility = buttonDrinksAll?.visibility ?: View.GONE
 
             if (state.tab != previousState.tab) {
                 catalogFragment.activity?.supportFragmentManager?.beginTransaction()?.disallowAddToBackStack()?.apply {
@@ -106,6 +118,12 @@ class CatalogFragment : BaseFragment() {
                     show(fragmentForTab(state.tab))
                 }?.commitNow()
             }
+        }
+
+        private fun tintButton(button: Button?, lit: Boolean) {
+            button?.background = ContextCompat.getDrawable(mainView!!.context,
+                if (lit) R.drawable.button_background_lit
+                else R.drawable.button_background_unlit)
         }
 
         private fun fragmentForTab(tab: Tabs) : Fragment {
@@ -128,6 +146,16 @@ class CatalogFragment : BaseFragment() {
             is Action.tabTo -> {
                 changeState(state.copy(
                     tab = action.tab
+                ))
+            }
+            is Action.bottleTab -> {
+                changeState(state.copy(
+                    bottleTab = action.tab
+                ))
+            }
+            is Action.drinkTab -> {
+                changeState(state.copy(
+                    drinkTab = action.tab
                 ))
             }
             else -> { }

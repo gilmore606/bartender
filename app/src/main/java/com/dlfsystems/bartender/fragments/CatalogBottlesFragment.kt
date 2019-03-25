@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -17,22 +19,33 @@ import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.Rudder
 import androidx.recyclerview.widget.RecyclerView
+import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.BottlesViewModel
+import io.reactivex.Observable
 
 class CatalogBottlesFragment : CatalogListFragment() {
 
     data class BottlesState(
-        val bottles: ArrayList<Int> = ArrayList(0)
+        val tab: CatalogFragment.BottleTabs = CatalogFragment.BottleTabs.ALL
     ) : BaseState()
 
 
     class BottleAdapter(val context: Context) : PagedListAdapter<Bottle, BottleAdapter.BottleViewHolder>(BottleDiffCallback()) {
 
-        class BottleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        class BottleViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             val bottleName = view.findViewById(R.id.item_bottle_name) as TextView
+            val bottleImage = view.findViewById(R.id.item_bottle_image) as ImageView
+            val bottleOwned = view.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox
+
             fun bind(bottle: Bottle?) {
                 bottleName.text = bottle?.name ?: ""
+                bottleImage.setImageDrawable(ContextCompat.getDrawable(view.context, bottle?.image ?: 0))
+                bottleOwned.setOnCheckedChangeListener { _,_ -> }
+                bottleOwned.isChecked = bottle?.active ?: false
+                bottleOwned.setOnCheckedChangeListener { buttonView, isChecked ->
+                    BarDB.setBottleActive(view.context, bottle?.id ?: 0, isChecked)
+                }
             }
         }
 
@@ -55,23 +68,45 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
     class BottlesView(val bottlesFragment: Fragment) : BaseViewController() {
 
+        lateinit var allBottlesViewModel: BottlesViewModel
+        lateinit var activeBottlesViewModel: BottlesViewModel
+        lateinit var shopBottlesViewModel: BottlesViewModel
         lateinit var bottlesViewModel: BottlesViewModel
         lateinit var recyclerView: RecyclerView
         lateinit var recyclerAdapter: BottleAdapter
 
         override fun subscribeActions() {
             mainView?.let {
-                bottlesViewModel = ViewModelProviders.of(bottlesFragment).get(BottlesViewModel::class.java)
+                allBottlesViewModel = ViewModelProviders.of(bottlesFragment).get(BottlesViewModel.All::class.java)
+                activeBottlesViewModel = ViewModelProviders.of(bottlesFragment).get(BottlesViewModel.Active::class.java)
+                shopBottlesViewModel = ViewModelProviders.of(bottlesFragment).get(BottlesViewModel.Shop::class.java)
+                bottlesViewModel = allBottlesViewModel
+
                 recyclerView = it.findViewById(R.id.bottles_recycler) as RecyclerView
                 recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(it.context)
                 recyclerAdapter = BottleAdapter(it.context)
                 recyclerView.adapter = recyclerAdapter
-                subscribeLiveData(recyclerAdapter)
+                subscribeLiveData(bottlesViewModel, recyclerAdapter)
             }
         }
 
-        private fun subscribeLiveData(adapter: BottleAdapter) {
-            bottlesViewModel.getBottlesLiveData().observe(bottlesFragment, Observer {
+        override fun render(previousState: BaseState, state: BaseState) {
+            state as BottlesState
+            previousState as BottlesState
+            if (state.tab != previousState.tab) {
+                bottlesViewModel.getLiveData().removeObservers(bottlesFragment)
+                bottlesViewModel = when (state.tab) {
+                    (CatalogFragment.BottleTabs.ALL) -> { allBottlesViewModel }
+                    (CatalogFragment.BottleTabs.MINE) -> { activeBottlesViewModel }
+                    (CatalogFragment.BottleTabs.SHOP) -> { shopBottlesViewModel }
+                    else -> { allBottlesViewModel }
+                }
+                subscribeLiveData(bottlesViewModel, recyclerAdapter)
+            }
+        }
+
+        private fun subscribeLiveData(viewModel: BottlesViewModel, adapter: BottleAdapter) {
+            viewModel.getLiveData().observe(bottlesFragment, Observer {
                 it?.let { adapter.submitList(it) }
             })
         }
@@ -88,6 +123,11 @@ class CatalogBottlesFragment : CatalogListFragment() {
         when (action) {
             is Action.navToBottle -> {
                 Rudder.navTo(BottleFragment.BottleKey())
+            }
+            is Action.bottleTab -> {
+                changeState(state.copy(
+                    tab = action.tab
+                ))
             }
             else -> { }
         }

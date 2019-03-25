@@ -59,7 +59,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
 
     abstract fun getDefaultState(): BaseState
 
-    fun bindActions() {
+    open fun bindActions() {
         if (!disposables.isDisposed) disposables.dispose()
         disposables = CompositeDisposable()
 
