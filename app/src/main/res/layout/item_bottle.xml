@@ -7,7 +7,10 @@
     <ImageView android:layout_width="80dp" android:layout_height="80dp"
                android:id="@+id/item_bottle_image" />
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/item_bottle_name" />
+              android:id="@+id/item_bottle_name" android:layout_weight="1"
+              android:layout_marginHorizontal="12dp"
+                android:layout_gravity="center_vertical" />
     <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/item_bottle_owned_checkbox" />
+              android:id="@+id/item_bottle_owned_checkbox" android:layout_gravity="center_vertical|end"
+                android:layout_margin="12dp" />
 </LinearLayout>

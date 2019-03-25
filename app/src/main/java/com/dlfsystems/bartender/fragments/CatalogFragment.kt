@@ -113,7 +113,10 @@ class CatalogFragment : BaseFragment() {
             buttonDrinksFavorites?.visibility = buttonDrinksAll?.visibility ?: View.GONE
 
             if (state.tab != previousState.tab) {
+                val animIn = if (state.tab == Tabs.DRINKS) R.anim.slide_in_left else R.anim.slide_in_right
+                val animOut = if (state.tab == Tabs.DRINKS) R.anim.slide_out_left else R.anim.slide_out_right
                 catalogFragment.activity?.supportFragmentManager?.beginTransaction()?.disallowAddToBackStack()?.apply {
+                    setCustomAnimations(animIn, animOut)
                     hide(fragmentForTab(previousState.tab))
                     show(fragmentForTab(state.tab))
                 }?.commitNow()
