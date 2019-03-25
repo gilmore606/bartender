@@ -25,6 +25,7 @@ import com.dlfsystems.bartender.room.BottlesViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
 
 import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
 class CatalogBottlesFragment : CatalogListFragment() {
 
@@ -33,14 +34,21 @@ class CatalogBottlesFragment : CatalogListFragment() {
     ) : BaseState()
 
 
-    class BottleAdapter(val context: Context) : PagedListAdapter<Bottle, BottleAdapter.BottleViewHolder>(BottleDiffCallback()) {
+    class BottleAdapter(val action: PublishSubject<Action>, val context: Context) : PagedListAdapter<Bottle, BottleAdapter.BottleViewHolder>(BottleDiffCallback()) {
 
-        class BottleViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        class BottleViewHolder(val clickSubject: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
             val bottleName = view.findViewById(R.id.item_bottle_name) as TextView
             val bottleImage = view.findViewById(R.id.item_bottle_image) as ImageView
             val bottleOwned = view.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox
+            var bottleId: Long = 0
 
+            init {
+                view.setOnClickListener {
+                    clickSubject.onNext(Action.navToBottle(bottleId))
+                }
+            }
             fun bind(bottle: Bottle?) {
+                bottleId = bottle?.id ?: 0
                 bottleName.text = bottle?.name ?: ""
                 bottleImage.setImageDrawable(ContextCompat.getDrawable(view.context, bottle?.image ?: 0))
                 bottleOwned.setOnCheckedChangeListener { _,_ -> }
@@ -59,7 +67,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottleViewHolder {
-            return BottleViewHolder(LayoutInflater.from(context).inflate(R.layout.item_bottle, parent, false))
+            return BottleViewHolder(action, LayoutInflater.from(context).inflate(R.layout.item_bottle, parent, false))
         }
 
         override fun onBindViewHolder(holder: BottleViewHolder, position: Int) {
@@ -86,7 +94,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
                 recyclerView = it.findViewById(R.id.bottles_recycler) as RecyclerView
                 recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(it.context)
-                recyclerAdapter = BottleAdapter(it.context)
+                recyclerAdapter = BottleAdapter(action, it.context)
                 recyclerView.adapter = recyclerAdapter
                 subscribeLiveData(bottlesViewModel)
             }
@@ -124,7 +132,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
         when (action) {
             is Action.navToBottle -> {
-                Rudder.navTo(BottleFragment.BottleKey())
+                Rudder.navTo(BottleFragment.BottleKey(action.bottleId))
             }
             is Action.bottleTab -> {
                 changeState(state.copy(

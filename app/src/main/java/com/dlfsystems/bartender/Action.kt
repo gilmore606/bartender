@@ -7,9 +7,9 @@ sealed class Action {
 
     class tabTo(val tab: CatalogFragment.Tabs) : Action()
 
-    class navToDrink(val drinkId: Int) : Action()
+    class navToDrink(val drinkId: Long) : Action()
 
-    class navToBottle(val bottleId: Int) : Action()
+    class navToBottle(val bottleId: Long) : Action()
 
     class bottleTab(val tab: CatalogFragment.BottleTabs) : Action()
 

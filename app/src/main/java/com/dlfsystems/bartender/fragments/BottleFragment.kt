@@ -1,5 +1,6 @@
 package com.dlfsystems.bartender.fragments
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
@@ -9,13 +10,16 @@ import kotlinx.android.parcel.Parcelize
 class BottleFragment : BaseFragment() {
 
     data class BottleState(
-        val bottleId: Int = 0
+        val bottleId: Long = 0
     ) : BaseState()
 
     @Parcelize
-    data class BottleKey(val tag: String) : BaseKey() {
-        constructor(): this("BottleKey")
-        override fun createFragment() = BottleFragment()
+    data class BottleKey(val bottleId: Long) : BaseKey() {
+        override fun createFragment() = BottleFragment().apply {
+            arguments = (arguments ?: Bundle()).also {
+                it.putSerializable("bottleId", bottleId)
+            }
+        }
     }
 
     class BottleView(val bottleFragment: Fragment) : BaseViewController() {
@@ -28,4 +32,9 @@ class BottleFragment : BaseFragment() {
     override val layoutResource = R.layout.fragment_bottle
     override val viewController = BottleView(this)
     override fun getDefaultState() = BottleState()
+
+    fun makeStateFromArguments(arguments: Bundle): BaseState =
+            BottleState(
+                bottleId = arguments.getSerializable("bottleId") as Long
+            )
 }
