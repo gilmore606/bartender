@@ -2,6 +2,7 @@ package com.dlfsystems.bartender
 
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.fragments.CatalogFragment
+import com.dlfsystems.bartender.room.Bottle
 
 sealed class Action {
 
@@ -14,4 +15,6 @@ sealed class Action {
     class bottleTab(val tab: CatalogFragment.BottleTabs) : Action()
 
     class drinkTab(val tab: CatalogFragment.DrinkTabs) : Action()
+
+    class bottleDetailLoaded(val bottle: Bottle): Action()
 }
