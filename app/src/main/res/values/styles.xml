@@ -1,14 +1,17 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
     <style name="ActionbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-
+        <item name="android:textColor">#FEFEFE</item>
+        <item name="android:background">@drawable/bg_actionbar</item>
     </style>
 
     <style name="tinyHeader">
@@ -17,4 +20,13 @@
         <item name="android:textColor">#55000000</item>
     </style>
 
+    <style name="drinkTitle">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/barBackDark</item>
+    </style>
+    <style name="bodyCopy">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#666666</item>
+    </style>
 </resources>

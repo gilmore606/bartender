@@ -15,6 +15,7 @@ import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.nav.BaseKey
+import com.dlfsystems.bartender.nav.FragAnimPair
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import kotlinx.android.parcel.Parcelize
@@ -39,6 +40,10 @@ class BottleFragment : BaseFragment() {
                 it.putSerializable("bottleId", bottleId)
             }
         }
+        override fun getAnimation() =
+            FragAnimPair(R.anim.grow_fade_in_from_bottom, R.anim.stationary)
+        override fun getBackAnimation() =
+            FragAnimPair(R.anim.stationary, R.anim.shrink_fade_out_from_bottom)
     }
 
 

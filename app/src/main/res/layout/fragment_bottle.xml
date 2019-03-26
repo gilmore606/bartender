@@ -3,18 +3,21 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:background="@drawable/bg_detailpage"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
         <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" >
-            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                       android:id="@+id/bottle_image" android:layout_gravity="center" />
+            <ImageView android:layout_width="600px" android:layout_height="600px"
+                       android:id="@+id/bottle_image" android:layout_gravity="center"
+                        android:background="@drawable/bg_shadowburst"/>
             <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:layout_margin="24dp"
                       android:layout_gravity="top|end"
                       android:id="@+id/bottle_active" />
         </FrameLayout>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_margin="24dp" style="@style/drinkTitle"
                   android:id="@+id/bottle_name" android:layout_gravity="center_horizontal" />
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -31,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                expandableTextView:maxCollapsedLines="2"
+                expandableTextView:maxCollapsedLines="4"
                 expandableTextView:animDuration="300">
             <TextView
                     android:id="@id/expandable_text"
@@ -39,8 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="16sp"
-                    android:textColor="#666666" />
+                    style="@style/bodyCopy" />
             <ImageButton
                     android:id="@id/expand_collapse"
                     android:layout_width="wrap_content"
@@ -49,6 +51,13 @@
                     android:layout_gravity="right|bottom"
                     android:background="@android:color/transparent"/>
         </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:background="@drawable/bg_tinyheader"
+                  android:paddingHorizontal="12dp"
+                  android:paddingVertical="8dp"
+                  style="@style/tinyHeader"
+                  android:text="U S E D   I N . . ." />
 
     </LinearLayout>
 </ScrollView>
