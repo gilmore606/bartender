@@ -61,8 +61,10 @@ abstract class BarDB : RoomDatabase() {
                     val name = chunks[1]
                     val imageName = chunks[2]
                     val imageId = context.resources.getIdentifier(imageName, "drawable", context.packageName)
+                    val stringId = context.resources.getIdentifier(imageName, "string", context.packageName)
+                    Log.d("bartender", "FNORD found string " + stringId)
                     val btype = chunks[3].toLong()
-                    bottleDao.add(Bottle(id = id, name = name, image = imageId))
+                    bottleDao.add(Bottle(id = id, name = name, image = imageId, desc = stringId, type = btype))
                 }
             }
 

@@ -10,4 +10,11 @@
     <style name="ActionbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
     </style>
+
+    <style name="tinyHeader">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#55000000</item>
+    </style>
+
 </resources>

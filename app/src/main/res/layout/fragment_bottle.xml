@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android" >
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"
                   android:layout_width="match_parent"
@@ -15,6 +16,39 @@
         </FrameLayout>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:id="@+id/bottle_name" android:layout_gravity="center_horizontal" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:background="@drawable/bg_tinyheader"
+                  android:paddingHorizontal="12dp"
+                  android:paddingVertical="8dp"
+                  style="@style/tinyHeader"
+                  android:text="A B O U T" />
+
+        <com.ms.square.android.expandabletextview.ExpandableTextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/bottle_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                expandableTextView:maxCollapsedLines="2"
+                expandableTextView:animDuration="300">
+            <TextView
+                    android:id="@id/expandable_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+            <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_gravity="right|bottom"
+                    android:background="@android:color/transparent"/>
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
 
     </LinearLayout>
 </ScrollView>
