@@ -1,5 +1,6 @@
 package com.dlfsystems.bartender.room
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
 
@@ -44,4 +45,7 @@ interface BottleDao {
 
     @Query("SELECT * FROM bottles WHERE id=:bottleId")
     fun byId(bottleId: Long): Bottle
+
+    @Query("SELECT * FROM bottles WHERE id=:bottleId")
+    fun liveById(bottleId: Long): LiveData<Bottle>
 }

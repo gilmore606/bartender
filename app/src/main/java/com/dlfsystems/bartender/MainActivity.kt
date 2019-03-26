@@ -53,10 +53,6 @@ class MainActivity : AppCompatActivity(), StateChanger {
         backstackDelegate.backstack.goTo(destKey)
     }
 
-    private fun navigateBack() {
-        backstackDelegate.backstack.goBack()
-    }
-
     override fun onBackPressed() {
         if (!backstackDelegate.onBackPressed()) {
             super.onBackPressed()
