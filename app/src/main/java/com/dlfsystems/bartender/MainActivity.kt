@@ -3,6 +3,7 @@ package com.dlfsystems.bartender
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragmentStateChanger
@@ -15,6 +16,7 @@ import com.zhuinden.simplestack.StateChange
 import com.zhuinden.simplestack.StateChanger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), StateChanger {
 
@@ -34,8 +36,8 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val barDB = BarDB.getInstance(this)
+        setSupportActionBar(mainToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         fragmentStateChanger = FragmentStateChanger(supportFragmentManager, R.id.base_frame)
         backstackDelegate.setStateChanger(this)
@@ -59,6 +61,16 @@ class MainActivity : AppCompatActivity(), StateChanger {
         if (!backstackDelegate.onBackPressed()) {
             super.onBackPressed()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            (android.R.id.home) -> {
+                onBackPressed()
+            }
+            else -> { return false }
+        }
+        return true
     }
 
     override fun handleStateChange(stateChange: StateChange, completionCallback: StateChanger.Callback) {
