@@ -40,7 +40,7 @@ class FragmentStateChanger(
                     if (fragment.isHidden) showList.add(fragment as BaseFragment)
                 } else {
                     fragment = newKey.newFragment()
-                    addList.add(FragWithTag(fragment as BaseFragment, newKey.fragmentTag))
+                    addList.add(FragWithTag(fragment, newKey.fragmentTag))
                 }
             } else {
                 if (fragment != null && !fragment.isHidden) {
@@ -49,7 +49,6 @@ class FragmentStateChanger(
             }
         }
 
-
         fragmentManager.beginTransaction().disallowAddToBackStack().apply {
             setCustomAnimations(animationSet.animIn, animationSet.animOut)
             removeList.forEach { remove(it) }
@@ -57,6 +56,7 @@ class FragmentStateChanger(
             showList.forEach{ show(it) }
             hideList.forEach{ hide(it) }
         }.commitNow()
+        fragmentManager.executePendingTransactions()
 
         addList.forEach { it.fragment.renderInitialState() }
     }

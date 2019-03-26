@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
+              android:layout_margin="4dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <ImageView android:layout_width="80dp" android:layout_height="80dp"
+    <ImageView android:layout_width="70dp" android:layout_height="70dp"
                android:id="@+id/item_bottle_image" />
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:id="@+id/item_bottle_name" android:layout_weight="1"
-              android:layout_marginHorizontal="12dp"
+              style="@style/listBottle"
+              android:layout_margin="12dp"
                 android:layout_gravity="center_vertical" />
     <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:id="@+id/item_bottle_owned_checkbox" android:layout_gravity="center_vertical|end"

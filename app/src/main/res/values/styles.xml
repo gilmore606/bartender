@@ -21,12 +21,15 @@
     </style>
 
     <style name="drinkTitle">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/barBackDark</item>
     </style>
     <style name="bodyCopy">
         <item name="android:fontFamily">serif</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#666666</item>
+    </style>
+    <style name="listBottle">
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

@@ -3,6 +3,8 @@ package com.dlfsystems.bartender.fragments
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
@@ -41,9 +43,9 @@ class BottleFragment : BaseFragment() {
             }
         }
         override fun getAnimation() =
-            FragAnimPair(R.anim.grow_fade_in_from_bottom, R.anim.stationary)
+            FragAnimPair(R.anim.grow_fade_in_from_bottom, R.anim.blank)
         override fun getBackAnimation() =
-            FragAnimPair(R.anim.stationary, R.anim.shrink_fade_out_from_bottom)
+            FragAnimPair(R.anim.blank, R.anim.shrink_fade_out_from_bottom)
     }
 
 
@@ -72,11 +74,14 @@ class BottleFragment : BaseFragment() {
 
         override fun render(previousState: BaseState, state: BaseState) {
             state as BottleState
+            previousState as BottleState
             if (state.bound) {
                 bottleName?.text = state.name
-                bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
+                if (!previousState.bound) {
+                    bottleImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
+                    bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
+                }
                 val aboutString = try { bottleFragment.getString(state.desc) } catch (e: Exception) { " " }
-                Log.d("bartender", "FNORD about - " + aboutString)
                 bottleAbout?.text = aboutString
                 bottleActive?.isChecked = state.active
             } else {

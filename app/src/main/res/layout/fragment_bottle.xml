@@ -10,6 +10,7 @@
         <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" >
             <ImageView android:layout_width="600px" android:layout_height="600px"
                        android:id="@+id/bottle_image" android:layout_gravity="center"
+                       android:layout_margin="12dp"
                         android:background="@drawable/bg_shadowburst"/>
             <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:layout_margin="24dp"

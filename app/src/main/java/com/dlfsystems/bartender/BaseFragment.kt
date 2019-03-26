@@ -90,6 +90,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         previousState = makeInitialState(bundle, arguments)
         val view = viewController.getMainView(layoutResource, inflater, container)
         bindActions()
+        renderInitialState()
         return view
     }
 
