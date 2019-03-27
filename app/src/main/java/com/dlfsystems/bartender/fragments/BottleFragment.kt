@@ -2,8 +2,6 @@ package com.dlfsystems.bartender.fragments
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -20,6 +18,8 @@ import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragAnimPair
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
+import com.dlfsystems.bartender.room.Drink
+import com.dlfsystems.bartender.views.DrinklistView
 import kotlinx.android.parcel.Parcelize
 import com.ms.square.android.expandabletextview.ExpandableTextView
 
@@ -27,12 +27,14 @@ class BottleFragment : BaseFragment() {
 
     data class BottleState(
         val id: Long = 0,
-        val bound: Boolean = false,
+        val boundBottle: Boolean = false,
         val name: String = "",
         val desc: Int = 0,
         val image: Int = 0,
         val active: Boolean = false,
-        val shopping: Boolean = false
+        val shopping: Boolean = false,
+        val boundDrinks: Boolean = false,
+        val drinks: ArrayList<Drink> = ArrayList(0)
     ) : BaseState()
 
     @Parcelize
@@ -54,12 +56,17 @@ class BottleFragment : BaseFragment() {
         class BottleViewModel(bottleId: Long, application: Application) : AndroidViewModel(application) {
             val bottle: LiveData<Bottle> = BarDB.getInstance(getApplication()).bottleDao().liveById(bottleId)
         }
+        class BottleDrinksViewModel(bottleId: Long, application: Application) : AndroidViewModel(application) {
+            val drinks: LiveData<List<Drink>> = BarDB.getInstance(getApplication()).drinkDao().liveDrinksForBottle()
+        }
 
         var bottleViewModel: BottleViewModel? = null
+        var bottleDrinksViewModel: BottleDrinksViewModel? = null
         var bottleName: TextView? = null
         var bottleImage: ImageView? = null
         var bottleActive: CheckBox? = null
         var bottleAbout: ExpandableTextView? = null
+        var bottleDrinklist: DrinklistView? = null
 
         override fun subscribeActions() {
             mainView?.also {
@@ -67,6 +74,7 @@ class BottleFragment : BaseFragment() {
                 bottleImage = it.findViewById(R.id.bottle_image) as ImageView
                 bottleActive = it.findViewById(R.id.bottle_active) as CheckBox
                 bottleAbout = it.findViewById(R.id.bottle_about) as ExpandableTextView
+                bottleDrinklist = it.findViewById(R.id.bottle_drinklist) as DrinklistView
 
                 bottleActive?.setOnClickListener { action.onNext(Action.bottleToggleActive()) }
             }
@@ -75,9 +83,9 @@ class BottleFragment : BaseFragment() {
         override fun render(previousState: BaseState, state: BaseState) {
             state as BottleState
             previousState as BottleState
-            if (state.bound) {
+            if (state.boundBottle) {
                 bottleName?.text = state.name
-                if (!previousState.bound) {
+                if (!previousState.boundBottle) {
                     bottleImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
                     bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
                 }
@@ -87,13 +95,26 @@ class BottleFragment : BaseFragment() {
             } else {
                 bottleViewModel = BottleViewModel(state.id, bottleFragment.context!!.applicationContext as Application)
                 bottleViewModel?.bottle?.observe(bottleFragment, Observer {
+                    bottleFragment.changeState(
+                        state.copy(
+                            boundBottle = true,
+                            name = it.name,
+                            desc = it.desc,
+                            image = it.image,
+                            active = it.active,
+                            shopping = it.shopping
+                        )
+                    )
+                })
+            }
+            if (state.boundDrinks) {
+                bottleDrinklist?.populate(state.drinks)
+            } else {
+                bottleDrinksViewModel = BottleDrinksViewModel(state.id, bottleFragment.context!!.applicationContext as Application)
+                bottleDrinksViewModel?.drinks?.observe(bottleFragment, Observer {
                     bottleFragment.changeState(state.copy(
-                        bound = true,
-                        name = it.name,
-                        desc = it.desc,
-                        image = it.image,
-                        active = it.active,
-                        shopping = it.shopping
+                        boundDrinks = true,
+                        drinks = ArrayList(it)
                     ))
                 })
             }
@@ -107,7 +128,7 @@ class BottleFragment : BaseFragment() {
     override fun makeStateFromArguments(arguments: Bundle): BaseState =
             BottleState(
                 id = arguments.getSerializable("bottleId") as Long,
-                bound = false
+                boundBottle = false
             )
 
     override fun hearAction(action: Action) {

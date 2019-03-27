@@ -1,5 +1,6 @@
 package com.dlfsystems.bartender.room
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
 
@@ -43,6 +44,9 @@ interface DrinkDao {
 
     @Query("UPDATE drinks SET favorite=:favorite WHERE id=:drinkId")
     fun setFavorite(drinkId: Long, favorite: Int)
+
+    @Query("SELECT * FROM drinks LIMIT 5")
+    fun liveDrinksForBottle(): LiveData<List<Drink>>
 }
 
 @Dao

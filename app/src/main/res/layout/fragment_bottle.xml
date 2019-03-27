@@ -59,6 +59,9 @@
                   android:paddingVertical="8dp"
                   style="@style/tinyHeader"
                   android:text="U S E D   I N . . ." />
+        <com.dlfsystems.bartender.views.DrinklistView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/bottle_drinklist" />
 
     </LinearLayout>
 </ScrollView>
