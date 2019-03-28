@@ -1,16 +1,13 @@
 package com.dlfsystems.bartender.fragments
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedListAdapter
@@ -33,7 +30,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
 
     class DrinkAdapter(val action: PublishSubject<Action>, val context: Context): PagedListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
 
-        class DrinkViewHolder(val clickSubject: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
+        class DrinkViewHolder(val action: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
             val drinkName = view.findViewById(R.id.item_drink_name) as TextView
             val drinkImage = view.findViewById(R.id.item_drink_image) as ImageView
             val drinkMissing = view.findViewById(R.id.item_drink_missing) as TextView
@@ -42,7 +39,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
 
             init {
                 view.setOnClickListener {
-                    clickSubject.onNext(Action.navToDrink(drinkId))
+                    action.onNext(Action.navToDrink(drinkId))
                 }
             }
             fun bind(drink: Drink?) {
@@ -51,7 +48,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
                 drinkFavorite.setOnCheckedChangeListener { _,_ -> }
                 drinkFavorite.isChecked = drink?.favorite ?: false
                 drinkFavorite.setOnCheckedChangeListener { _, isChecked ->
-                    BarDB.setDrinkFavorite(view.context, drink?.id ?: 0, isChecked)
+                    action.onNext(Action.drinkToggleFavorite(drink, isChecked))
                 }
                 if (drink?.missingBottles ?: 0 > 0) {
                     drinkMissing.text = "need " + drink!!.missingBottles.toString() + " more"
@@ -132,6 +129,11 @@ class CatalogDrinksFragment : CatalogListFragment() {
         when (action) {
             is Action.navToDrink -> {
                 Rudder.navTo(DrinkFragment.DrinkKey(action.drinkId))
+            }
+            is Action.drinkToggleFavorite -> {
+                action.drink?.also {
+                    setDrinkFavorite(action.drink.id, action.drink.name, action.favorite ?: true)
+                }
             }
             is Action.drinkTab -> {
                 changeState(state.copy(

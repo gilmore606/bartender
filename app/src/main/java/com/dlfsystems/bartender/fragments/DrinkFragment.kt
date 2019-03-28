@@ -73,6 +73,7 @@ class DrinkFragment : BaseFragment() {
             previousState as DrinkState
             if (state.boundDrink) {
                 drinkName?.text = state.name
+                drinkFavorite?.isChecked = state.favorite
             } else {
                 drinkViewModel = DrinkViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
                 drinkViewModel?.drink?.observe(drinkFragment, Observer {
@@ -105,7 +106,7 @@ class DrinkFragment : BaseFragment() {
         when (action) {
             is Action.drinkToggleFavorite -> {
                 val state = previousState as DrinkState
-                BarDB.setDrinkFavorite(view!!.context, state.id, !state.favorite)
+                setDrinkFavorite(state.id, state.name, !state.favorite)
             }
             is Action.drinkLoad -> {
                 changeState(

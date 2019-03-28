@@ -17,13 +17,13 @@ sealed class Action {
 
     class drinkTab(val tab: CatalogFragment.DrinkTabs) : Action()
 
-    class bottleToggleActive() : Action()
-    class bottleToggleShopping(): Action()
+    class bottleToggleActive(val bottle: Bottle? = null, val active: Boolean? = null) : Action()
+    class bottleToggleShopping(val bottle: Bottle? = null, val shopping: Boolean? = null): Action()
 
     class bottleLoad(val load: Bottle): Action()
     class bottleLoadDrinks(val load: List<Drink>): Action()
 
-    class drinkToggleFavorite(): Action()
+    class drinkToggleFavorite(val drink: Drink? = null, val favorite: Boolean? = null): Action()
     class drinkLoad(val load: Drink): Action()
     class drinkLoadBottles(val load: List<Bottle>): Action()
 }

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.dlfsystems.bartender.nav.BaseKey
+import com.dlfsystems.bartender.room.BarDB
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -19,7 +21,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     abstract class BaseState : Serializable
 
 
-    abstract class BaseViewController() {
+    abstract class BaseViewController {
 
         var mainView: View? = null
 
@@ -86,6 +88,36 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
             viewController.render(previousState, state)
         }
         previousState = state
+    }
+
+    fun setBottleActive(bottleId: Long, bottleName: String, active: Boolean) {
+        context?.also {
+            BarDB.setBottleActive(context!!, bottleId, active)
+            Toast.makeText(context!!,
+                if (active) ("Added " + bottleName + " to bar.")
+                else ("Removed " + bottleName + " from bar."),
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun setDrinkFavorite(drinkId: Long, drinkName: String, favorite: Boolean) {
+        context?.also {
+            BarDB.setDrinkFavorite(context!!, drinkId, favorite)
+            Toast.makeText(context!!,
+                if (favorite) ("Added " + drinkName + " to favorites.")
+                else ("Removed " + drinkName + " from favorites."),
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun setBottleShopping(bottleId: Long, bottleName: String, shopping: Boolean) {
+        context?.also {
+            BarDB.setBottleShopping(context!!, bottleId, shopping)
+            Toast.makeText(context!!,
+                if (shopping) ("Added " + bottleName + " to shopping list.")
+                else ("Removed " + bottleName + " from shopping list."),
+                Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?) : View? {

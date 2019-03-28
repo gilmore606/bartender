@@ -1,7 +1,6 @@
 package com.dlfsystems.bartender.fragments
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedListAdapter
@@ -24,7 +22,6 @@ import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.BottlesViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
 
-import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 class CatalogBottlesFragment : CatalogListFragment() {
@@ -36,7 +33,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
     class BottleAdapter(val action: PublishSubject<Action>, val context: Context) : PagedListAdapter<Bottle, BottleAdapter.BottleViewHolder>(BottleDiffCallback()) {
 
-        class BottleViewHolder(val clickSubject: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
+        class BottleViewHolder(val action: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
             val bottleName = view.findViewById(R.id.item_bottle_name) as TextView
             val bottleImage = view.findViewById(R.id.item_bottle_image) as ImageView
             val bottleOwned = view.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox
@@ -44,7 +41,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
             init {
                 view.setOnClickListener {
-                    clickSubject.onNext(Action.navToBottle(bottleId))
+                    action.onNext(Action.navToBottle(bottleId))
                 }
             }
             fun bind(bottle: Bottle?) {
@@ -54,7 +51,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 bottleOwned.setOnCheckedChangeListener { _,_ -> }
                 bottleOwned.isChecked = bottle?.active ?: false
                 bottleOwned.setOnCheckedChangeListener { _, isChecked ->
-                    BarDB.setBottleActive(view.context, bottle?.id ?: 0, isChecked)
+                    action.onNext(Action.bottleToggleActive(bottle, isChecked))
                 }
             }
         }
@@ -133,6 +130,11 @@ class CatalogBottlesFragment : CatalogListFragment() {
         when (action) {
             is Action.navToBottle -> {
                 Rudder.navTo(BottleFragment.BottleKey(action.bottleId))
+            }
+            is Action.bottleToggleActive -> {
+                action.bottle?.also {
+                    setBottleActive(action.bottle.id, action.bottle.name, action.active ?: true)
+                }
             }
             is Action.bottleTab -> {
                 changeState(state.copy(

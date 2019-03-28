@@ -129,11 +129,11 @@ class BottleFragment : BaseFragment() {
         when (action) {
             is Action.bottleToggleActive -> {
                 val state = previousState as BottleState
-                BarDB.setBottleActive(view!!.context, state.id, !state.active)
+                setBottleActive(state.id, state.name, !state.active)
             }
             is Action.bottleToggleShopping -> {
                 val state = previousState as BottleState
-                BarDB.setBottleShopping(view!!.context, state.id, !state.shopping)
+                setBottleShopping(state.id, state.name, !state.shopping)
             }
             is Action.bottleLoad -> {
                 changeState(
