@@ -2,6 +2,7 @@ package com.dlfsystems.bartender.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -83,6 +84,7 @@ class BottleFragment : BaseFragment() {
         override fun render(previousState: BaseState, state: BaseState) {
             state as BottleState
             previousState as BottleState
+            Log.d("bartender", "FNORD bottle state = " + state.toString())
             if (state.boundBottle) {
                 bottleName?.text = state.name
                 if (!previousState.boundBottle) {
@@ -95,16 +97,7 @@ class BottleFragment : BaseFragment() {
             } else {
                 bottleViewModel = BottleViewModel(state.id, bottleFragment.context!!.applicationContext as Application)
                 bottleViewModel?.bottle?.observe(bottleFragment, Observer {
-                    bottleFragment.changeState(
-                        state.copy(
-                            boundBottle = true,
-                            name = it.name,
-                            desc = it.desc,
-                            image = it.image,
-                            active = it.active,
-                            shopping = it.shopping
-                        )
-                    )
+                    action.onNext(Action.bottleLoad(it))
                 })
             }
             if (state.boundDrinks) {
@@ -112,10 +105,7 @@ class BottleFragment : BaseFragment() {
             } else {
                 bottleDrinksViewModel = BottleDrinksViewModel(state.id, bottleFragment.context!!.applicationContext as Application)
                 bottleDrinksViewModel?.drinks?.observe(bottleFragment, Observer {
-                    bottleFragment.changeState(state.copy(
-                        boundDrinks = true,
-                        drinks = ArrayList(it)
-                    ))
+                    action.onNext(Action.bottleLoadDrinks(it))
                 })
             }
         }
@@ -128,17 +118,37 @@ class BottleFragment : BaseFragment() {
     override fun makeStateFromArguments(arguments: Bundle): BaseState =
             BottleState(
                 id = arguments.getSerializable("bottleId") as Long,
-                boundBottle = false
+                boundBottle = false,
+                boundDrinks = false
             )
 
     override fun hearAction(action: Action) {
-        val state = previousState as BottleState
-
         when (action) {
             is Action.bottleToggleActive -> {
                 ioThread {
+                    val state = previousState as BottleState
                     BarDB.setBottleActive(view!!.context, state.id, !state.active)
                 }
+            }
+            is Action.bottleLoad -> {
+                changeState(
+                    (previousState as BottleState).copy(
+                        boundBottle = true,
+                        name = action.load.name,
+                        desc = action.load.desc,
+                        image = action.load.image,
+                        active = action.load.active,
+                        shopping = action.load.shopping
+                    )
+                )
+            }
+            is Action.bottleLoadDrinks -> {
+                changeState(
+                    (previousState as BottleState).copy(
+                        boundDrinks = true,
+                        drinks = ArrayList(action.load)
+                    )
+                )
             }
             else -> { }
         }

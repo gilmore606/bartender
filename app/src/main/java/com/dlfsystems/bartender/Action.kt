@@ -3,6 +3,7 @@ package com.dlfsystems.bartender
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.fragments.CatalogFragment
 import com.dlfsystems.bartender.room.Bottle
+import com.dlfsystems.bartender.room.Drink
 
 sealed class Action {
 
@@ -17,4 +18,7 @@ sealed class Action {
     class drinkTab(val tab: CatalogFragment.DrinkTabs) : Action()
 
     class bottleToggleActive() : Action()
+
+    class bottleLoad(val load: Bottle): Action()
+    class bottleLoadDrinks(val load: List<Drink>): Action()
 }

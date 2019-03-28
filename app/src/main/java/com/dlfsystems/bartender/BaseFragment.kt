@@ -81,8 +81,10 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
 
     open fun hearAction(action: Action) { }
 
-    fun changeState(state: BaseState) {
-        viewController.render(previousState, state)
+    @Synchronized fun changeState(state: BaseState) {
+        activity?.runOnUiThread {
+            viewController.render(previousState, state)
+        }
         previousState = state
     }
 
