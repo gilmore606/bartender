@@ -22,4 +22,8 @@ sealed class Action {
 
     class bottleLoad(val load: Bottle): Action()
     class bottleLoadDrinks(val load: List<Drink>): Action()
+
+    class drinkToggleFavorite(): Action()
+    class drinkLoad(val load: Drink): Action()
+    class drinkLoadBottles(val load: List<Bottle>): Action()
 }

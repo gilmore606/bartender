@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:background="@drawable/bg_detailpage"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+        <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_margin="4dp" android:button="@drawable/checkbox_favorite"
+                  android:layout_gravity="center_horizontal"
+                  android:id="@+id/drink_favorite" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_margin="24dp" style="@style/drinkTitle"
+                  android:id="@+id/drink_name" android:layout_gravity="center_horizontal" />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:background="@drawable/bg_tinyheader"
+                  android:paddingHorizontal="12dp"
+                  android:paddingVertical="8dp"
+                  style="@style/tinyHeader"
+                  android:text="I N G R E D I E N T S" />
+        <com.dlfsystems.bartender.views.BottlelistView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/drink_bottlelist" />
+    </LinearLayout>
+</ScrollView>

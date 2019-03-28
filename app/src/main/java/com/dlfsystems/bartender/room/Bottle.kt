@@ -11,9 +11,9 @@ import androidx.room.*
         ))
 data class Bottle(@PrimaryKey val id: Long,
                         val name: String,
-                        val image: Int,
-                        val desc: Int,
-                        val type: Long,
+                        val image: Int = 0,
+                        val desc: Int = 0,
+                        val type: Long = 1,
                         val active: Boolean = false,
                         val shopping: Boolean = false)
 
@@ -53,4 +53,7 @@ interface BottleDao {
 
     @Query("SELECT * FROM bottles WHERE id=:bottleId")
     fun liveById(bottleId: Long): LiveData<Bottle>
+
+    @Query("SELECT * FROM bottles b INNER JOIN drink_ingredients di ON b.id = di.bottleId WHERE di.drinkId=:drinkId")
+    fun liveBottlesForDrink(drinkId: Long): LiveData<List<Bottle>>
 }

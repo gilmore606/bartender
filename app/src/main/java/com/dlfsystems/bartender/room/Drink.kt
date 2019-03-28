@@ -49,6 +49,9 @@ interface DrinkDao {
 
     @Query("SELECT d.id, d.name, d.favorite, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE d.favorite = 1 GROUP BY d.name ORDER BY 4,2")
     fun getFavoritesPaged(): DataSource.Factory<Int, Drink>
+
+    @Query("SELECT * FROM drinks WHERE id=:drinkId")
+    fun liveById(drinkId: Long): LiveData<Drink>
 }
 
 @Dao

@@ -23,6 +23,7 @@ import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Drink
 import com.dlfsystems.bartender.room.DrinksViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.DrinkTabs
+import io.reactivex.subjects.PublishSubject
 
 class CatalogDrinksFragment : CatalogListFragment() {
 
@@ -30,15 +31,22 @@ class CatalogDrinksFragment : CatalogListFragment() {
         val tab: DrinkTabs = DrinkTabs.ALL
     ) : BaseState()
 
-    class DrinkAdapter(val context: Context): PagedListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
+    class DrinkAdapter(val action: PublishSubject<Action>, val context: Context): PagedListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
 
-        class DrinkViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        class DrinkViewHolder(val clickSubject: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
             val drinkName = view.findViewById(R.id.item_drink_name) as TextView
             val drinkImage = view.findViewById(R.id.item_drink_image) as ImageView
             val drinkMissing = view.findViewById(R.id.item_drink_missing) as TextView
             val drinkFavorite = view.findViewById(R.id.item_drink_favorite_checkbox) as CheckBox
+            var drinkId: Long = 0
 
+            init {
+                view.setOnClickListener {
+                    clickSubject.onNext(Action.navToDrink(drinkId))
+                }
+            }
             fun bind(drink: Drink?) {
+                drinkId = drink?.id ?: 0
                 drinkName.text = drink?.name ?: ""
                 drinkFavorite.setOnCheckedChangeListener { _,_ -> }
                 drinkFavorite.isChecked = drink?.favorite ?: false
@@ -61,7 +69,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
-            return DrinkViewHolder(LayoutInflater.from(context).inflate(R.layout.item_drink, parent, false))
+            return DrinkViewHolder(action, LayoutInflater.from(context).inflate(R.layout.item_drink, parent, false))
         }
 
         override fun onBindViewHolder(holder: DrinkViewHolder, position: Int) {
@@ -86,7 +94,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
 
                 recyclerView = it.findViewById(R.id.drinks_recycler) as RecyclerView
                 recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(it.context)
-                recyclerAdapter = DrinkAdapter(it.context)
+                recyclerAdapter = DrinkAdapter(action, it.context)
                 recyclerView.adapter = recyclerAdapter
                 subscribeLiveData(drinksViewModel)
             }
@@ -122,6 +130,9 @@ class CatalogDrinksFragment : CatalogListFragment() {
         val state = previousState as DrinksState
 
         when (action) {
+            is Action.navToDrink -> {
+                Rudder.navTo(DrinkFragment.DrinkKey(action.drinkId))
+            }
             is Action.drinkTab -> {
                 changeState(state.copy(
                     tab = action.tab

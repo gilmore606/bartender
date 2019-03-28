@@ -4,41 +4,40 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.LinearLayout
-import com.dlfsystems.bartender.fragments.DrinkFragment
+import com.dlfsystems.bartender.fragments.BottleFragment
 import com.dlfsystems.bartender.nav.Rudder
 import com.dlfsystems.bartender.plusAssign
-import com.dlfsystems.bartender.room.Drink
+import com.dlfsystems.bartender.room.Bottle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class DrinklistView @JvmOverloads constructor (
+class BottlelistView @JvmOverloads constructor (
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
     defStyleRes: Int = 0
-    ) : LinearLayout(context, attrs, defStyle, defStyleRes) {
+) : LinearLayout(context, attrs, defStyle, defStyleRes) {
 
     private var disposables = CompositeDisposable()
 
-    val drinks = ArrayList<Drink>(0)
+    val bottles = ArrayList<Bottle>(0)
 
     init {
         orientation = VERTICAL
         gravity = Gravity.CENTER_VERTICAL
     }
 
-    fun populate(newdrinks: ArrayList<Drink>) {
-        newdrinks.filter { !(it in drinks) }
+    fun populate(newbottles: ArrayList<Bottle>) {
+        newbottles.filter { !(it in bottles) }
             .forEach {
-                drinks.add(it)
-                val view = DrinkitemView(context)
-                view.bindDrink(it)
+                bottles.add(it)
+                val view = BottleitemView(context)
+                view.bindBottle(it)
                 addView(view)
                 disposables += view.clickEvent.observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        Rudder.navTo(DrinkFragment.DrinkKey(it.id))
+                        Rudder.navTo(BottleFragment.BottleKey(it.id))
                     }
             }
     }
-
 }
