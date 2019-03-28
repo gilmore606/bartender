@@ -9,13 +9,30 @@
                   android:layout_height="match_parent">
         <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" >
             <ImageView android:layout_width="600px" android:layout_height="600px"
-                       android:id="@+id/bottle_image" android:layout_gravity="center"
+                       android:id="@+id/bottle_image" android:layout_gravity="center_vertical|start"
                        android:layout_margin="12dp"
                         android:background="@drawable/bg_shadowburst"/>
-            <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_margin="24dp"
-                      android:layout_gravity="top|end"
-                      android:id="@+id/bottle_active" />
+            <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical|end" android:layout_margin="24dp"
+                          >
+                <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_margin="4dp"
+                          android:layout_gravity="center_horizontal"
+                          android:id="@+id/bottle_active" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/checkLabel" android:layout_gravity="center_horizontal"
+                          android:id="@+id/bottle_active_label"
+                          android:text="Add to bar" />
+                <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="4dp" android:layout_marginTop="36dp"
+                          android:layout_gravity="center_horizontal"
+                          android:button="@drawable/checkbox_shopping"
+                          android:id="@+id/bottle_shopping" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/checkLabel" android:layout_gravity="center_horizontal"
+                          android:id="@+id/bottle_shopping_label"
+                          android:text="Add to Shopping" />
+            </LinearLayout>
         </FrameLayout>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:layout_margin="24dp" style="@style/drinkTitle"

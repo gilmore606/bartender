@@ -40,4 +40,8 @@
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">#AA000000</item>
     </style>
+    <style name="checkLabel">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">#88000000</item>
+    </style>
 </resources>

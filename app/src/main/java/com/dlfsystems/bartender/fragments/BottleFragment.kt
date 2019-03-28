@@ -66,6 +66,7 @@ class BottleFragment : BaseFragment() {
         var bottleName: TextView? = null
         var bottleImage: ImageView? = null
         var bottleActive: CheckBox? = null
+        var bottleShopping: CheckBox? = null
         var bottleAbout: ExpandableTextView? = null
         var bottleDrinklist: DrinklistView? = null
 
@@ -74,10 +75,12 @@ class BottleFragment : BaseFragment() {
                 bottleName = it.findViewById(R.id.bottle_name) as TextView
                 bottleImage = it.findViewById(R.id.bottle_image) as ImageView
                 bottleActive = it.findViewById(R.id.bottle_active) as CheckBox
+                bottleShopping = it.findViewById(R.id.bottle_shopping) as CheckBox
                 bottleAbout = it.findViewById(R.id.bottle_about) as ExpandableTextView
                 bottleDrinklist = it.findViewById(R.id.bottle_drinklist) as DrinklistView
 
                 bottleActive?.setOnClickListener { action.onNext(Action.bottleToggleActive()) }
+                bottleShopping?.setOnClickListener { action.onNext(Action.bottleToggleShopping()) }
             }
         }
 
@@ -94,6 +97,7 @@ class BottleFragment : BaseFragment() {
                 val aboutString = try { bottleFragment.getString(state.desc) } catch (e: Exception) { " " }
                 bottleAbout?.text = aboutString
                 bottleActive?.isChecked = state.active
+                bottleShopping?.isChecked = state.shopping
             } else {
                 bottleViewModel = BottleViewModel(state.id, bottleFragment.context!!.applicationContext as Application)
                 bottleViewModel?.bottle?.observe(bottleFragment, Observer {
@@ -125,10 +129,12 @@ class BottleFragment : BaseFragment() {
     override fun hearAction(action: Action) {
         when (action) {
             is Action.bottleToggleActive -> {
-                ioThread {
-                    val state = previousState as BottleState
-                    BarDB.setBottleActive(view!!.context, state.id, !state.active)
-                }
+                val state = previousState as BottleState
+                BarDB.setBottleActive(view!!.context, state.id, !state.active)
+            }
+            is Action.bottleToggleShopping -> {
+                val state = previousState as BottleState
+                BarDB.setBottleShopping(view!!.context, state.id, !state.shopping)
             }
             is Action.bottleLoad -> {
                 changeState(

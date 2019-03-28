@@ -45,6 +45,9 @@ interface BottleDao {
     @Query("UPDATE bottles SET active=:active WHERE id=:bottleId")
     fun setActive(bottleId: Long, active: Int)
 
+    @Query("UPDATE bottles SET shopping=:shopping WHERE id=:bottleId")
+    fun setShopping(bottleId: Long, shopping: Int)
+
     @Query("SELECT * FROM bottles WHERE id=:bottleId")
     fun byId(bottleId: Long): Bottle
 

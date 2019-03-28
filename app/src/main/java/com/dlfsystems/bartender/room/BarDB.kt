@@ -106,6 +106,12 @@ abstract class BarDB : RoomDatabase() {
             }
         }
 
+        fun setBottleShopping(context: Context, bottleId: Long, shopping: Boolean) {
+            ioThread {
+                getInstance(context).bottleDao().setShopping(bottleId, if (shopping) 1 else 0)
+            }
+        }
+
         fun setDrinkFavorite(context: Context, drinkId: Long, favorite: Boolean) {
             ioThread {
                 getInstance(context).drinkDao().setFavorite(drinkId, if (favorite) 1 else 0)
