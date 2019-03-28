@@ -87,7 +87,6 @@ class BottleFragment : BaseFragment() {
         override fun render(previousState: BaseState, state: BaseState) {
             state as BottleState
             previousState as BottleState
-            Log.d("bartender", "FNORD bottle state = " + state.toString())
             if (state.boundBottle) {
                 bottleName?.text = state.name
                 if (!previousState.boundBottle) {

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Bottle
 import io.reactivex.subjects.PublishSubject
@@ -35,6 +36,9 @@ class BottleitemView @JvmOverloads constructor (
     fun bindBottle(newbottle: Bottle) {
         bottle = newbottle
         bottleName.text = bottle.name
+        setBackgroundResource(
+                if (bottle.active) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
+        )
         bottleTopView.setOnClickListener {
             clickEvent.onNext(bottle)
         }

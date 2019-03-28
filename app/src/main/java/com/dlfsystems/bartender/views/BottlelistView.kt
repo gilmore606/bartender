@@ -2,6 +2,7 @@ package com.dlfsystems.bartender.views
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.widget.LinearLayout
 import com.dlfsystems.bartender.fragments.BottleFragment
@@ -36,6 +37,7 @@ class BottlelistView @JvmOverloads constructor (
                 addView(view)
                 disposables += view.clickEvent.observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
+                        Log.d("bartender", "FNORD navving to " + it.toString())
                         Rudder.navTo(BottleFragment.BottleKey(it.id))
                     }
             }

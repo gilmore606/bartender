@@ -41,6 +41,9 @@ class DrinkitemView @JvmOverloads constructor (
             drinkMissing.text = "need " + drink.missingBottles.toString() + " more"
         else
             drinkMissing.text = ""
+        setBackgroundResource(
+            if (drink.missingBottles < 1) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
+        )
         drinkTopView.setOnClickListener {
             clickEvent.onNext(drink)
         }
