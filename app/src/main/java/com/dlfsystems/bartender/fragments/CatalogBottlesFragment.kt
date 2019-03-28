@@ -17,10 +17,10 @@ import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.Rudder
 import androidx.recyclerview.widget.RecyclerView
-import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.BottlesViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
+import com.dlfsystems.bartender.views.BottleItemView
 
 import io.reactivex.subjects.PublishSubject
 
@@ -39,20 +39,8 @@ class CatalogBottlesFragment : CatalogListFragment() {
             val bottleOwned = view.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox
             var bottleId: Long = 0
 
-            init {
-                view.setOnClickListener {
-                    action.onNext(Action.navToBottle(bottleId))
-                }
-            }
             fun bind(bottle: Bottle?) {
-                bottleId = bottle?.id ?: 0
-                bottleName.text = bottle?.name ?: ""
-                bottleImage.setImageDrawable(ContextCompat.getDrawable(view.context, bottle?.image ?: 0))
-                bottleOwned.setOnCheckedChangeListener { _,_ -> }
-                bottleOwned.isChecked = bottle?.active ?: false
-                bottleOwned.setOnCheckedChangeListener { _, isChecked ->
-                    action.onNext(Action.bottleToggleActive(bottle, isChecked))
-                }
+                bottle?.also { (view as BottleItemView).bindBottle(it, action) }
             }
         }
 
@@ -64,7 +52,10 @@ class CatalogBottlesFragment : CatalogListFragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottleViewHolder {
-            return BottleViewHolder(action, LayoutInflater.from(context).inflate(R.layout.item_bottle, parent, false))
+            val view = BottleItemView(parent.context)
+            view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+            return BottleViewHolder(action, view)
         }
 
         override fun onBindViewHolder(holder: BottleViewHolder, position: Int) {
