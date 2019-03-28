@@ -32,4 +32,12 @@
     <style name="listBottle">
         <item name="android:textSize">16sp</item>
     </style>
+    <style name="bottleDrinkName">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="bottleDrinkMissing">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">#AA000000</item>
+    </style>
 </resources>

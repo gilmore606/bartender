@@ -35,6 +35,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
         class DrinkViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             val drinkName = view.findViewById(R.id.item_drink_name) as TextView
             val drinkImage = view.findViewById(R.id.item_drink_image) as ImageView
+            val drinkMissing = view.findViewById(R.id.item_drink_missing) as TextView
             val drinkFavorite = view.findViewById(R.id.item_drink_favorite_checkbox) as CheckBox
 
             fun bind(drink: Drink?) {
@@ -43,6 +44,11 @@ class CatalogDrinksFragment : CatalogListFragment() {
                 drinkFavorite.isChecked = drink?.favorite ?: false
                 drinkFavorite.setOnCheckedChangeListener { _, isChecked ->
                     BarDB.setDrinkFavorite(view.context, drink?.id ?: 0, isChecked)
+                }
+                if (drink?.missingBottles ?: 0 > 0) {
+                    drinkMissing.text = "need " + drink!!.missingBottles.toString() + " more"
+                } else {
+                    drinkMissing.text = ""
                 }
             }
         }

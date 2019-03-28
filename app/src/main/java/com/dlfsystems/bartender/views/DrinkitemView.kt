@@ -21,6 +21,7 @@ class DrinkitemView @JvmOverloads constructor (
     val clickEvent = PublishSubject.create<Drink>()
 
     val drinkName: TextView
+    val drinkMissing: TextView
     val drinkTopView: LinearLayout
 
     init {
@@ -29,12 +30,17 @@ class DrinkitemView @JvmOverloads constructor (
         onFinishInflate()
 
         drinkName = findViewById(R.id.drinklistview_item_name)
+        drinkMissing = findViewById(R.id.drinklistview_item_missing)
         drinkTopView = findViewById(R.id.drinklistview_item_toplayer)
     }
 
     fun bindDrink(newdrink: Drink) {
         drink = newdrink
         drinkName.text = drink.name
+        if (drink.missingBottles > 0)
+            drinkMissing.text = "need " + drink.missingBottles.toString() + " more"
+        else
+            drinkMissing.text = ""
         drinkTopView.setOnClickListener {
             clickEvent.onNext(drink)
         }

@@ -57,7 +57,7 @@ class BottleFragment : BaseFragment() {
             val bottle: LiveData<Bottle> = BarDB.getInstance(getApplication()).bottleDao().liveById(bottleId)
         }
         class BottleDrinksViewModel(bottleId: Long, application: Application) : AndroidViewModel(application) {
-            val drinks: LiveData<List<Drink>> = BarDB.getInstance(getApplication()).drinkDao().liveDrinksForBottle()
+            val drinks: LiveData<List<Drink>> = BarDB.getInstance(getApplication()).drinkDao().liveDrinksForBottle(bottleId)
         }
 
         var bottleViewModel: BottleViewModel? = null
