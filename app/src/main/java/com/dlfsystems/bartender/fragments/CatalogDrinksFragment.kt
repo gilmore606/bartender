@@ -99,10 +99,10 @@ class CatalogDrinksFragment : CatalogListFragment() {
             }
         }
 
-        override fun render(previousState: BaseState, state: BaseState) {
+        override fun render(previousState: BaseState?, state: BaseState) {
             state as DrinksState
-            previousState as DrinksState
-            if (state.tab != previousState.tab) {
+            previousState as DrinksState?
+            if (state.tab != previousState?.tab) {
                 drinksViewModel.getLiveData().removeObservers(drinksFragment)
                 drinksViewModel = when (state.tab) {
                     (DrinkTabs.ALL) -> { allDrinksViewModel }

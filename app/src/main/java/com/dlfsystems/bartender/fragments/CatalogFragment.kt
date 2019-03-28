@@ -110,9 +110,9 @@ class CatalogFragment : BaseFragment() {
             }
         }
 
-        override fun render(previousState: BaseState, state: BaseState) {
+        override fun render(previousState: BaseState?, state: BaseState) {
             state as CatalogState
-            previousState as CatalogState
+            previousState as CatalogState?
 
             if (!attachedSubFragments) {
                 catalogFragment.activity?.supportFragmentManager?.beginTransaction()?.disallowAddToBackStack()?.apply {
@@ -141,12 +141,12 @@ class CatalogFragment : BaseFragment() {
             spinnerBottles?.visibility = if (state.tab == Tabs.BOTTLES) View.VISIBLE else View.GONE
             spinnerDrinks?.visibility = if (state.tab == Tabs.DRINKS) View.VISIBLE else View.GONE
 
-            if (state.tab != previousState.tab) {
+            if (state.tab != (previousState?.tab ?: state.tab)) {
                 val animIn = if (state.tab == Tabs.DRINKS) R.anim.slide_in_left else R.anim.slide_in_right
                 val animOut = if (state.tab == Tabs.DRINKS) R.anim.slide_out_left else R.anim.slide_out_right
                 catalogFragment.activity?.supportFragmentManager?.beginTransaction()?.disallowAddToBackStack()?.apply {
                     setCustomAnimations(animIn, animOut)
-                    hide(fragmentForTab(previousState.tab))
+                    previousState?.also { hide(fragmentForTab(previousState.tab)) }
                     show(fragmentForTab(state.tab))
                 }?.commitNow()
             }

@@ -84,12 +84,12 @@ class BottleFragment : BaseFragment() {
             }
         }
 
-        override fun render(previousState: BaseState, state: BaseState) {
+        override fun render(previousState: BaseState?, state: BaseState) {
             state as BottleState
-            previousState as BottleState
+            previousState as BottleState?
             if (state.boundBottle) {
                 bottleName?.text = state.name
-                if (!previousState.boundBottle) {
+                if (!(previousState?.boundBottle ?: false)) {
                     bottleImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
                     bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
                 }

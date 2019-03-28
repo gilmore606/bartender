@@ -69,9 +69,9 @@ class DrinkFragment : BaseFragment() {
             }
         }
 
-        override fun render(previousState: BaseState, state: BaseState) {
+        override fun render(previousState: BaseState?, state: BaseState) {
             state as DrinkState
-            previousState as DrinkState
+            previousState as DrinkState?
             if (state.boundDrink) {
                 drinkName?.text = state.name
                 drinkFavorite?.isChecked = state.favorite

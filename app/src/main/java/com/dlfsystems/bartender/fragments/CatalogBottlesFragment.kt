@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -94,29 +95,30 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(it.context)
                 recyclerAdapter = BottleAdapter(action, it.context)
                 recyclerView.adapter = recyclerAdapter
-                subscribeLiveData(bottlesViewModel)
             }
         }
 
-        override fun render(previousState: BaseState, state: BaseState) {
+        override fun render(previousState: BaseState?, state: BaseState) {
             state as BottlesState
-            previousState as BottlesState
-            if (state.tab != previousState.tab) {
+            previousState as BottlesState?
+            if (state.tab != previousState?.tab) {
                 bottlesViewModel.getLiveData().removeObservers(bottlesFragment)
-                recyclerAdapter.configureForTab(recyclerView, state.tab)
                 bottlesViewModel = when (state.tab) {
                     (BottleTabs.ALL) -> { allBottlesViewModel }
                     (BottleTabs.MINE) -> { activeBottlesViewModel }
                     (BottleTabs.SHOP) -> { shopBottlesViewModel }
                     else -> { allBottlesViewModel }
                 }
-                subscribeLiveData(bottlesViewModel)
+                subscribeLiveData(bottlesViewModel, state)
             }
         }
 
-        private fun subscribeLiveData(viewModel: BottlesViewModel) {
+        private fun subscribeLiveData(viewModel: BottlesViewModel, state: BottlesState) {
             viewModel.getLiveData().observe(bottlesFragment, Observer {
-                it?.let { recyclerAdapter.submitList(it) }
+                it?.let {
+                    recyclerAdapter.submitList(it)
+                    recyclerAdapter.configureForTab(recyclerView, state.tab)
+                }
             })
         }
     }

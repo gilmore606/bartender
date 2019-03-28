@@ -43,7 +43,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         open fun subscribeActions() { }
 
         // Render a state to the UI elements
-        open fun render(previousState: BaseState, state: BaseState) { }
+        open fun render(previousState: BaseState?, state: BaseState) { }
 
     }
 
@@ -69,7 +69,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         return getDefaultState()
     }
 
-    fun renderInitialState() { viewController.render(previousState, previousState) }
+    fun renderInitialState() { viewController.render(null, previousState) }
 
     open fun bindActions() {
         if (!disposables.isDisposed) disposables.dispose()
