@@ -29,6 +29,14 @@ data class DrinkIngredient(@PrimaryKey(autoGenerate = true) val id: Long = 1,
                             val drinkId: Long,
                             val bottleId: Long,
                             val amount: String)
+
+data class Ingredient(val bottleId: Long = 0,
+                      val bottleName: String = "",
+                      val bottleImage: Int = 0,
+                      val bottleActive: Boolean = false,
+                      val amount: String = ""
+                      )
+
 @Dao
 interface DrinkDao {
 
@@ -55,6 +63,9 @@ interface DrinkDao {
 
     @Query("SELECT * FROM drinks WHERE id=:drinkId")
     fun liveById(drinkId: Long): LiveData<Drink>
+
+    @Query("SELECT b.id bottleId, b.name bottleName, b.image bottleImage, b.active bottleActive, di.amount amount FROM drink_ingredients di INNER JOIN bottles b ON b.id = di.bottleId WHERE di.drinkId=:drinkId")
+    fun liveIngredientsForDrink(drinkId: Long): LiveData<List<Ingredient>>
 }
 
 @Dao

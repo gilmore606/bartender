@@ -5,9 +5,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Bottle
+import com.dlfsystems.bartender.room.Ingredient
 import io.reactivex.subjects.PublishSubject
 
 class IngredientView @JvmOverloads constructor (
@@ -17,7 +17,7 @@ class IngredientView @JvmOverloads constructor (
     defStyleRes: Int = 0
 ): LinearLayout(context, attrs, defStyle) {
 
-    var bottle = Bottle(id=0, name="")
+    var ingredient = Ingredient()
 
     val clickEvent = PublishSubject.create<Bottle>()
 
@@ -26,21 +26,21 @@ class IngredientView @JvmOverloads constructor (
 
     init {
         LayoutInflater.from(context)
-            .inflate(R.layout.bottlelistview_item, this, true)
+            .inflate(R.layout.ingredientlistview_item, this, true)
         onFinishInflate()
 
-        bottleName = findViewById(R.id.bottlelistview_item_name)
-        bottleTopView = findViewById(R.id.bottlelistview_item_toplayer)
+        bottleName = findViewById(R.id.ingredientlistview_item_name)
+        bottleTopView = findViewById(R.id.ingredientlistview_item_toplayer)
     }
 
-    fun bindBottle(newbottle: Bottle) {
-        bottle = newbottle
-        bottleName.text = bottle.name
+    fun bindIngredient(newingredient: Ingredient) {
+        ingredient = newingredient
+        bottleName.text = ingredient.amount + " " + ingredient.bottleName
         setBackgroundResource(
-                if (bottle.active) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
+                if (ingredient.bottleActive) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
         )
         bottleTopView.setOnClickListener {
-            clickEvent.onNext(bottle)
+            clickEvent.onNext(Bottle(id=ingredient.bottleId, name=ingredient.bottleName))
         }
     }
 }

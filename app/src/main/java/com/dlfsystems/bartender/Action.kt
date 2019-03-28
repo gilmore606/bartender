@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.fragments.CatalogFragment
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Drink
+import com.dlfsystems.bartender.room.Ingredient
 
 sealed class Action {
 
@@ -25,5 +26,5 @@ sealed class Action {
 
     class drinkToggleFavorite(val drink: Drink? = null, val favorite: Boolean? = null): Action()
     class drinkLoad(val load: Drink): Action()
-    class drinkLoadBottles(val load: List<Bottle>): Action()
+    class drinkLoadIngredients(val load: List<Ingredient>): Action()
 }
