@@ -79,6 +79,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
 
         lateinit var allDrinksViewModel: DrinksViewModel
         lateinit var favoriteDrinksViewModel: DrinksViewModel
+        lateinit var alphaDrinksViewModel: DrinksViewModel
         lateinit var drinksViewModel: DrinksViewModel
         lateinit var recyclerView: RecyclerView
         lateinit var recyclerAdapter: DrinkAdapter
@@ -87,6 +88,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
             mainView?.let {
                 allDrinksViewModel = ViewModelProviders.of(drinksFragment).get(DrinksViewModel.All::class.java)
                 favoriteDrinksViewModel = ViewModelProviders.of(drinksFragment).get(DrinksViewModel.Favorites::class.java)
+                alphaDrinksViewModel = ViewModelProviders.of(drinksFragment).get(DrinksViewModel.Alpha::class.java)
                 drinksViewModel = allDrinksViewModel
 
                 recyclerView = it.findViewById(R.id.drinks_recycler) as RecyclerView
@@ -105,6 +107,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
                 drinksViewModel = when (state.tab) {
                     (DrinkTabs.ALL) -> { allDrinksViewModel }
                     (DrinkTabs.FAVORITE) -> { favoriteDrinksViewModel }
+                    (DrinkTabs.ALPHA) -> { alphaDrinksViewModel }
                     else -> { allDrinksViewModel }
                 }
                 subscribeLiveData(drinksViewModel)

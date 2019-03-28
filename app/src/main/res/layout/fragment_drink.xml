@@ -21,7 +21,7 @@
                   android:paddingVertical="8dp"
                   style="@style/tinyHeader"
                   android:text="I N G R E D I E N T S" />
-        <com.dlfsystems.bartender.views.BottlelistView
+        <com.dlfsystems.bartender.views.IngredientsView
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:id="@+id/drink_bottlelist" />
     </LinearLayout>

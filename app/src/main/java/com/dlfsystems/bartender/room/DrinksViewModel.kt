@@ -30,4 +30,8 @@ sealed class DrinksViewModel(application: Application) : AndroidViewModel(applic
         override fun drinkFactory() =
                 BarDB.getInstance(getApplication()).drinkDao().getFavoritesPaged()
     }
+    class Alpha constructor(application: Application) : DrinksViewModel(application) {
+        override fun drinkFactory() =
+                BarDB.getInstance(getApplication()).drinkDao().getAlphabeticalPaged()
+    }
 }

@@ -2,7 +2,10 @@ package com.dlfsystems.bartender.fragments
 
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.Action
@@ -18,7 +21,7 @@ class CatalogFragment : BaseFragment() {
 
     enum class Tabs { BOTTLES, DRINKS }
     enum class BottleTabs { MINE, ALL, SHOP }
-    enum class DrinkTabs { ALL, FAVORITE }
+    enum class DrinkTabs { ALL, FAVORITE, ALPHA }
 
     data class CatalogState(
         val tab: Tabs = Tabs.BOTTLES,
@@ -46,21 +49,15 @@ class CatalogFragment : BaseFragment() {
 
         var buttonBottles: Button? = null
         var buttonDrinks: Button? = null
-        var buttonBottlesMine: Button? = null
-        var buttonBottlesAll: Button? = null
-        var buttonDrinksAll: Button? = null
-        var buttonDrinksFavorites: Button? = null
-
-
+        var spinnerBottles: Spinner? = null
+        var spinnerDrinks: Spinner? = null
 
         override fun subscribeActions() {
             mainView?.let {
                 buttonBottles = it.findViewById(R.id.catalog_button_bottles) as Button
                 buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as Button
-                buttonBottlesMine = it.findViewById(R.id.catalog_button_bottles_mine) as Button
-                buttonBottlesAll = it.findViewById(R.id.catalog_button_bottles_add) as Button
-                buttonDrinksAll = it.findViewById(R.id.catalog_button_drinks_all) as Button
-                buttonDrinksFavorites = it.findViewById(R.id.catalog_button_drinks_favorites) as Button
+                spinnerBottles = it.findViewById(R.id.catalog_bottles_spinner) as Spinner
+                spinnerDrinks = it.findViewById(R.id.catalog_drinks_spinner) as Spinner
 
                 buttonBottles?.setOnClickListener {
                     action.onNext(Action.tabTo(Tabs.BOTTLES))
@@ -68,21 +65,47 @@ class CatalogFragment : BaseFragment() {
                 buttonDrinks?.setOnClickListener {
                     action.onNext(Action.tabTo(Tabs.DRINKS))
                 }
-                buttonBottlesAll?.setOnClickListener {
-                    action.onNext(Action.bottleTab(BottleTabs.ALL))
-                    bottleAction.onNext(Action.bottleTab(BottleTabs.ALL))
+
+                ArrayAdapter.createFromResource(mainView!!.context,
+                    R.array.bottle_spin_array,
+                    R.layout.spinner_item).also { adapter ->
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    spinnerBottles?.adapter = adapter
+                    spinnerBottles?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            val tabaction = Action.bottleTab(
+                                when (pos) {
+                                    0 -> { BottleTabs.MINE }
+                                    1 -> { BottleTabs.ALL }
+                                    2 -> { BottleTabs.SHOP }
+                                    else -> { BottleTabs.ALL }
+                                })
+                            action.onNext(tabaction)
+                            bottleAction.onNext(tabaction)
+                        }
+                        override fun onNothingSelected(parent: AdapterView<*>) { }
+                    }
                 }
-                buttonBottlesMine?.setOnClickListener {
-                    action.onNext(Action.bottleTab(BottleTabs.MINE))
-                    bottleAction.onNext(Action.bottleTab(BottleTabs.MINE))
-                }
-                buttonDrinksAll?.setOnClickListener {
-                    action.onNext(Action.drinkTab(DrinkTabs.ALL))
-                    drinkAction.onNext(Action.drinkTab(DrinkTabs.ALL))
-                }
-                buttonDrinksFavorites?.setOnClickListener {
-                    action.onNext(Action.drinkTab(DrinkTabs.FAVORITE))
-                    drinkAction.onNext(Action.drinkTab(DrinkTabs.FAVORITE))
+
+                ArrayAdapter.createFromResource(mainView!!.context,
+                    R.array.drink_spin_array,
+                    R.layout.spinner_item).also { adapter ->
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    spinnerDrinks?.adapter = adapter
+                    spinnerDrinks?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            val tabaction = Action.drinkTab(
+                                when (pos) {
+                                    0 -> { DrinkTabs.FAVORITE }
+                                    1 -> { DrinkTabs.ALL }
+                                    2 -> { DrinkTabs.ALPHA }
+                                    else -> { DrinkTabs.ALL }
+                                })
+                            action.onNext(tabaction)
+                            drinkAction.onNext(tabaction)
+                        }
+                        override fun onNothingSelected(parent: AdapterView<*>) { }
+                    }
                 }
             }
         }
@@ -103,15 +126,20 @@ class CatalogFragment : BaseFragment() {
 
             tintButton(buttonBottles, state.tab == Tabs.BOTTLES)
             tintButton(buttonDrinks, state.tab == Tabs.DRINKS)
-            tintButton(buttonBottlesAll, state.bottleTab == BottleTabs.ALL)
-            tintButton(buttonBottlesMine, state.bottleTab == BottleTabs.MINE)
-            tintButton(buttonDrinksAll, state.drinkTab == DrinkTabs.ALL)
-            tintButton(buttonDrinksFavorites, state.drinkTab == DrinkTabs.FAVORITE)
 
-            buttonBottlesAll?.visibility = if (state.tab == Tabs.BOTTLES) View.VISIBLE else View.GONE
-            buttonBottlesMine?.visibility = buttonBottlesAll?.visibility ?: View.GONE
-            buttonDrinksAll?.visibility = if (state.tab == Tabs.DRINKS) View.VISIBLE else View.GONE
-            buttonDrinksFavorites?.visibility = buttonDrinksAll?.visibility ?: View.GONE
+            spinnerBottles?.setSelection(when (state.bottleTab) {
+                BottleTabs.MINE -> { 0 }
+                BottleTabs.ALL -> { 1 }
+                BottleTabs.SHOP -> { 2 }
+            })
+            spinnerDrinks?.setSelection(when (state.drinkTab) {
+                DrinkTabs.FAVORITE -> { 0 }
+                DrinkTabs.ALL -> { 1 }
+                DrinkTabs.ALPHA -> { 2 }
+            })
+
+            spinnerBottles?.visibility = if (state.tab == Tabs.BOTTLES) View.VISIBLE else View.GONE
+            spinnerDrinks?.visibility = if (state.tab == Tabs.DRINKS) View.VISIBLE else View.GONE
 
             if (state.tab != previousState.tab) {
                 val animIn = if (state.tab == Tabs.DRINKS) R.anim.slide_in_left else R.anim.slide_in_right

@@ -10,7 +10,7 @@ import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Bottle
 import io.reactivex.subjects.PublishSubject
 
-class BottleitemView @JvmOverloads constructor (
+class IngredientView @JvmOverloads constructor (
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,

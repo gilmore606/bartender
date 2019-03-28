@@ -15,7 +15,7 @@ import com.dlfsystems.bartender.nav.FragAnimPair
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Drink
-import com.dlfsystems.bartender.views.BottlelistView
+import com.dlfsystems.bartender.views.IngredientsView
 import kotlinx.android.parcel.Parcelize
 
 class DrinkFragment : BaseFragment() {
@@ -56,13 +56,13 @@ class DrinkFragment : BaseFragment() {
         var drinkBottlesViewModel: DrinkBottlesViewModel? = null
         var drinkName: TextView? = null
         var drinkFavorite: CheckBox? = null
-        var drinkBottlelist: BottlelistView? = null
+        var drinkIngredients: IngredientsView? = null
 
         override fun subscribeActions() {
             mainView?.also {
                 drinkName = it.findViewById(R.id.drink_name) as TextView
                 drinkFavorite = it.findViewById(R.id.drink_favorite) as CheckBox
-                drinkBottlelist = it.findViewById(R.id.drink_bottlelist) as BottlelistView
+                drinkIngredients = it.findViewById(R.id.drink_bottlelist) as IngredientsView
 
                 drinkFavorite?.setOnClickListener { action.onNext(Action.drinkToggleFavorite()) }
             }
@@ -81,7 +81,7 @@ class DrinkFragment : BaseFragment() {
                 })
             }
             if (state.boundBottles) {
-                drinkBottlelist?.populate(state.bottles)
+                drinkIngredients?.populate(state.bottles)
             } else {
                 drinkBottlesViewModel = DrinkBottlesViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
                 drinkBottlesViewModel?.bottles?.observe(drinkFragment, Observer {

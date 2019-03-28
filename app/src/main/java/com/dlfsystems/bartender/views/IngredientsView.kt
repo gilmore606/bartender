@@ -12,7 +12,7 @@ import com.dlfsystems.bartender.room.Bottle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class BottlelistView @JvmOverloads constructor (
+class IngredientsView @JvmOverloads constructor (
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
@@ -32,7 +32,7 @@ class BottlelistView @JvmOverloads constructor (
         newbottles.filter { !(it in bottles) }
             .forEach {
                 bottles.add(it)
-                val view = BottleitemView(context)
+                val view = IngredientView(context)
                 view.bindBottle(it)
                 addView(view)
                 disposables += view.clickEvent.observeOn(AndroidSchedulers.mainThread())
