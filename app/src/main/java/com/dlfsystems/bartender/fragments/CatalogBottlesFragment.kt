@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.BottlesViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
+import com.dlfsystems.bartender.views
 import com.dlfsystems.bartender.views.BottleItemView
 
 import io.reactivex.subjects.PublishSubject
@@ -32,6 +33,8 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
 
     class BottleAdapter(val action: PublishSubject<Action>, val context: Context) : PagedListAdapter<Bottle, BottleAdapter.BottleViewHolder>(BottleDiffCallback()) {
+
+        var tab: BottleTabs = BottleTabs.ALL
 
         class BottleViewHolder(val action: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
             val bottleName = view.findViewById(R.id.item_bottle_name) as TextView
@@ -59,7 +62,14 @@ class CatalogBottlesFragment : CatalogListFragment() {
         }
 
         override fun onBindViewHolder(holder: BottleViewHolder, position: Int) {
+            (holder.view as BottleItemView).configureForTab(tab)
             holder.bind(getItem(position))
+        }
+
+        fun configureForTab(recyclerView: RecyclerView, newtab: BottleTabs) {
+            tab = newtab
+            (recyclerView.views.filter { it is BottleItemView } as List<BottleItemView>)
+                .forEach { it.configureForTab(tab) }
         }
     }
 
@@ -93,6 +103,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
             previousState as BottlesState
             if (state.tab != previousState.tab) {
                 bottlesViewModel.getLiveData().removeObservers(bottlesFragment)
+                recyclerAdapter.configureForTab(recyclerView, state.tab)
                 bottlesViewModel = when (state.tab) {
                     (BottleTabs.ALL) -> { allBottlesViewModel }
                     (BottleTabs.MINE) -> { activeBottlesViewModel }
