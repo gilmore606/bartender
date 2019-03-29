@@ -135,12 +135,12 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     }
 
     protected open fun onHide() {
-        disposables.dispose()
+        //disposables.dispose()
     }
 
     open val backButtonEnabled = true
     protected open fun onUnhide() {
-        bindActions()
+        //bindActions()
         toggleBackButton(backButtonEnabled)
     }
 

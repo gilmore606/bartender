@@ -8,8 +8,8 @@ import android.widget.LinearLayout
 import com.dlfsystems.bartender.fragments.BottleFragment
 import com.dlfsystems.bartender.nav.Rudder
 import com.dlfsystems.bartender.plusAssign
-import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Ingredient
+import com.dlfsystems.bartender.views
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
@@ -29,18 +29,25 @@ class IngredientsView @JvmOverloads constructor (
         gravity = Gravity.CENTER_VERTICAL
     }
 
-    fun populate(newbottles: ArrayList<Ingredient>) {
-        newbottles.filter { !(it in ingredients) }
+    fun populate(newIngredients: ArrayList<Ingredient>) {
+        newIngredients.filter { !(it.bottleId in ingredients.map { it.bottleId}) }
             .forEach {
-                ingredients.add(it)
                 val view = IngredientView(context)
                 view.bindIngredient(it)
                 addView(view)
                 disposables += view.clickEvent.observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        Log.d("bartender", "FNORD navving to " + it.toString())
                         Rudder.navTo(BottleFragment.BottleKey(it.id))
                     }
             }
+        newIngredients.filter { (it.bottleId in ingredients.map { it.bottleId}) }
+            .forEach { newIngredient ->
+                views.filter { it is IngredientView && it.ingredient.bottleId == newIngredient.bottleId }
+                    .forEach {
+                        (it as IngredientView).bindIngredient(newIngredient)
+                    }
+            }
+        ingredients.clear()
+        ingredients.addAll(newIngredients)
     }
 }

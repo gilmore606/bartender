@@ -8,6 +8,7 @@ import com.dlfsystems.bartender.fragments.DrinkFragment
 import com.dlfsystems.bartender.nav.Rudder
 import com.dlfsystems.bartender.plusAssign
 import com.dlfsystems.bartender.room.Drink
+import com.dlfsystems.bartender.views
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
@@ -28,9 +29,8 @@ class DrinklistView @JvmOverloads constructor (
     }
 
     fun populate(newdrinks: ArrayList<Drink>) {
-        newdrinks.filter { !(it in drinks) }
+        newdrinks.filter { !(it.id in drinks.map { it.id }) }
             .forEach {
-                drinks.add(it)
                 val view = DrinkitemView(context)
                 view.bindDrink(it)
                 addView(view)
@@ -39,6 +39,15 @@ class DrinklistView @JvmOverloads constructor (
                         Rudder.navTo(DrinkFragment.DrinkKey(it.id))
                     }
             }
+        newdrinks.filter { (it.id in drinks.map { it.id }) }
+            .forEach { newdrink ->
+                views.filter { it is DrinkitemView && it.drink.id == newdrink.id }
+                    .forEach {
+                        (it as DrinkitemView).bindDrink(newdrink)
+                    }
+            }
+        drinks.clear()
+        drinks.addAll(newdrinks)
     }
 
 }
