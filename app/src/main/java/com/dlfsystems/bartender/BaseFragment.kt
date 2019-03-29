@@ -125,6 +125,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         val view = viewController.getMainView(layoutResource, inflater, container)
         bindActions()
         renderInitialState()
+        toggleBackButton(backButtonEnabled)
         return view
     }
 
@@ -137,12 +138,18 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         disposables.dispose()
     }
 
+    open val backButtonEnabled = true
     protected open fun onUnhide() {
         bindActions()
+        toggleBackButton(backButtonEnabled)
     }
 
     override fun onDestroy() {
         disposables.dispose()
         super.onDestroy()
+    }
+
+    fun toggleBackButton(value: Boolean) {
+        (activity as MainActivity).toggleBackButton(value)
     }
 }

@@ -171,6 +171,8 @@ class CatalogFragment : BaseFragment() {
     override val viewController = CatalogView(this)
     override fun getDefaultState() = CatalogState()
 
+    override val backButtonEnabled = false
+
     override fun hearAction(action: Action) {
         val state = previousState as CatalogState
 

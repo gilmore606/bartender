@@ -126,6 +126,8 @@ class CatalogDrinksFragment : CatalogListFragment() {
     override val viewController = DrinksView(this)
     override fun getDefaultState() = DrinksState()
 
+    override val backButtonEnabled = false
+
     override fun hearAction(action: Action) {
         val state = previousState as DrinksState
 

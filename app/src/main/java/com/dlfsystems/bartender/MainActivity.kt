@@ -82,4 +82,8 @@ class MainActivity : AppCompatActivity(), StateChanger {
         disposables.dispose()
         super.onDestroy()
     }
+
+    fun toggleBackButton(value: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(value)
+    }
 }
