@@ -147,6 +147,11 @@ class CatalogBottlesFragment : CatalogListFragment() {
                     setBottleActive(action.bottle.id, action.bottle.name, action.active ?: true)
                 }
             }
+            is Action.bottleToggleShopping -> {
+                action.bottle?.also {
+                    setBottleShopping(action.bottle.id, action.bottle.name, action.shopping ?: true)
+                }
+            }
             is Action.bottleTab -> {
                 changeState(state.copy(
                     tab = action.tab

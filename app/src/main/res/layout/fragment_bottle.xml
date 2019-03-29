@@ -16,7 +16,7 @@
                           android:layout_gravity="center_vertical|end" android:layout_margin="24dp"
                           >
                 <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_margin="4dp"
+                          android:layout_margin="6dp" android:scaleX="1.5" android:scaleY="1.5"
                           android:layout_gravity="center_horizontal"
                           android:id="@+id/bottle_active" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -26,7 +26,8 @@
                 <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_marginHorizontal="4dp" android:layout_marginTop="36dp"
                           android:layout_gravity="center_horizontal"
-                          android:button="@drawable/checkbox_shopping"
+                          android:button="@drawable/checkbox_shopping_big"
+                          android:layout_margin="6dp"
                           android:id="@+id/bottle_shopping" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           style="@style/checkLabel" android:layout_gravity="center_horizontal"

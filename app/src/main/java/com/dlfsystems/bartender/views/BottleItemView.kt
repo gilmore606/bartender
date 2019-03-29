@@ -28,6 +28,7 @@ class BottleItemView @JvmOverloads constructor (
     val bottleName: TextView
     val bottleImage: ImageView
     val bottleActive: CheckBox
+    val bottleShopping: CheckBox
 
     init {
         LayoutInflater.from(context)
@@ -37,6 +38,7 @@ class BottleItemView @JvmOverloads constructor (
         bottleName = findViewById(R.id.item_bottle_name)
         bottleImage = findViewById(R.id.item_bottle_image)
         bottleActive = findViewById(R.id.item_bottle_owned_checkbox)
+        bottleShopping = findViewById(R.id.item_bottle_shopping)
     }
 
     fun bindBottle(newbottle: Bottle, action: PublishSubject<Action>) {
@@ -48,6 +50,11 @@ class BottleItemView @JvmOverloads constructor (
         bottleActive.isChecked = bottle.active
         bottleActive.setOnCheckedChangeListener { _, isChecked ->
             action.onNext(Action.bottleToggleActive(bottle, isChecked))
+        }
+        bottleShopping.setOnCheckedChangeListener { _,_ -> }
+        bottleShopping.isChecked = bottle.shopping
+        bottleShopping.setOnCheckedChangeListener { _, isChecked ->
+            action.onNext(Action.bottleToggleShopping(bottle, isChecked))
         }
         setOnClickListener {
             action.onNext(Action.navToBottle(bottle.id))
