@@ -3,8 +3,10 @@ package com.dlfsystems.bartender.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Ingredient
@@ -22,6 +24,8 @@ class IngredientView @JvmOverloads constructor (
     val clickEvent = PublishSubject.create<Bottle>()
 
     val bottleName: TextView
+    val bottleAmount: TextView
+    val bottleImage: ImageView
     val bottleTopView: LinearLayout
 
     init {
@@ -30,12 +34,16 @@ class IngredientView @JvmOverloads constructor (
         onFinishInflate()
 
         bottleName = findViewById(R.id.ingredientlistview_item_name)
+        bottleAmount = findViewById(R.id.ingredientlistview_amount)
+        bottleImage = findViewById(R.id.ingredientlistview_bottle_image)
         bottleTopView = findViewById(R.id.ingredientlistview_item_toplayer)
     }
 
     fun bindIngredient(newingredient: Ingredient) {
         ingredient = newingredient
-        bottleName.text = ingredient.amount + " " + ingredient.bottleName
+        bottleName.text = ingredient.bottleName
+        bottleAmount.text = ingredient.amount
+        bottleImage.setImageDrawable(ContextCompat.getDrawable(context, ingredient.bottleImage))
         setBackgroundResource(
                 if (ingredient.bottleActive) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
         )

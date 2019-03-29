@@ -9,6 +9,10 @@ import androidx.room.*
 data class Drink(@PrimaryKey val id: Long,
                        val name: String,
                         val favorite: Boolean = false,
+                        val image: Int = 0,
+                        val info: Int = 0,
+                        val make: Int = 0,
+                        val garnish: Int = 0,
                         val missingBottles: Int = 0)
 
 @Entity(tableName = "drink_ingredients",
@@ -49,16 +53,16 @@ interface DrinkDao {
     @Query("UPDATE drinks SET favorite=:favorite WHERE id=:drinkId")
     fun setFavorite(drinkId: Long, favorite: Int)
 
-    @Query("SELECT d.id, d.name, d.favorite, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE di.drinkId in (SELECT drinkId from drink_ingredients WHERE bottleId=:bottleId) GROUP BY d.name ORDER BY 4,2")
+    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE di.drinkId in (SELECT drinkId from drink_ingredients WHERE bottleId=:bottleId) GROUP BY d.name ORDER BY 4,2")
     fun liveDrinksForBottle(bottleId: Long): LiveData<List<Drink>>
 
-    @Query("SELECT d.id, d.name, d.favorite, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id GROUP BY d.name ORDER BY 4,2")
+    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id GROUP BY d.name ORDER BY 4,2")
     fun getAllPaged(): DataSource.Factory<Int, Drink>
 
-    @Query("SELECT d.id, d.name, d.favorite, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE d.favorite = 1 GROUP BY d.name ORDER BY 4,2")
+    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE d.favorite = 1 GROUP BY d.name ORDER BY 4,2")
     fun getFavoritesPaged(): DataSource.Factory<Int, Drink>
 
-    @Query("SELECT d.id, d.name, d.favorite, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id GROUP BY d.name ORDER BY d.name")
+    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id GROUP BY d.name ORDER BY d.name")
     fun getAlphabeticalPaged(): DataSource.Factory<Int, Drink>
 
     @Query("SELECT * FROM drinks WHERE id=:drinkId")

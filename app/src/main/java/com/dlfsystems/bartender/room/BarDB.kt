@@ -82,9 +82,16 @@ abstract class BarDB : RoomDatabase() {
                     val chunks = line.split('|')
                     val drinkId = chunks[0].toLong()
                     val name = chunks[1]
-                    drinkDao.add(Drink(id = drinkId, name = name))
+                    val image = chunks[2]
+                    val makestr = chunks[3]
+                    val garnishstr = chunks[4]
+                    val imageId = context.resources.getIdentifier(image, "drawable", context.packageName)
+                    val infoId = context.resources.getIdentifier(image, "string", context.packageName)
+                    val makeId = context.resources.getIdentifier("make_" + makestr, "string", context.packageName)
+                    val garnishId = context.resources.getIdentifier("garnish_" + garnishstr, "string", context.packageName)
+                    drinkDao.add(Drink(id = drinkId, name = name, image = imageId, info = infoId, make = makeId, garnish = garnishId))
 
-                    var i = 2
+                    var i = 5
                     var eol = false
                     while (!eol) {
                         if (i >= chunks.size) eol = true

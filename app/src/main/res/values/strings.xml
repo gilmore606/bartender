@@ -17,4 +17,28 @@
     <string name="whiskey">Whisky or whiskey is a type of distilled alcoholic beverage made from fermented grain mash. Various grains (which may be malted) are used for different varieties, including barley, corn (maize), rye, and wheat. Whisky is typically aged in wooden casks, generally made of charred white oak. Whisky is a strictly regulated spirit worldwide with many classes and types. The typical unifying characteristics of the different classes and types are the fermentation of grains, distillation, and aging in wooden barrels. </string>
     <string name="ale">Ale is a type of beer brewed using a warm fermentation method, resulting in a sweet, full-bodied and fruity taste. Historically, the term referred to a drink brewed without hops. As with most beers, ale typically has a bittering agent to balance the sweetness of the malt and act as a preservative. Ale was originally bittered with gruit, a mixture of herbs or spices boiled in the wort before fermentation. Later, hops replaced gruit as the bittering agent. Ale, along with bread, was an important source of nutrition in the medieval world, particularly small beer, also known as table beer or mild beer, which was highly nutritious, contained just enough alcohol to act as a preservative, and provided hydration without intoxicating effects.</string>
     <string name="amaretto">Amaretto (Italian for "a little bitter") is a sweet, almond-flavoured, Italian liqueur associated with Saronno, Italy. Various commercial brands are made from a base of apricot pits, almonds, or both. When served as a beverage, amaretto can be drunk by itself, used as an ingredient to create several popular mixed drinks, or added to coffee. Amaretto is also commonly used in culinary applications. The name amaretto originated as a diminutive of the Italian word amaro, meaning "bitter", which references the distinctive flavour lent by the mandorla amara (the bitter almond) or by the drupe kernel. However, the bitterness of amaretto tends to be mild, and sweeteners—and sometimes sweet almonds—enhance the flavour in the final products. </string>
+
+    <string name="oldfashioned">The Old Fashioned is one of the most venerable of cocktails, predating not only the motorcar but the presidency of Abe Lincoln. All it takes is serving whiskey, sugar, bitters and, if you like, a cherry or orange garnish on the rocks. Properly made, it\'s strong but not too strong, sweet but not too sweet, and, most importantly, it\'s dead-simple and absolutely delicious.\nThe best bitters for an Old Fashioned are up for debate, but Angostura is classic for a reason, while Fee Brothers offer a welcome alternative.</string>
+
+    <string name="make_stirice">Pour all ingredients into mixing glass with ice, stir well.\nStrain into glass.</string>
+    <string name="make_shakeice">Shake all ingredients with ice, strain into glass and serve.</string>
+    <string name="make_pourice">Pour all ingredients over ice in a glass.\nStir and serve.</string>
+    <string name="make_mojito">Muddle mint leaves with sugar and lime juice.\nAdd a splash of soda water and fill with cracked ice.\nPour rum over, and top with soda water.</string>
+    <string name="garnish_mojito">Lime wheel, mint leaf, or both.</string>
+    <string name="make_oldfashioned">Place sugar in old fashioned glass and saturate with bitters.\nAdd a dash of water and muddle until dissolved.\nFill glass with ice and add whiskey.</string>
+    <string name="garnish_oldfashioned">Orange twist, maraschino cherry, or both.</string>
+    <string name="make_longislandicedtea">Combine all ingredients except cola and pour over ice in a highball glass.\nAdd a splash of cola for color.\nGarnish with lemon wheel.</string>
+    <string name="garnish_lemonwheel">Lemon wheel.</string>
+    <string name="garnish_limewheel">Lime wheel.</string>
+    <string name="garnish_orangewheel">Orange wheel.</string>
+    <string name="garnish_orangetwist">Twist of orange peel (twist over glass to express oil, drop in glass).</string>
+    <string name="garnish_lemontwist">Twist of lemon peel (twist over glass to express oil, drop in glass).</string>
+    <string name="garnish_martini">Olive, or a twist of lemon peel (twist over glass to express oil).</string>
+    <string name="garnish_margarita">Moisten outer rim and press upside-down into salt to salt the rim.  Garnish drink with lime wheel.</string>
+    <string name="garnish_cherry">Maraschino cherry.</string>
+    <string name="garnish_nutmeg">Sprinkle with nutmeg.</string>
+    <string name="make_moscowmule">Combine vodka and ginger ale in a highball glass filled with ice.\nAdd lime juice and stir gently.\nServe in a copper mug.</string>
+    <string name="garnish_none">none</string>
+    <string name="garnish_apple">Apple slice.</string>
+    <string name="make_amarettorose">Pour amaretto and lime juice over ice.\nTop with soda.</string>
 </resources>

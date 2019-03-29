@@ -2,8 +2,11 @@ package com.dlfsystems.bartender.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -17,6 +20,7 @@ import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Drink
 import com.dlfsystems.bartender.room.Ingredient
 import com.dlfsystems.bartender.views.IngredientsView
+import com.ms.square.android.expandabletextview.ExpandableTextView
 import kotlinx.android.parcel.Parcelize
 
 class DrinkFragment : BaseFragment() {
@@ -26,6 +30,10 @@ class DrinkFragment : BaseFragment() {
         val boundDrink: Boolean = false,
         val name: String = "",
         val favorite: Boolean = false,
+        val image: Int = 0,
+        val info: Int = 0,
+        val make: Int = 0,
+        val garnish: Int = 0,
         val boundIngredients: Boolean = false,
         val ingredients: ArrayList<Ingredient> = ArrayList(0)
     ) : BaseState()
@@ -58,12 +66,20 @@ class DrinkFragment : BaseFragment() {
         var drinkName: TextView? = null
         var drinkFavorite: CheckBox? = null
         var drinkIngredients: IngredientsView? = null
+        var drinkAbout: ExpandableTextView? = null
+        var drinkImage: ImageView? = null
+        var drinkMake: TextView? = null
+        var drinkGarnish: TextView? = null
 
         override fun subscribeActions() {
             mainView?.also {
                 drinkName = it.findViewById(R.id.drink_name) as TextView
                 drinkFavorite = it.findViewById(R.id.drink_favorite) as CheckBox
                 drinkIngredients = it.findViewById(R.id.drink_bottlelist) as IngredientsView
+                drinkAbout = it.findViewById(R.id.drink_about) as ExpandableTextView
+                drinkImage = it.findViewById(R.id.drink_image) as ImageView
+                drinkMake = it.findViewById(R.id.drink_directions) as TextView
+                drinkGarnish = it.findViewById(R.id.drink_garnish) as TextView
 
                 drinkFavorite?.setOnClickListener { action.onNext(Action.drinkToggleFavorite()) }
             }
@@ -75,6 +91,13 @@ class DrinkFragment : BaseFragment() {
             if (state.boundDrink) {
                 drinkName?.text = state.name
                 drinkFavorite?.isChecked = state.favorite
+                drinkAbout?.text = try { drinkFragment.getString(state.info) } catch (e: Exception) { " " }
+                if (!(previousState?.boundDrink ?: false) && state.image > 0) {
+                    drinkImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
+                    drinkImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
+                }
+                drinkMake?.text = try { drinkFragment.getString(state.make) } catch (e: Exception) { " ??? " }
+                drinkGarnish?.text = try { drinkFragment.getString(state.garnish) } catch (e: Exception) { "none" }
             } else {
                 drinkViewModel = DrinkViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
                 drinkViewModel?.drink?.observe(drinkFragment, Observer {
@@ -114,7 +137,11 @@ class DrinkFragment : BaseFragment() {
                     (previousState as DrinkState).copy(
                         boundDrink = true,
                         name = action.load.name,
-                        favorite = action.load.favorite
+                        favorite = action.load.favorite,
+                        image = action.load.image,
+                        info = action.load.info,
+                        make = action.load.make,
+                        garnish = action.load.garnish
                     )
                 )
             }
