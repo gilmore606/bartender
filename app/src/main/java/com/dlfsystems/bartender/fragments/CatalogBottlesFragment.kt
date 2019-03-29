@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
@@ -95,6 +96,12 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(it.context)
                 recyclerAdapter = BottleAdapter(action, it.context)
                 recyclerView.adapter = recyclerAdapter
+                recyclerView.itemAnimator = object : DefaultItemAnimator() {
+                    override fun onAnimationStarted(holder: RecyclerView.ViewHolder) =
+                        (holder.itemView as BottleItemView).configureForTab(recyclerAdapter.tab)
+                    override fun onAnimationFinished(holder: RecyclerView.ViewHolder) =
+                        (holder.itemView as BottleItemView).configureForTab(recyclerAdapter.tab)
+                }
             }
         }
 
