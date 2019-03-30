@@ -1,0 +1,26 @@
+108|151 Rum|rum_151|1
+2|Agave Syrup|agave_syrup|6
+3|Ale|ale|3
+5|Anejo Rum|anejo_rum|1
+20|Brown Sugar|brown_sugar|6
+26|Cherry Brandy|cherry_brandy|1
+28|Cider|cider|3
+30|Clamato|clamato|5
+33|Coconut Rum|coconut_rum|1
+39|Cream Soda|cream_soda|5
+44|Cucumber|cucumber|6
+58|Ginger|ginger|6
+67|Ice|ice|5
+70|Jack Daniels|jack_daniels|1
+74|Lemon|lemon|6
+76|Lemonade|lemonade|5
+83|Maraschino Cherries|maraschino_cherries|6
+90|Olives|olives|6
+91|Orange|orange|6
+94|Orange Liqueur|orange_liqueur|2
+101|Pisang Ambon|pisang_ambon|2
+106|Rosemary|rosemary|6
+107|Rum|rum|1
+119|Spiced Rum|spiced_rum|1
+122|Sweet & Sour Mix|sweet_sour|5
+132|White Wine|white_wine|3

@@ -4,7 +4,7 @@
 4|Long Island Iced Tea|longislandicedtea|longislandicedtea|lemonwheel|129|0.5 oz|78|1/2 oz|57|0.5 oz|124|0.5 oz|75|juice of 1/2 lemon|37|splash
 5|Negroni|negroni|stirice|orangetwist|57|1 oz|24|1 oz|123|1 oz
 6|Whiskey Sour|whiskysour|shakeice|lemonwheel|131|2 oz|75|juice of 1/2 lemon|104|0.5 tsp
-7|Dry Martini|martini|stirice|martini|57|2 oz|49|0.5 oz|90|1 olive
+7|Dry Martini|martini|stirice|martini|57|2 oz|49|0.5 oz
 8|Margarita|margarita|shakeice|margarita|124|1.5 oz|127|0.5 oz|81|1 oz|111|to coat rim
 9|Moscow Mule|moscowmule|moscowmule|limewheel|129|2 oz|81|2 oz|59|to top
 10|Alabama Slammer|alabamaslammer|pourice|orangewheel|117|1 oz|4|1 oz|115|0.5 oz|75|dash
@@ -25,7 +25,7 @@
 25|Black Russian|blackrussian|pourice|none|34|0.75 oz|129|1.5 oz
 26|Blackthorn|blackthorn|stirice|lemontwist|69|2 oz|123|1 oz|6|2 dashes|1|1 dash
 27|Bloody Mary|bloodymary|stirglass|bloodymary|129|1.5 oz|125|3 oz|75|1 dash|133|1/2 tsp|66|2-3 drops
-28|Blue Lagoon|bluelagoon|bluelagoon|lemonwheel|129|1 oz|17|1 oz|76|to top
+28|Blue Lagoon|bluelagoon|bluelagoon|lemonwheel|129|1 oz|17|1 oz|75|0.5 oz|116|to top
 29|Blue Margarita|bluemargarita|margarita|margarita|124|1.5 oz|17|1 oz|81|1 oz|111|to coat rim
 30|Bluebird|bluebird|stirice|lemontwist|57|1.5 oz|127|0.5 oz|17|0.5 oz|16|2 dashes
 31|Bobby Burns|bobbyburns|stirice|lemontwist|123|1.5 oz|113|1.5 oz|15|1.5 tsp
@@ -55,11 +55,11 @@
 55|Kamikaze|kamikaze|shakeice|limewheel|129|1 oz|127|1 oz|81|1 oz
 56|Loch Lomond|lochlomond|stirice|lemontwist|113|2 oz|48|0.5 oz|49|0.5 oz
 57|London Town|londontown|stirice|cherry|57|1.5 oz|84|0.5 oz|92|2 dashes
-58|Mai Tai|maitai|shakeice|limewheel|107|2 oz|45|0.5 oz|95|0.5 oz|81|0.75 oz|121|0.25 oz
+58|Mai Tai|maitai|shakeice|limewheel|47|2 oz|45|0.5 oz|95|0.5 oz|81|0.75 oz|121|0.25 oz
 59|Martinez|martinez|stirice|cherry|57|1 oz|49|1 oz|127|1 tsp|92|1 dash
 60|Pink Lady|pinklady|shakeice|strawberry|57|1.5 oz|64|1 tsp|87|2 tsp|50|1
 61|Queen Charlotte|queencharlotte|highball|lemonwheel|105|2 oz|64|1 oz|77|to top
-62|Rum Cooler|rumcooler|stirglassice|limewheel|107|2 oz|77|4 oz
+62|Rum Cooler|rumcooler|stirglassice|limewheel|47|2 oz|77|4 oz
 63|Rusty Nail|rustynail|stirglassice|lemontwist|113|1.5 oz|48|0.5 oz
 64|Salty Dog|saltydog|stirglassice|limewheel|62|4 oz|57|1.5 oz|111|dash
 65|Sazerac|sazerac|sazerac|lemontwist|109|1.5 oz|35|1.5 oz|120|1 cube|99|3 dashes|6|1 dash|130|1 tsp
@@ -109,5 +109,17 @@
 109|Gin Rickey|ginrickey|highball|limewheel|57|1.5 oz|80|1 (juice and shell)|116|to top
 110|Zombie|zombie|blendice|mint|78|2 oz|47|2 oz|53|0.5 oz|98|2 dashes|64|1 tsp|81|0.75 oz|6|1 dash
 111|The Last Word|lastword|shakeice|none|57|0.75 oz|63|0.75 oz|84|0.75 oz|81|0.75 oz
-
-
+112|Pegu Club|peguclub|shakeice|limetwist|57|1.5 oz|45|0.75 oz|81|0.75 oz|6|1 dash|92|1 dash
+113|Corpse Reviver 2|corpsereviver2|shakeice|cherry|57|0.75 oz|127|0.75 oz|79|0.75 oz|75|0.75 oz|1|1 dash
+114|Boulevardier|boulevardier|stirice|cherry|109|1.5 oz|123|1 oz|24|1 oz
+115|Bijou|bijou|stirice|none|57|1 oz|63|1 oz|123|1 oz|92|1 dash
+116|Gimlet|gimlet|shakeice|limewheel|57|2.5 oz|81|0.5 oz|121|0.5 oz
+117|Oatmeal Cookie|oatmealcookie|shakeice|nutmeg|72|1 oz|68|1 oz|21|2 oz|71|0.5 oz|29|0.5 oz
+118|The Laverstoke|laverstoke|pourice|mint|57|2 oz|52|0.5 oz|123|0.5 oz|81|dash|59|to top
+119|Tipperary|tipperary|stirice|orangetwist|69|2 oz|63|0.5 oz|123|1 oz
+120|Adonis|adonis|stirice|orangetwist|123|0.75 oz|114|1.5 oz|92|1 dash
+121|Affinity|affinity|stirice|cherry|113|1.5 oz|123|1 oz|49|1 oz|92|2 dashes
+122|Vieux Carre|vieuxcarre|stirice|lemontwist|109|0.75 oz|35|0.75 oz|123|0.75 oz|15|2 tsp|99|4 dashes
+123|Blood and Sand|bloodnsand|shakeice|orangetwist|113|0.75 oz|123|0.75 oz|27|0.75 oz|93|0.75 oz
+124|Ward Eight|wardeight|shakeice|cherry|109|2 oz|75|0.5 oz|93|0.5 oz|64|2 tsp
+125|Bay Breeze|baybreeze|pourice|limewheel|78|2 oz|38|2 oz|100|2 oz
