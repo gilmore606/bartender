@@ -1,12 +1,14 @@
 package com.dlfsystems.bartender.views
 
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Ingredient
@@ -43,7 +45,8 @@ class IngredientView @JvmOverloads constructor (
         ingredient = newingredient
         bottleName.text = ingredient.bottleName
         bottleAmount.text = ingredient.amount
-        bottleImage.setImageDrawable(ContextCompat.getDrawable(context, ingredient.bottleImage))
+        Glide.with(context).load(Uri.parse("file:///android_asset/bottle_thumb/" + ingredient.bottleImage + ".png"))
+            .asBitmap().into(bottleImage)
         setBackgroundResource(
                 if (ingredient.bottleActive) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
         )

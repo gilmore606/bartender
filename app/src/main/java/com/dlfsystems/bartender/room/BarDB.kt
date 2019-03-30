@@ -59,11 +59,10 @@ abstract class BarDB : RoomDatabase() {
                     val id = chunks[0].toLong()
                     val name = chunks[1]
                     val imageName = chunks[2]
-                    val imageId = context.resources.getIdentifier(imageName, "drawable", context.packageName)
                     val stringId = context.resources.getIdentifier(imageName, "string", context.packageName)
                     Log.d("bartender", "FNORD found string " + stringId)
                     val btype = chunks[3].toLong()
-                    bottleDao.add(Bottle(id = id, name = name, image = imageId, descstr = stringId, type = btype))
+                    bottleDao.add(Bottle(id = id, name = name, image = imageName, descstr = stringId, type = btype))
                 }
             }
 
@@ -84,11 +83,10 @@ abstract class BarDB : RoomDatabase() {
                     val image = chunks[2]
                     val makestr = chunks[3]
                     val garnishstr = chunks[4]
-                    val imageId = context.resources.getIdentifier(image, "drawable", context.packageName)
                     val infoId = context.resources.getIdentifier(image, "string", context.packageName)
                     val makeId = context.resources.getIdentifier("make_" + makestr, "string", context.packageName)
                     val garnishId = context.resources.getIdentifier("garnish_" + garnishstr, "string", context.packageName)
-                    drinkDao.add(Drink(id = drinkId, name = name, image = imageId, info = infoId, make = makeId, garnish = garnishId))
+                    drinkDao.add(Drink(id = drinkId, name = name, image = image, info = infoId, make = makeId, garnish = garnishId))
 
                     var i = 5
                     var eol = false

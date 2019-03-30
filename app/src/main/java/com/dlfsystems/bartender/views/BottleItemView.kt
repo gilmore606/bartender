@@ -2,6 +2,7 @@ package com.dlfsystems.bartender.views
 
 import android.app.Application
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.bumptech.glide.Glide
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
@@ -52,7 +54,8 @@ class BottleItemView @JvmOverloads constructor (
         configureForTab(tab)
         bottleName.text = bottle.name
         bottleDrinkCount.text = "in " + bottle.drinkCount + " drinks"
-        bottleImage.setImageDrawable(ContextCompat.getDrawable(context, bottle.image))
+        Glide.with(context).load(Uri.parse("file:///android_asset/bottle_thumb/" + bottle.image + ".png"))
+            .asBitmap().into(bottleImage)
         bottleActive.setOnCheckedChangeListener { _,_ -> }
         bottleActive.isChecked = bottle.active
         bottleActive.setOnCheckedChangeListener { _, isChecked ->

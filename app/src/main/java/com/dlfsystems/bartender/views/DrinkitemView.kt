@@ -1,12 +1,14 @@
 package com.dlfsystems.bartender.views
 
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Drink
 import io.reactivex.subjects.PublishSubject
@@ -41,7 +43,9 @@ class DrinkitemView @JvmOverloads constructor (
     fun bindDrink(newdrink: Drink) {
         drink = newdrink
         drinkName.text = drink.name
-        if (drink.image > 0) drinkImage.setImageDrawable(ContextCompat.getDrawable(context, drink.image))
+        if (drink.image != "")
+            Glide.with(context).load(Uri.parse("file:///android_asset/drink_thumb/" + drink.image + ".jpg"))
+                .asBitmap().into(drinkImage)
         if (drink.missingBottles > 0)
             drinkMissing.text = "need " + drink.missingBottles.toString()
         else

@@ -39,9 +39,6 @@ class CatalogBottlesFragment : CatalogListFragment() {
         var tab: BottleTabs = BottleTabs.ALL
 
         class BottleViewHolder(val action: PublishSubject<Action>, val view: View) : RecyclerView.ViewHolder(view) {
-            val bottleName = view.findViewById(R.id.item_bottle_name) as TextView
-            val bottleImage = view.findViewById(R.id.item_bottle_image) as ImageView
-            val bottleOwned = view.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox
             var bottleId: Long = 0
 
             fun bind(bottle: Bottle?) {

@@ -1,6 +1,7 @@
 package com.dlfsystems.bartender.fragments
 
 import android.app.Application
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
@@ -30,7 +32,7 @@ class BottleFragment : BaseFragment() {
         val boundBottle: Boolean = false,
         val name: String = "",
         val desc: Int = 0,
-        val image: Int = 0,
+        val image: String = "",
         val active: Boolean = false,
         val shopping: Boolean = false,
         val boundDrinks: Boolean = false,
@@ -89,9 +91,13 @@ class BottleFragment : BaseFragment() {
             if (state.boundBottle) {
                 bottleName?.text = state.name
                 if (!(previousState?.boundBottle ?: false)) {
-                    bottleImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
-                    bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
-                    bottleImage?.visibility = View.VISIBLE
+                    bottleImage?.also {
+                        it.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
+                        Glide.with(mainView!!.context)
+                            .load(Uri.parse("file:///android_asset/bottle/" + state.image + ".png"))
+                            .asBitmap().into(it)
+                        it.visibility = View.VISIBLE
+                    }
                 }
                 val aboutString = try { bottleFragment.getString(state.desc) } catch (e: Exception) { " " }.replace("\n", "\n\n")
                 bottleAbout?.text = aboutString

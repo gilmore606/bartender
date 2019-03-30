@@ -1,6 +1,7 @@
 package com.dlfsystems.bartender.fragments
 
 import android.app.Application
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -12,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
@@ -32,7 +34,7 @@ class DrinkFragment : BaseFragment() {
         val boundDrink: Boolean = false,
         val name: String = "",
         val favorite: Boolean = false,
-        val image: Int = 0,
+        val image: String = "",
         val info: Int = 0,
         val make: Int = 0,
         val garnish: Int = 0,
@@ -105,9 +107,12 @@ class DrinkFragment : BaseFragment() {
                 if (drinkAbout?.text == "") {
                     drinkAboutHeader?.visibility = View.GONE
                 }
-                if (!(previousState?.boundDrink ?: false) && state.image > 0) {
-                    drinkImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
-                    drinkImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
+                if (!(previousState?.boundDrink ?: false) && state.image != "") {
+                    drinkImage?.also {
+                        drinkImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
+                        Glide.with(mainView!!.context).load(Uri.parse("file:///android_asset/drink/" + state.image + ".jpg"))
+                            .asBitmap().into(drinkImage)
+                    }
                 }
                 drinkMake?.text = (try { drinkFragment.getString(state.make) } catch (e: Exception) { " ??? " }).replace("\n", "\n\n")
                 drinkGarnish?.text = try { drinkFragment.getString(state.garnish) } catch (e: Exception) { "none" }

@@ -11,7 +11,7 @@ import androidx.room.*
         ))
 data class Bottle(@PrimaryKey val id: Long,
                   val name: String,
-                  val image: Int = 0,
+                  val image: String = "",
                   val descstr: Int = 0,
                   val type: Long = 1,
                   val active: Boolean = false,

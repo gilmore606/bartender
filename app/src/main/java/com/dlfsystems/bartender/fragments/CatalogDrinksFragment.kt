@@ -1,6 +1,7 @@
 package com.dlfsystems.bartender.fragments
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.Rudder
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Drink
 import com.dlfsystems.bartender.room.DrinksViewModel
@@ -46,7 +48,11 @@ class CatalogDrinksFragment : CatalogListFragment() {
             fun bind(drink: Drink?) {
                 drinkId = drink?.id ?: 0
                 drinkName.text = drink?.name ?: ""
-                drink?.also { if (drink.image > 0) drinkImage.setImageDrawable(ContextCompat.getDrawable(view.context, drink.image)) }
+                drink?.also {
+                    if (it.image != "")
+                        Glide.with(view.context).load(Uri.parse("file:///android_asset/drink_thumb/" + it.image + ".jpg"))
+                            .asBitmap().into(drinkImage)
+                }
                 drinkFavorite.setOnCheckedChangeListener { _,_ -> }
                 drinkFavorite.isChecked = drink?.favorite ?: false
                 drinkFavorite.setOnCheckedChangeListener { _, isChecked ->

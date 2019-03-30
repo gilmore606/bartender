@@ -9,7 +9,7 @@ import androidx.room.*
 data class Drink(@PrimaryKey val id: Long,
                        val name: String,
                         val favorite: Boolean = false,
-                        val image: Int = 0,
+                        val image: String = "",
                         val info: Int = 0,
                         val make: Int = 0,
                         val garnish: Int = 0,
@@ -36,7 +36,7 @@ data class DrinkIngredient(@PrimaryKey(autoGenerate = true) val id: Long = 1,
 
 data class Ingredient(val bottleId: Long = 0,
                       val bottleName: String = "",
-                      val bottleImage: Int = 0,
+                      val bottleImage: String = "",
                       val bottleActive: Boolean = false,
                       val amount: String = ""
                       )
