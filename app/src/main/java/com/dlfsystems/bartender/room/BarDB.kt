@@ -7,7 +7,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dlfsystems.bartender.R
+import com.dlfsystems.bartender.fragments.CatalogFragment
+import com.dlfsystems.bartender.fragments.LoadingFragment
 import com.dlfsystems.bartender.ioThread
+import com.dlfsystems.bartender.nav.Rudder
 
 @Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
@@ -45,6 +48,8 @@ abstract class BarDB : RoomDatabase() {
 
         fun initialPopulate(context: Context) {
             Log.d("bartender", "FNORD initial population of database")
+
+            Rudder.navTo(LoadingFragment.LoadingKey())
 
             val bottleDao = getInstance(context).bottleDao()
 
@@ -102,6 +107,7 @@ abstract class BarDB : RoomDatabase() {
                     }
                 }
             }
+            Rudder.navTo(CatalogFragment.CatalogKey())
         }
 
         fun setBottleActive(context: Context, bottleId: Long, active: Boolean) {

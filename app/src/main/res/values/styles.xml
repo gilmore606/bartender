@@ -64,4 +64,10 @@
         <item name="android:textSize">9sp</item>
         <item name="android:textColor">#88000000</item>
     </style>
+    <style name="loadingText">
+        <item name="android:fontFamily">@font/libre_baskerville</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">#DDDD11</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
