@@ -53,9 +53,11 @@ class CatalogDrinksFragment : CatalogListFragment() {
                     action.onNext(Action.drinkToggleFavorite(drink, isChecked))
                 }
                 if (drink?.missingBottles ?: 0 > 0) {
-                    drinkMissing.text = "need " + drink!!.missingBottles.toString() + " more"
+                    drinkMissing.text = "need " + drink!!.missingBottles.toString()
+                    view.setBackgroundResource(R.drawable.bg_listitem_inactive)
                 } else {
                     drinkMissing.text = ""
+                    view.setBackgroundResource(R.drawable.bg_listitem_active)
                 }
             }
         }

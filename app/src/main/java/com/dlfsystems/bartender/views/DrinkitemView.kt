@@ -43,7 +43,7 @@ class DrinkitemView @JvmOverloads constructor (
         drinkName.text = drink.name
         if (drink.image > 0) drinkImage.setImageDrawable(ContextCompat.getDrawable(context, drink.image))
         if (drink.missingBottles > 0)
-            drinkMissing.text = "need " + drink.missingBottles.toString() + " more"
+            drinkMissing.text = "need " + drink.missingBottles.toString()
         else
             drinkMissing.text = ""
         setBackgroundResource(

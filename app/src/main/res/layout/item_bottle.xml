@@ -7,11 +7,21 @@
 
     <ImageView android:layout_width="70dp" android:layout_height="70dp"
                android:id="@+id/item_bottle_image" />
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/item_bottle_name" android:layout_weight="1"
-              style="@style/listBottle"
-              android:layout_margin="12dp"
-                android:layout_gravity="center_vertical" />
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:orientation="vertical" android:layout_gravity="center_vertical"
+                  android:layout_weight="1"
+                    android:layout_margin="8dp" >
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/item_bottle_name" android:layout_weight="1"
+                  style="@style/listBottle"
+                  android:layout_margin="4dp"
+                    android:layout_gravity="center_vertical" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/item_bottle_drinkcount" android:layout_weight="1"
+                  style="@style/listBottleDrinkCount"
+                  android:layout_margin="4dp"
+                  android:layout_gravity="center_vertical" />
+    </LinearLayout>
     <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:id="@+id/item_bottle_owned_checkbox" android:layout_gravity="center_vertical|end"
                 android:layout_margin="8dp" />

@@ -1,5 +1,6 @@
 package com.dlfsystems.bartender.views
 
+import android.app.Application
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
+import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import io.reactivex.subjects.PublishSubject
 
@@ -26,6 +30,7 @@ class BottleItemView @JvmOverloads constructor (
     var tab = BottleTabs.ALL
 
     val bottleName: TextView
+    val bottleDrinkCount: TextView
     val bottleImage: ImageView
     val bottleActive: CheckBox
     val bottleShopping: CheckBox
@@ -36,6 +41,7 @@ class BottleItemView @JvmOverloads constructor (
         onFinishInflate()
 
         bottleName = findViewById(R.id.item_bottle_name)
+        bottleDrinkCount = findViewById(R.id.item_bottle_drinkcount)
         bottleImage = findViewById(R.id.item_bottle_image)
         bottleActive = findViewById(R.id.item_bottle_owned_checkbox)
         bottleShopping = findViewById(R.id.item_bottle_shopping)
@@ -45,6 +51,7 @@ class BottleItemView @JvmOverloads constructor (
         bottle = newbottle
         configureForTab(tab)
         bottleName.text = bottle.name
+        bottleDrinkCount.text = "in " + bottle.drinkCount + " drinks"
         bottleImage.setImageDrawable(ContextCompat.getDrawable(context, bottle.image))
         bottleActive.setOnCheckedChangeListener { _,_ -> }
         bottleActive.isChecked = bottle.active

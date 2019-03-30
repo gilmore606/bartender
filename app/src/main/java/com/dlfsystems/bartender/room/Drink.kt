@@ -44,6 +44,10 @@ data class Ingredient(val bottleId: Long = 0,
 @Dao
 interface DrinkDao {
 
+    companion object {
+        const val drinkWithMissingCount =
+                "d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id"
+    }
     @Query("SELECT * FROM drinks")
     fun getAll(): List<Drink>
 
@@ -53,16 +57,16 @@ interface DrinkDao {
     @Query("UPDATE drinks SET favorite=:favorite WHERE id=:drinkId")
     fun setFavorite(drinkId: Long, favorite: Int)
 
-    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE di.drinkId in (SELECT drinkId from drink_ingredients WHERE bottleId=:bottleId) GROUP BY d.name ORDER BY 8,2")
+    @Query("SELECT $drinkWithMissingCount WHERE di.drinkId in (SELECT drinkId from drink_ingredients WHERE bottleId=:bottleId) GROUP BY d.name ORDER BY 8,2")
     fun liveDrinksForBottle(bottleId: Long): LiveData<List<Drink>>
 
-    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id GROUP BY d.name ORDER BY 8,2")
+    @Query("SELECT $drinkWithMissingCount GROUP BY d.name ORDER BY 8,2")
     fun getAllPaged(): DataSource.Factory<Int, Drink>
 
-    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id WHERE d.favorite = 1 GROUP BY d.name ORDER BY 8,2")
+    @Query("SELECT $drinkWithMissingCount WHERE d.favorite = 1 GROUP BY d.name ORDER BY 8,2")
     fun getFavoritesPaged(): DataSource.Factory<Int, Drink>
 
-    @Query("SELECT d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id GROUP BY d.name ORDER BY d.name")
+    @Query("SELECT $drinkWithMissingCount GROUP BY d.name ORDER BY d.name")
     fun getAlphabeticalPaged(): DataSource.Factory<Int, Drink>
 
     @Query("SELECT * FROM drinks WHERE id=:drinkId")
@@ -70,6 +74,9 @@ interface DrinkDao {
 
     @Query("SELECT b.id bottleId, b.name bottleName, b.image bottleImage, b.active bottleActive, di.amount amount FROM drink_ingredients di INNER JOIN bottles b ON b.id = di.bottleId WHERE di.drinkId=:drinkId")
     fun liveIngredientsForDrink(drinkId: Long): LiveData<List<Ingredient>>
+
+    @Query("SELECT COUNT(DISTINCT(di.drinkId)) FROM drink_ingredients di WHERE bottleId=:bottleId")
+    fun liveDrinkCountForBottle(bottleId: Long): LiveData<Int>
 }
 
 @Dao

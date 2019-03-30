@@ -2,7 +2,6 @@ package com.dlfsystems.bartender.fragments
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -14,7 +13,6 @@ import androidx.lifecycle.Observer
 import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
-import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragAnimPair
 import com.dlfsystems.bartender.room.BarDB
@@ -140,7 +138,7 @@ class BottleFragment : BaseFragment() {
                     (previousState as BottleState).copy(
                         boundBottle = true,
                         name = action.load.name,
-                        desc = action.load.desc,
+                        desc = action.load.descstr,
                         image = action.load.image,
                         active = action.load.active,
                         shopping = action.load.shopping

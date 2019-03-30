@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.ioThread
-import java.io.File
 
 @Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
@@ -64,7 +63,7 @@ abstract class BarDB : RoomDatabase() {
                     val stringId = context.resources.getIdentifier(imageName, "string", context.packageName)
                     Log.d("bartender", "FNORD found string " + stringId)
                     val btype = chunks[3].toLong()
-                    bottleDao.add(Bottle(id = id, name = name, image = imageId, desc = stringId, type = btype))
+                    bottleDao.add(Bottle(id = id, name = name, image = imageId, descstr = stringId, type = btype))
                 }
             }
 
