@@ -21,3 +21,52 @@
 21|Balmoral|balmoral|stirice|lemontwist|113|1.5 oz|123|0.5 oz|49|0.5 oz|16|2 dashes
 22|Daiquiri|daiquiri|shakeice|limewheel|78|1.5 oz|81|0.5 oz|104|1 tsp
 23|Artillery|artillery|stirice|lemontwist|123|1.5 tsp|57|1.5 oz|16|2 dashes
+24|Bermuda Highball|bermudahighball|highball|lemontwist|19|0.75 oz|57|0.75 oz|49|0.75 oz|116|to top
+25|Black Russian|blackrussian|pourice|none|34|0.75 oz|129|1.5 oz
+26|Blackthorn|blackthorn|stirice|lemontwist|69|2 oz|123|1 oz|6|2 dashes|1|1 dash
+27|Bloody Mary|bloodymary|stirglass|bloodymary|129|1.5 oz|125|3 oz|75|1 dash|133|1/2 tsp|66|2-3 drops
+28|Blue Lagoon|bluelagoon|bluelagoon|lemonwheel|129|1 oz|17|1 oz|76|to top
+29|Blue Margarita|bluemargarita|margarita|margarita|124|1.5 oz|17|1 oz|81|1 oz|111|to coat rim
+30|Bluebird|bluebird|stirice|lemontwist|57|1.5 oz|127|0.5 oz|17|0.5 oz|16|2 dashes
+31|Bobby Burns|bobbyburns|stirice|lemontwist|123|1.5 oz|113|1.5 oz|15|1.5 tsp
+32|Boomerang|boomerang|stirice|cherry|57|2 oz|49|0.5 oz|16|2 dashes|84|1 tsp
+33|Boston Sidecar|bostonsidecar|shakeice|cherry|78|0.75 oz|19|0.75 oz|127|0.75 oz|81|0.5 oz
+34|Boxcar|boxcar|shakeice|none|57|1.5 oz|127|1 oz|75|1 tsp|64|0.5 tsp|50|white of 1 egg
+35|Caipirinha|caipirinha|caipirinha|limewheel|120|2 tsp|80|1|22|2.5 oz
+36|Casablanca|casablanca|shakeice|cherry|78|2 oz|127|1.5 tsp|81|1.5 tsp|84|1.5 tsp
+37|Casino Royale|casinoroyale|shakeice|none|57|2 oz|75|0.5 oz|84|1 tsp|92|1 dash|51|yolk from 1 egg
+38|Champagne Cocktail|champagnecocktail|champagnecocktail|orangetwist|120|1 cube|16|2 dashes|35|1 dash|118|to top
+39|Chicago Fizz|chicagofizz|fizz|lemonwheel|78|1 oz|103|1 oz|75|1 oz|104|1 tsp|50|1|116|to top
+40|City Slicker|cityslicker|shakeice|orangewheel|19|2 oz|127|0.5 oz|75|1 tbsp
+41|Cuba Libre|cubalibre|cubalibre|limewheel|78|2 oz|81|1 oz|37|to top
+42|Dragonfly|dragonfly|cubalibre|limewheel|57|1.5 oz|59|4 oz
+43|Dry Rob Roy|dryrobroy|stirice|lemontwist|113|2.5 oz|49|1.5 tsp
+44|Foxy Lady|foxylady|shakeice|none|4|0.5 oz|40|0.5 oz|87|2 oz
+45|French 75|french75|french75|lemontwist|57|1.5 oz|104|2 tsp|75|1.5 oz|118|4 oz
+46|Frisco Sour|friscosour|shakeice|lemonwheel|131|2 oz|15|0.5 oz|75|0.5 oz|81|0.5 oz
+47|Gin and Tonic|ginandtonic|ginandtonic|limewheel|57|2 oz|126|4 oz
+48|Gin Fizz|ginfizz|fizz|lemontwist|57|2 oz|75|1 oz|104|1 tsp|50|1|116|to top
+49|Godfather|godfather|stirglassice|lemontwist|113|1.5 oz|4|0.75 oz
+50|Harvey Wallbanger|harveywallbanger|harveywallbanger|orangewheel|129|1 oz|56|0.5 oz|93|4 oz
+51|Havana Cocktail|havana|shakeice|lemontwist|78|1 oz|100|1 oz|75|1 tsp
+52|Jack Rose|jackrose|shakeice|limetwist|8|1.5 oz|64|1 tsp|81|1 oz
+53|Jewel of the Nile|jewelofthenile|stirice|none|57|1.5 oz|63|0.5 oz|134|0.5 oz
+54|John Collins|johncollins|highball|orangewheel|18|2 oz|75|1 oz|104|1 tsp|116|3 oz|6|1 dash
+55|Kamikaze|kamikaze|shakeice|limewheel|129|1 oz|127|1 oz|81|1 oz
+56|Loch Lomond|lochlomond|stirice|lemontwist|113|2 oz|48|0.5 oz|49|0.5 oz
+57|London Town|londontown|stirice|cherry|57|1.5 oz|84|0.5 oz|92|2 dashes
+58|Mai Tai|maitai|shakeice|limewheel|107|2 oz|45|0.5 oz|95|0.5 oz|81|0.75 oz|121|0.25 oz
+59|Martinez|martinez|stirice|cherry|57|1 oz|49|1 oz|127|1 tsp|92|1 dash
+60|Pink Lady|pinklady|shakeice|strawberry|57|1.5 oz|64|1 tsp|87|2 tsp|50|1
+61|Queen Charlotte|queencharlotte|highball|lemonwheel|105|2 oz|64|1 oz|77|to top
+62|Rum Cooler|rumcooler|stirglassice|limewheel|107|2 oz|77|4 oz
+63|Rusty Nail|rustynail|stirglassice|lemontwist|113|1.5 oz|48|0.5 oz
+64|Salty Dog|saltydog|stirglassice|limewheel|62|4 oz|57|1.5 oz|111|dash
+65|Sazerac|sazerac|sazerac|lemontwist|109|1.5 oz|35|1.5 oz|120|1 cube|99|3 dashes|6|1 dash|130|1 tsp
+66|Screwdriver|screwdriver|stirglassice|orangewheel|129|2 oz|93|to top
+67|Sidecar|sidecar|shakeice|lemontwist|35|2 oz|36|0.5 oz|75|1 oz
+68|Tom Collins|tomcollins|tomcollins|lemontwist|57|2 oz|75|1 oz|104|1 tsp|116|to top
+69|Turf Cocktail|turf|stirice|orangetwist|57|1 oz|49|1 oz|98|1/2 tsp|16|1 dash
+70|Tuxedo|tuxedo|stirice|orangetwist|57|2 oz|114|1 oz|92|2 dashes
+71|Vermouth Cassis|vermouthcassis|highball|lemonwheel|49|1.5 oz|41|0.75 oz|116|to top
+72|White Russian|whiterussian|pourice|none|129|2 oz|34|1 oz|87|to top

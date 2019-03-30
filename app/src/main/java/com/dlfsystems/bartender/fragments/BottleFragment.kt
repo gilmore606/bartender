@@ -93,7 +93,7 @@ class BottleFragment : BaseFragment() {
                     bottleImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
                     bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
                 }
-                val aboutString = try { bottleFragment.getString(state.desc) } catch (e: Exception) { " " }
+                val aboutString = try { bottleFragment.getString(state.desc) } catch (e: Exception) { " " }.replace("\n", "\n\n")
                 bottleAbout?.text = aboutString
                 bottleActive?.isChecked = state.active
                 bottleShopping?.isChecked = state.shopping

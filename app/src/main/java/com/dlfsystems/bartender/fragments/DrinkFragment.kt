@@ -91,12 +91,12 @@ class DrinkFragment : BaseFragment() {
             if (state.boundDrink) {
                 drinkName?.text = state.name
                 drinkFavorite?.isChecked = state.favorite
-                drinkAbout?.text = try { drinkFragment.getString(state.info) } catch (e: Exception) { " " }
+                drinkAbout?.text = (try { drinkFragment.getString(state.info) } catch (e: Exception) { " " }).replace("\n", "\n\n")
                 if (!(previousState?.boundDrink ?: false) && state.image > 0) {
                     drinkImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
                     drinkImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
                 }
-                drinkMake?.text = try { drinkFragment.getString(state.make) } catch (e: Exception) { " ??? " }
+                drinkMake?.text = (try { drinkFragment.getString(state.make) } catch (e: Exception) { " ??? " }).replace("\n", "\n\n")
                 drinkGarnish?.text = try { drinkFragment.getString(state.garnish) } catch (e: Exception) { "none" }
             } else {
                 drinkViewModel = DrinkViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
