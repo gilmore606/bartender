@@ -2,6 +2,7 @@ package com.dlfsystems.bartender.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -90,6 +91,7 @@ class BottleFragment : BaseFragment() {
                 if (!(previousState?.boundBottle ?: false)) {
                     bottleImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
                     bottleImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))
+                    bottleImage?.visibility = View.VISIBLE
                 }
                 val aboutString = try { bottleFragment.getString(state.desc) } catch (e: Exception) { " " }.replace("\n", "\n\n")
                 bottleAbout?.text = aboutString
