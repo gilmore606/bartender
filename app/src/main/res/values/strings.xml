@@ -77,6 +77,18 @@
     <string name="tomcollins"> The Tom Collins is essentially a sparkling lemonade spiked with a healthy dose of the juniper spirit. While there is a debate which side of the pond this drink was born, this cocktail lives up to his classic status with every sip.</string>
     <string name="tuxedo">The drink’s name refers to the Tuxedo Park, a sort of early experiment in country club living established in 1886 about 35 miles from Jersey City. </string>
     <string name="vermouthcassis">The Vermouth Cassis is a very simple and light drink, ideal for those times you want something with just a touch of alcohol, but a whole lot of refreshment. The name says it all; it is a mix of dry vermouth and creme de cassis served over ice and topped with soda.</string>
+    <string name="sexonthebeach">Sex on the Beach sports a provocative name for a harmless fruity cocktail. It’s easy to make and even easier to drink, so it’s perfect for your next tropical vacation or cocktail party.\nNo one can seem to agree on where the name Sex on the Beach originated, but many suggest the cocktail may have been invented when a bartender combined a Fuzzy Navel with a Cape Codder. The fruity sipper is served over ice in a Highball glass and garnished with an orange slice.</string>
+    <string name="piscosour">The national cocktail of Chile and Peru, this drink may have evolved from the Pisco Punch, which was all the rage in San Francisco during the 1849 gold rush.</string>
+    <string name="b52">Believed to have originated in the 1970s from a bartender and fan of the iconic band, the B-52 is a classic guilty pleasure armed with three liqueurs. Make this layered shooter in seconds and impress all your friends.</string>
+    <string name="tequilasunrise">The Tequila Sunrise, with its bright striations of color, evokes a summer sunrise. This simple classic has only three ingredients—tequila, grenadine and orange juice—and is served unmixed to preserve the color of each layer.\nThe Tequila Sunrise was created by Bobby Lozoff and Billy Rice in Sausalito, Calif. The cocktail achieved notoriety after Mick Jagger began drinking it, and The Rolling Stones dubbed their 1972 tour “the cocaine and Tequila Sunrise tour.” The drink has been a part of the cocktail canon ever since.</string>
+    <string name="vodkamartini">If you must.</string>
+    <string name="aviation">A classic gin sipper dating back to the turn of the 20th century, the Aviation was all but forgotten until about a decade ago. That’s when its secret-weapon ingredient, crème de violette, reappeared on the American market. Today, the cocktail is distinguished by its purple-bluish hue and floral, citrus flavors. And to that we say, welcome back!</string>
+    <string name="betweenthesheets">Add a little rum to the Sidecar and you get this provocatively named classic.</string>
+    <string name="marypickford">Sweet but with a real kick, just like its namesake.</string>
+    <string name="monkeygland">In his 1922 ABC of Mixing Cocktails book, Harry McElhone (owner of Harry\'s New York Bar in Paris) took credit for the invention of the Monkey Gland. He also claims that the name was inspired by the 1920s experiments of one Serge Voronoff.\nVoronoff was experimenting with various implants. The most famous of these was the grafting of monkey testicle tissue (or monkey glands) to human testicles.  Voronoff was well-known for this rather shocking technique and over time he received a considerable amount of ridicule for it and died in near obscurity in the 1950s.</string>
+    <string name="whitelady">She may look delicate, but this is one strong woman.</string>
+    <string name="cosmopolitan">The legendary Cosmopolitan is a simple cocktail with a big history. It reached its height of popularity in the 1990s, when the HBO show “Sex and the City” was at its peak. The pink-hued Martini was a favorite of the characters on the show.\nAccording to Gary Regan, the original Cosmopolitan was created by South Beach bartender Cheryl Cook. Eager to invent a new cocktail for the Martini glass, Cook riffed on the classic Kamikaze using a newly introduced citrus-flavored vodka plus a splash of cranberry juice.</string>
+    <string name="frenchconnection">The simple two-ingredient French Connection is one of the best ways to enjoy a young cognac.</string>
 
 
     <string name="make_stirice">Pour all ingredients into mixing glass with ice, stir well.\nStrain into glass.</string>
@@ -90,6 +102,7 @@
     <string name="garnish_lemonwheel">Lemon wheel.</string>
     <string name="garnish_limewheel">Lime wheel or wedge.</string>
     <string name="garnish_orangewheel">Orange wheel.</string>
+    <string name="garnish_bitters">Dash bitters onto top of drink.</string>
     <string name="garnish_orangetwist">Twist of orange peel (twist over glass to express oil, drop in glass).</string>
     <string name="garnish_lemontwist">Twist of lemon peel (twist over glass to express oil, drop in glass).</string>
     <string name="garnish_martini">Olive, or a twist of lemon peel (twist over glass to express oil).</string>
@@ -115,4 +128,7 @@
     <string name="make_harveywallbanger">Stir the vodka and orange juice with ice in a highball glass, then float the Galliano on top.</string>
     <string name="make_sazerac">Rinse a chilled rocks glass with absinthe, discarding any excess.\nIn a mixing glass, muddle the sugar, water and bitters.\nAdd the whisky, fill with ice, and stir well.\nStrain into rocks glass.</string>
     <string name="make_tomcollins">Shake everything but the soda with ice.\nStrain into a collins glass.\nTop with soda.</string>
+    <string name="make_b52">Layer the three spirits in a shotglass in the order listed.</string>
+    <string name="make_tequilasunrise">Pour tequila over ice in a highball glass.\nAdd orange juice.\nFloat grenadine on top.  Do not mix!</string>
+    <string name="make_kirroyale">Pour creme de cassis into champagne flute.\nTop with sparkling wine.</string>
 </resources>

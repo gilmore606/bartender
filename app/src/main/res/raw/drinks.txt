@@ -70,3 +70,24 @@
 70|Tuxedo|tuxedo|stirice|orangetwist|57|2 oz|114|1 oz|92|2 dashes
 71|Vermouth Cassis|vermouthcassis|highball|lemonwheel|49|1.5 oz|41|0.75 oz|116|to top
 72|White Russian|whiterussian|pourice|none|129|2 oz|34|1 oz|87|to top
+73|Sex on the Beach|sexonthebeach|cubalibre|orangewheel|129|1 oz|97|0.75 oz|38|2 oz|62|2 oz
+74|Pisco Sour|piscosour|shakeice|bitters|102|2 oz|81|1 oz|121|0.5 oz|50|1|16|2 dashes
+75|B-52|b52|b52|none|34|0.33 oz|68|0.33 oz|61|0.33 oz
+76|Tequila Sunrise|tequilasunrise|tequilasunrise|cherry|124|2 oz|93|4 oz|64|0.25 oz
+77|Kir Royale|kirroyale|kirroyale|none|41|0.5 oz|118|2.5 oz
+78|Vodka Martini|vodkamartini|shakeice|martini|129|1.5 oz|49|0.75 oz
+79|Lemon Drop|lemondrop|shakeice|lemontwist|129|1.5 oz|36|1.5 oz|75|0.25 oz
+80|Americano|americano|highball|orangetwist|24|1 oz|123|1 oz|116|to top
+81|GG|gg|stirglassice|none|56|2 oz|59|to top
+82|Aviation|aviation|shakeice|cherry|57|2 oz|84|0.5 oz|43|0.25 oz|75|0.75 oz
+83|Between the Sheets|betweenthesheets|shakeice|orangetwist|19|1 oz|78|1 oz|127|1 oz|75|1 oz
+84|Mary Pickford|marypickford|shakeice|cherry|78|1.5 oz|100|1 oz|84|0.5 tsp|64|0.5 tsp
+85|Monkey Gland|monkeygland|shakeice|none|57|2 oz|15|1 tsp|93|1 oz|64|1 tsp
+86|Planters Punch|planterspunch|shakeice|orangewheel|47|1 oz|95|0.5 oz|93|2 oz|100|1 oz
+87|Porto Flip|portoflip|shakeice|nutmeg|19|0.5 oz|50|1|51|1|103|1.5 oz
+88|Stinger|stinger|stirice|none|19|1.5 oz|42|0.5 oz
+89|White Lady|whitelady|shakeice|lemontwist|57|2 oz|36|0.5 oz|75|0.5 oz|50|1
+90|Cosmopolitan|cosmopolitan|shakeice|limewheel|129|1.5 oz|36|1 oz|81|0.5 oz|38|dash
+91|French Connection|frenchconnection|pourice|none|35|1.5 oz|4|0.75 oz
+92|Golden Dream|goldendream|shakeice|none|56|1 oz|127|1 oz|93|1 oz|87|0.5 oz
+93|Grasshopper|grasshopper|shakeice|none|42|0.75 oz|40|0.75 oz|87|0.75 oz
