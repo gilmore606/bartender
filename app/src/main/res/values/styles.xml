@@ -22,24 +22,34 @@
 
     <style name="drinkTitle">
         <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/slabo</item>
         <item name="android:textColor">@color/barBackDark</item>
     </style>
     <style name="ingredientAmount">
+        <item name="android:fontFamily">@font/libre_baskerville</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">italic</item>
     </style>
     <style name="bodyCopy">
-        <item name="android:fontFamily">serif</item>
+        <item name="android:fontFamily">@font/libre_baskerville</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#666666</item>
+    </style>
+    <style name="directions">
+        <item name="android:fontFamily">@font/libre_baskerville</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#666666</item>
     </style>
     <style name="listBottle">
+        <item name="android:fontFamily">@font/libre_baskerville</item>
         <item name="android:textSize">16sp</item>
     </style>
     <style name="bottleDrinkName">
+        <item name="android:fontFamily">@font/libre_baskerville</item>
         <item name="android:textSize">16sp</item>
     </style>
     <style name="bottleDrinkMissing">
+        <item name="android:fontFamily">@font/libre_baskerville</item>
         <item name="android:textSize">11sp</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">#AA000000</item>

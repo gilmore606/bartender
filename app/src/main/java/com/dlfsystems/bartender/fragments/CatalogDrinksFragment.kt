@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -45,6 +46,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
             fun bind(drink: Drink?) {
                 drinkId = drink?.id ?: 0
                 drinkName.text = drink?.name ?: ""
+                drink?.also { if (drink.image > 0) drinkImage.setImageDrawable(ContextCompat.getDrawable(view.context, drink.image)) }
                 drinkFavorite.setOnCheckedChangeListener { _,_ -> }
                 drinkFavorite.isChecked = drink?.favorite ?: false
                 drinkFavorite.setOnCheckedChangeListener { _, isChecked ->

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/drink_scrollview"
             xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:background="@drawable/bg_detailpage"
@@ -8,21 +9,16 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
         <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" >
-            <ImageView android:layout_width="600px" android:layout_height="600px"
-                       android:id="@+id/drink_image" android:layout_gravity="center_vertical|start"
-                       android:layout_margin="12dp" />
-            <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_gravity="center_vertical|end" android:layout_margin="24dp" >
-                <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_margin="6dp" android:scaleX="1.5" android:scaleY="1.5"
-                          android:layout_gravity="center_horizontal"
+            <ImageView android:layout_width="match_parent" android:layout_height="250dp"
+                       android:layout_marginTop="16dp"
+                       android:scaleType="fitCenter"
+                       android:id="@+id/drink_image" android:layout_gravity="center_horizontal|top"
+                        />
+                <CheckBox android:layout_width="48dp" android:layout_height="48dp" android:padding="2dp"
+                          android:layout_margin="6dp" android:scaleX="1.4" android:scaleY="1.4"
+                          android:layout_gravity="top|end"
                           android:button="@drawable/checkbox_favorite_big"
                           android:id="@+id/drink_favorite" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          style="@style/checkLabel" android:layout_gravity="center_horizontal"
-                          android:id="@+id/drink_favorite_label"
-                          android:text="Add to favorites" />
-            </LinearLayout>
         </FrameLayout>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:layout_margin="24dp" style="@style/drinkTitle"
@@ -33,6 +29,7 @@
                   android:paddingHorizontal="12dp"
                   android:paddingVertical="8dp"
                   style="@style/tinyHeader"
+                  android:id="@+id/drink_aboutheader"
                   android:text="A B O U T" />
         <com.ms.square.android.expandabletextview.ExpandableTextView
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -77,6 +74,7 @@
                   android:text="D I R E C T I O N S" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/drink_directions"
+                  style="@style/directions"
                   android:layout_margin="26dp" />
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -87,6 +85,7 @@
                   android:text="G A R N I S H" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:id="@+id/drink_garnish"
+                  style="@style/directions"
                   android:layout_margin="26dp" />
     </LinearLayout>
 </ScrollView>

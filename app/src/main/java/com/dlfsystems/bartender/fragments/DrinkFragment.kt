@@ -2,9 +2,11 @@ package com.dlfsystems.bartender.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
@@ -67,9 +69,11 @@ class DrinkFragment : BaseFragment() {
         var drinkFavorite: CheckBox? = null
         var drinkIngredients: IngredientsView? = null
         var drinkAbout: ExpandableTextView? = null
+        var drinkAboutHeader: TextView? = null
         var drinkImage: ImageView? = null
         var drinkMake: TextView? = null
         var drinkGarnish: TextView? = null
+        var scrollView: ScrollView? = null
 
         override fun subscribeActions() {
             mainView?.also {
@@ -77,11 +81,17 @@ class DrinkFragment : BaseFragment() {
                 drinkFavorite = it.findViewById(R.id.drink_favorite) as CheckBox
                 drinkIngredients = it.findViewById(R.id.drink_bottlelist) as IngredientsView
                 drinkAbout = it.findViewById(R.id.drink_about) as ExpandableTextView
+                drinkAboutHeader = it.findViewById(R.id.drink_aboutheader) as TextView
                 drinkImage = it.findViewById(R.id.drink_image) as ImageView
                 drinkMake = it.findViewById(R.id.drink_directions) as TextView
                 drinkGarnish = it.findViewById(R.id.drink_garnish) as TextView
+                scrollView = it.findViewById(R.id.drink_scrollview) as ScrollView
 
                 drinkFavorite?.setOnClickListener { action.onNext(Action.drinkToggleFavorite()) }
+
+                scrollView?.viewTreeObserver?.addOnScrollChangedListener {
+                    drinkImage!!.y = (scrollView!!.scrollY / 2).toFloat()
+                }
             }
         }
 
@@ -91,7 +101,10 @@ class DrinkFragment : BaseFragment() {
             if (state.boundDrink) {
                 drinkName?.text = state.name
                 drinkFavorite?.isChecked = state.favorite
-                drinkAbout?.text = (try { drinkFragment.getString(state.info) } catch (e: Exception) { " " }).replace("\n", "\n\n")
+                drinkAbout?.text = (try { drinkFragment.getString(state.info) } catch (e: Exception) { "" }).replace("\n", "\n\n")
+                if (drinkAbout?.text == "") {
+                    drinkAboutHeader?.visibility = View.GONE
+                }
                 if (!(previousState?.boundDrink ?: false) && state.image > 0) {
                     drinkImage?.startAnimation(AnimationUtils.loadAnimation(mainView!!.context, R.anim.fade_in))
                     drinkImage?.setImageDrawable(ContextCompat.getDrawable(mainView!!.context, state.image))

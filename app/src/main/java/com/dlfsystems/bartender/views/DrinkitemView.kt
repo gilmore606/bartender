@@ -3,8 +3,10 @@ package com.dlfsystems.bartender.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Drink
 import io.reactivex.subjects.PublishSubject
@@ -21,6 +23,7 @@ class DrinkitemView @JvmOverloads constructor (
     val clickEvent = PublishSubject.create<Drink>()
 
     val drinkName: TextView
+    val drinkImage: ImageView
     val drinkMissing: TextView
     val drinkTopView: LinearLayout
 
@@ -30,6 +33,7 @@ class DrinkitemView @JvmOverloads constructor (
         onFinishInflate()
 
         drinkName = findViewById(R.id.drinklistview_item_name)
+        drinkImage = findViewById(R.id.drinklistview_item_image)
         drinkMissing = findViewById(R.id.drinklistview_item_missing)
         drinkTopView = findViewById(R.id.drinklistview_item_toplayer)
     }
@@ -37,6 +41,7 @@ class DrinkitemView @JvmOverloads constructor (
     fun bindDrink(newdrink: Drink) {
         drink = newdrink
         drinkName.text = drink.name
+        if (drink.image > 0) drinkImage.setImageDrawable(ContextCompat.getDrawable(context, drink.image))
         if (drink.missingBottles > 0)
             drinkMissing.text = "need " + drink.missingBottles.toString() + " more"
         else
