@@ -91,3 +91,23 @@
 91|French Connection|frenchconnection|pourice|none|35|1.5 oz|4|0.75 oz
 92|Golden Dream|goldendream|shakeice|none|56|1 oz|127|1 oz|93|1 oz|87|0.5 oz
 93|Grasshopper|grasshopper|shakeice|none|42|0.75 oz|40|0.75 oz|87|0.75 oz
+94|Hemingway Daiquiri|hemingway|shakeice|limewheel|78|2 oz|81|0.75 oz|84|0.5 oz|62|0.5 oz
+95|Horse's Neck|horseneck|pourice|lemontwist|131|2 oz|59|to top
+96|Mimosa|mimosa|mimosa|orangewheel|118|2 oz|93|2 oz
+97|Mint Julep|mintjulep|mintjulep|mint|18|2 oz|121|0.25 oz|88|8 leaves
+98|Pina Colada|pinacolada|blendice|cherry|78|2 oz|32|1 oz|100|1 oz
+99|Rose|rose|shakeice|cherry|49|2 oz|27|1 oz|25|0.5 oz
+100|Barracuda|barracuda|barracuda|orangewheel|47|1.5 oz|56|0.5 oz|100|2 oz|81|dash|118|to top
+101|Dark and Stormy|darknstormy|highball|limewheel|47|1.5 oz|60|to top
+102|French Martini|frenchmartini|shakeice|lemontwist|129|2 oz|25|1 oz|100|1 oz
+103|Russian Spring Punch|russianspringpunch|stirglassice|lemonwheel|129|0.75 oz|75|0.5 oz|121|0.5 oz|41|0.25 oz|118|to top
+104|Vampiro|vampiro|shakeice|limewheel|124|2 oz|125|1 oz|93|1 oz|81|1 oz|64|0.5 oz|66|several dashes|111|pinch
+105|Vesper|vesper|vesper|lemontwist|57|3 oz|129|1 oz|79|0.5 oz
+106|Yellow Bird|yellowbird|shakeice|lemontwist|78|1 oz|56|0.5 oz|127|0.5 oz|81|0.5 oz
+107|Adam and Eve|adamneve|stirice|apple|23|1.5 oz|114|0.5 oz|41|0.5 oz|118|3 oz
+108|Addington|addington|shakeice|lemontwist|123|2 oz|49|1 oz|115|to top
+109|Gin Rickey|ginrickey|highball|limewheel|57|1.5 oz|80|1 (juice and shell)|116|to top
+110|Zombie|zombie|blendice|mint|78|2 oz|47|2 oz|53|0.5 oz|98|2 dashes|64|1 tsp|81|0.75 oz|6|1 dash
+111|The Last Word|lastword|shakeice|none|57|0.75 oz|63|0.75 oz|84|0.75 oz|81|0.75 oz
+
+

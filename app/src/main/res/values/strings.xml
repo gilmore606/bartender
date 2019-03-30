@@ -89,7 +89,22 @@
     <string name="whitelady">She may look delicate, but this is one strong woman.</string>
     <string name="cosmopolitan">The legendary Cosmopolitan is a simple cocktail with a big history. It reached its height of popularity in the 1990s, when the HBO show “Sex and the City” was at its peak. The pink-hued Martini was a favorite of the characters on the show.\nAccording to Gary Regan, the original Cosmopolitan was created by South Beach bartender Cheryl Cook. Eager to invent a new cocktail for the Martini glass, Cook riffed on the classic Kamikaze using a newly introduced citrus-flavored vodka plus a splash of cranberry juice.</string>
     <string name="frenchconnection">The simple two-ingredient French Connection is one of the best ways to enjoy a young cognac.</string>
-
+    <string name="hemingway">The Hemingway daiquiri has arguably become the most popular variation of this classic rum cocktail, perhaps unseating the undisputed heavyweight champion of the 1990s, the frozen strawberry daiquiri.\nA prolific drinker, Hemingway likely had a number of cocktails named after him. Most had little in common with the legendary writer, but to connect a concoction with the original Most Interesting Man In The World was a good way to sell cocktails.\nWe don’t know if Hemingway ever drank his namesake cocktail at El Floridita. One of Hemingway’s go-to watering holes in Havana created the cocktail to appeal to casual drinkers and leverage the name of one of its most famous patrons.</string>
+    <string name="horseneck">This American whiskey classic has only two ingredients.</string>
+    <string name="mimosa">The ultimate brunch classic.</string>
+    <string name="mintjulep">The Mint Julep is a bourbon cocktail best known for being the signature drink of the Kentucky Derby. But this easy-to-make refresher shouldn’t be reserved for only one day a year. This classic cocktail was created in the southern United States during the 18th century and is still a favorite today.\nThe Mint Julep is traditionally served in a Highball glass or silver Julep cup over crushed ice and garnished with mint. Since bourbon is the only liquid in the drink, you’ll want to use a high-quality bourbon you know you love.</string>
+    <string name="rose">A sweet and romantic wine drink, the Rose cocktail was popular in 1920s Paris and was created by Johnny Mitta, barman at the Chatham Hotel.</string>
+    <string name="frenchmartini">The French Martini is the drink that helped to kick off the flavored Martini craze of the ’90s. The cocktail was brought to prominence in NYC restauranteur Keith McNally’s Balthazar, where it appeared on the menu after being placed on the menu in one of his other establishments.\nIt’s sweet and creamy due to the pineapple juice and Chambord black raspberry liqueur. The primary spirit is vodka, though sometimes rum is used instead.</string>
+    <string name="russianspringpunch">Adapted from a recipe by famed London mixologist Dick Bradsell, this bubbly single-portion punch can easily be scaled up in a punch bowl to serve larger groups.</string>
+    <string name="vampiro">The original design of this traditional Mexican take on the Bloody Mary was a combination of tequila and a homemade sangrita, however the use of orange juice with tomato juice and spices in this cocktail recipe bring those together in the build itself. </string>
+    <string name="vesper">The Vesper, also known as the Vesper Martini, was made famous by James Bond. The cocktail best known for being ordered “shaken not stirred” was invented by none other than Bond author Ian Fleming. The Vesper first appeared in his book “Casino Royale,” which was published in 1953 and gets its name from fictional double agent Vesper Lynd.\nWhen Bond orders the Vesper, it comes with strict instructions that must be followed by any who make it: “Three measures of Gordon’s, one of vodka, half a measure of Kina Lillet. Shake it very well until it’s ice-cold, then add a large thin slice of lemon peel. Got it?”</string>
+    <string name="yellowbird">You don’t need to be Audubon to appreciate this tasty cocktail.</string>
+    <string name="adamneve">Xavier Herit\’s biblically named drink is a nod to the forbidden fruit Adam and Eve couldn’t keep their curious paws off of. \nHerit bottles this cocktail for easy service at his New York City bar Wallflower, but you can serve it up in a coupe glass at home if you prefer.</string>
+    <string name="addington">For true vermouth devotees comes this cocktail which is nothing but.</string>
+    <string name="ginrickey">If you look at the gin rickey and think it\'s nothing but a gin and tonic without tonic\'s bittersweet bite, you\'d be mostly correct. Dismiss it as a G\+T wannabe, however, and you\'re missing out on one of the great joys of summer. Created in a Washington, D.C., bar called Shoemaker\'s during an especially brutal heat wave in the 1890s—before the advent of air conditioning, you\'ll note—the gin rickey is like an effervescent Frigidaire. Refreshingly bubbly and pleasantly bitter, this Gilded Age cooler demonstrates how your great-grandparents made it through the summer alive.</string>
+    <string name="zombie">This tropical drink by legendary Donn Beach of Don the Beachcomber restaurant kicked off the Tiki craze.</string>
+    <string name="lastword">The Last Word is a Prohibition-era cocktail that got its beginnings in the Detroit Athletic Club’s bar in the early 1920s. The drink was served at the bar throughout this period and was spread further afield by vaudeville performer Frank Fogarty – also known as the ‘Dublin Minstrel.’\na sweet and sharp drink with a pale green hue and a bite bigger than it’s bark. This little palate cleanser is rich and pungent. It is best suited to those who like a sharp kick to a drink and The Last Word should be the first thing you order the next time you fancy a sweet, citrus hit.</string>
+    <string name="ginandtonic">The gin and tonic has a storied history that places it at the heart of the largest empire the world has ever known. Indeed, it is not too much of a stretch to say that the gin and tonic was as essential a weapon for the British Empire as the Gatling gun. No less an authority on imperial power than Winston Churchill once declared, “The gin and tonic has saved more Englishmen’s lives, and minds, than all the doctors in the Empire.”\n</string>
 
     <string name="make_stirice">Pour all ingredients into mixing glass with ice, stir well.\nStrain into glass.</string>
     <string name="make_shakeice">Shake all ingredients with ice, strain into glass and serve.</string>
@@ -102,6 +117,7 @@
     <string name="garnish_lemonwheel">Lemon wheel.</string>
     <string name="garnish_limewheel">Lime wheel or wedge.</string>
     <string name="garnish_orangewheel">Orange wheel.</string>
+    <string name="garnish_mint">Mint sprig.</string>
     <string name="garnish_bitters">Dash bitters onto top of drink.</string>
     <string name="garnish_orangetwist">Twist of orange peel (twist over glass to express oil, drop in glass).</string>
     <string name="garnish_lemontwist">Twist of lemon peel (twist over glass to express oil, drop in glass).</string>
@@ -131,4 +147,10 @@
     <string name="make_b52">Layer the three spirits in a shotglass in the order listed.</string>
     <string name="make_tequilasunrise">Pour tequila over ice in a highball glass.\nAdd orange juice.\nFloat grenadine on top.  Do not mix!</string>
     <string name="make_kirroyale">Pour creme de cassis into champagne flute.\nTop with sparkling wine.</string>
+    <string name="make_mimosa">Pour both chilled ingredients into a champagne flute.</string>
+    <string name="make_mintjulep">Muddle mint and syrup in glass.\nAdd bourbon, and pack with crushed ice.\nStir until the cup is frosty.</string>
+    <string name="make_blendice">Mix all ingredients with crushed ice in a blender until smooth.\nPour into chilled glass.</string>
+    <string name="make_barracuda">Shake all but the sparkling wine with ice.\nStrain into ice filled glass.\nTop with sparkling wine.</string>
+    <string name="make_vesper">Three measures of Gordon’s, one of vodka, half a measure of Kina Lillet. Shake it very well until it’s ice-cold, then add a large thin slice of lemon peel. Got it?</string>
+
 </resources>

@@ -113,12 +113,12 @@
 113|Scotch Whisky|scotch_whisky|1
 114|Sherry|sherry|3
 115|Sloe Gin|sloe_gin|1
-116|Soda Water|soda_water|5
+116|Club Soda|soda_water|5
 117|Southern Comfort|southern_comfort|2
 118|Sparkling Wine|sparkling_wine|3
 119|Spiced Rum|spiced_rum|1
 120|Sugar|sugar|6
-121|Sugar Syrup|sugar_syrup|6
+121|Simple Syrup|sugar_syrup|6
 122|Sweet & Sour Mix|sweet_sour|5
 123|Sweet Vermouth|sweet_vermouth|4
 124|Tequila|tequila|1
