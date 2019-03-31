@@ -2,10 +2,7 @@ package com.dlfsystems.bartender.fragments
 
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.dlfsystems.bartender.Action
@@ -47,23 +44,23 @@ class CatalogFragment : BaseFragment() {
 
         var attachedSubFragments = false
 
-        var buttonBottles: Button? = null
-        var buttonDrinks: Button? = null
+        var buttonBottles: CheckBox? = null
+        var buttonDrinks: CheckBox? = null
         var spinnerBottles: Spinner? = null
         var spinnerDrinks: Spinner? = null
 
         override fun subscribeActions() {
             mainView?.let {
-                buttonBottles = it.findViewById(R.id.catalog_button_bottles) as Button
-                buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as Button
+                buttonBottles = it.findViewById(R.id.catalog_button_bottles) as CheckBox
+                buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as CheckBox
                 spinnerBottles = it.findViewById(R.id.catalog_bottles_spinner) as Spinner
                 spinnerDrinks = it.findViewById(R.id.catalog_drinks_spinner) as Spinner
 
-                buttonBottles?.setOnClickListener {
-                    action.onNext(Action.tabTo(Tabs.BOTTLES))
+                buttonBottles?.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) action.onNext(Action.tabTo(Tabs.BOTTLES))
                 }
-                buttonDrinks?.setOnClickListener {
-                    action.onNext(Action.tabTo(Tabs.DRINKS))
+                buttonDrinks?.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) action.onNext(Action.tabTo(Tabs.DRINKS))
                 }
 
                 ArrayAdapter.createFromResource(mainView!!.context,
@@ -124,8 +121,10 @@ class CatalogFragment : BaseFragment() {
                 attachedSubFragments = true
             }
 
-            tintButton(buttonBottles, state.tab == Tabs.BOTTLES)
-            tintButton(buttonDrinks, state.tab == Tabs.DRINKS)
+            when (state.tab) {
+                Tabs.BOTTLES -> buttonDrinks?.isChecked = false
+                Tabs.DRINKS -> buttonBottles?.isChecked = false
+            }
 
             spinnerBottles?.setSelection(when (state.bottleTab) {
                 BottleTabs.MINE -> { 0 }
