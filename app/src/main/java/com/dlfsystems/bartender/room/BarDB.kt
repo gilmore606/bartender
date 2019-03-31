@@ -12,11 +12,13 @@ import com.dlfsystems.bartender.fragments.LoadingFragment
 import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.nav.Rudder
 
-@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class)], version = 1)
+@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class), (Family::class), (BottleFamily::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
     abstract fun drinkDao(): DrinkDao
     abstract fun bottleDao(): BottleDao
     abstract fun drinkIngredientDao(): DrinkIngredientDao
+    abstract fun familyDao(): FamilyDao
+    abstract fun bottleFamilyDao(): BottleFamilyDao
 
     companion object {
         @Volatile
@@ -51,7 +53,19 @@ abstract class BarDB : RoomDatabase() {
 
             Rudder.navTo(LoadingFragment.LoadingKey())
 
+            val familyDao = getInstance(context).familyDao()
+
+            familyDao.add(Family(1, "Spirit", "Spirits, or base spirits, are distilled hard liquors used as the base of a cocktail."))
+            familyDao.add(Family(2, "Liqueur", "Liqueurs are sweetened and flavored lower-alcohol products, often mixed into base spirits in cocktails."))
+            familyDao.add(Family(3, "Mixer", "Mixers are non-alcoholic beverages such as fruit juices and sodas."))
+            familyDao.add(Family(4, "Amaro", "Amari (the plural of Amaro) are bittersweet herbal liqueurs."))
+            familyDao.add(Family(5, "Wine", "Wines and wine-based liqueurs, made from fermented grapes."))
+            familyDao.add(Family(6, "Grocery", "Food items from the grocery store."))
+            familyDao.add(Family(7, "Flavoring", "Add-ins used in small amounts to change a drink's flavor."))
+
+
             val bottleDao = getInstance(context).bottleDao()
+            val bottleFamilyDao = getInstance(context).bottleFamilyDao()
 
             val bottleInputStream = context.resources.openRawResource(R.raw.bottles)
             val bottleReader = bottleInputStream.bufferedReader()
@@ -62,12 +76,13 @@ abstract class BarDB : RoomDatabase() {
                 else {
                     val chunks = line.split('|')
                     val id = chunks[0].toLong()
-                    val name = chunks[1]
-                    val imageName = chunks[2]
+                    val families = chunks[1].split(',')
+                    val name = chunks[2]
+                    val imageName = chunks[3]
                     val stringId = context.resources.getIdentifier(imageName, "string", context.packageName)
-                    Log.d("bartender", "FNORD found string " + stringId)
-                    val btype = chunks[3].toLong()
+                    val btype = chunks[4].toLong()
                     bottleDao.add(Bottle(id = id, name = name, image = imageName, descstr = stringId, type = btype))
+                    families.forEach { bottleFamilyDao.add(BottleFamily(id = 0, bottleId = id, familyId = it.toLong())) }
                 }
             }
 

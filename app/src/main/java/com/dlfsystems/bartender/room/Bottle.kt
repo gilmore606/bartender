@@ -18,6 +18,40 @@ data class Bottle(@PrimaryKey val id: Long,
                   val shopping: Boolean = false,
                   val drinkCount: Int = 0)
 
+@Entity(tableName = "families")
+data class Family(@PrimaryKey val id: Long,
+                  val name: String,
+                  val description: String)
+
+@Entity(tableName = "bottle_family",
+        foreignKeys = arrayOf(ForeignKey(
+            entity = Bottle::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("bottleId")
+        ), ForeignKey(
+            entity = Family::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("familyId")
+        )),
+        indices = arrayOf(
+            Index(value = ["bottleId"]),
+            Index(value = ["familyId"])
+        ))
+data class BottleFamily(@PrimaryKey(autoGenerate = true) val id: Long,
+                        val bottleId: Long,
+                        val familyId: Long)
+
+@Dao
+interface FamilyDao {
+    @Insert
+    fun add(family: Family)
+}
+
+@Dao
+interface BottleFamilyDao {
+    @Insert
+    fun add(bottleFamily: BottleFamily)
+}
 
 @Dao
 interface BottleDao {
