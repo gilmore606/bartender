@@ -56,7 +56,6 @@
 68|Irish Cream|irish_cream|2
 69|Irish Whiskey|irish_whiskey|1
 71|Jagermeister|jagermeister|4
-72|Kahlua|kahlua|2
 73|Kummel|kummel|2
 75|Lemon Juice|lemon_juice|6
 77|Lemon-lime Soda|lemonlime_soda|5
@@ -102,7 +101,6 @@
 127|Triple Sec|triple_sec|2
 128|Tuaca|tuaca|2
 129|Vodka|vodka|1
-130|Water|water|5
 131|Whiskey|whiskey|1
 133|Worcestershire Sauce|worcestershire|6
 134|Yellow Chartreuse|yellow_chartreuse|4

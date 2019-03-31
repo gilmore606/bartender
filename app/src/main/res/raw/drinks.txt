@@ -13,7 +13,7 @@
 13|Brandy Alexander|alexander|shakeice|nutmeg|19|1 oz|40|1 oz|87|1 oz|89|dash
 14|Algonquin|algonquin|shakeice|none|131|1.5 oz|49|1 oz|100|1 oz
 15|Allies Cocktail|allies|stirice|none|49|1 oz|57|1 oz|73|0.5 tsp
-16|Almeria|almeria|shakeice|none|47|2 oz|72|1 oz|50|1
+16|Almeria|almeria|shakeice|none|47|2 oz|34|1 oz|50|1
 17|Amaretto Rose|amarettorose|amarettorose|limewheel|4|1.5 oz|81|0.5 oz|116|to top
 18|Amaretto Stinger|amarettostinger|shakeice|none|4|1.5 oz|42|0.75 oz
 19|Applecar|applecar|shakeice|apple|9|1 oz|127|1 oz|75|1 oz
@@ -62,7 +62,7 @@
 62|Rum Cooler|rumcooler|stirglassice|limewheel|47|2 oz|77|4 oz
 63|Rusty Nail|rustynail|stirglassice|lemontwist|113|1.5 oz|48|0.5 oz
 64|Salty Dog|saltydog|stirglassice|limewheel|62|4 oz|57|1.5 oz|111|dash
-65|Sazerac|sazerac|sazerac|lemontwist|109|1.5 oz|35|1.5 oz|120|1 cube|99|3 dashes|6|1 dash|130|1 tsp
+65|Sazerac|sazerac|sazerac|lemontwist|109|1.5 oz|35|1.5 oz|120|1 cube|99|3 dashes|6|1 dash
 66|Screwdriver|screwdriver|stirglassice|orangewheel|129|2 oz|93|to top
 67|Sidecar|sidecar|shakeice|lemontwist|35|2 oz|36|0.5 oz|75|1 oz
 68|Tom Collins|tomcollins|tomcollins|lemontwist|57|2 oz|75|1 oz|104|1 tsp|116|to top
@@ -114,7 +114,7 @@
 114|Boulevardier|boulevardier|stirice|cherry|109|1.5 oz|123|1 oz|24|1 oz
 115|Bijou|bijou|stirice|none|57|1 oz|63|1 oz|123|1 oz|92|1 dash
 116|Gimlet|gimlet|shakeice|limewheel|57|2.5 oz|81|0.5 oz|121|0.5 oz
-117|Oatmeal Cookie|oatmealcookie|shakeice|nutmeg|72|1 oz|68|1 oz|21|2 oz|71|0.5 oz|29|0.5 oz
+117|Oatmeal Cookie|oatmealcookie|shakeice|nutmeg|34|1 oz|68|1 oz|21|2 oz|71|0.5 oz|29|0.5 oz
 118|The Laverstoke|laverstoke|pourice|mint|57|2 oz|52|0.5 oz|123|0.5 oz|81|dash|59|to top
 119|Tipperary|tipperary|stirice|orangetwist|69|2 oz|63|0.5 oz|123|1 oz
 120|Adonis|adonis|stirice|orangetwist|123|0.75 oz|114|1.5 oz|92|1 dash
