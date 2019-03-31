@@ -45,6 +45,9 @@ data class BottleFamily(@PrimaryKey(autoGenerate = true) val id: Long,
 interface FamilyDao {
     @Insert
     fun add(family: Family)
+
+    @Query("SELECT f.id, f.name, f.description FROM bottle_family bf INNER JOIN families f ON f.id = bf.familyId WHERE bf.bottleId = :bottleId")
+    fun liveFamiliesForBottle(bottleId: Long): LiveData<List<Family>>
 }
 
 @Dao

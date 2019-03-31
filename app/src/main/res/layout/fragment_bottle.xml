@@ -46,6 +46,11 @@
                   style="@style/tinyHeader"
                   android:text="A B O U T" />
 
+        <com.dlfsystems.bartender.views.TagbarView android:layout_width="wrap_content"
+                                                   android:layout_height="wrap_content"
+        android:layout_margin="10dp" android:layout_gravity="center_horizontal"
+        android:id="@+id/bottle_tagbar" />
+
         <com.ms.square.android.expandabletextview.ExpandableTextView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"

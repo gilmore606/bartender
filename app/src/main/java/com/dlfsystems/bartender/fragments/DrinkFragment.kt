@@ -19,11 +19,10 @@ import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragAnimPair
-import com.dlfsystems.bartender.room.BarDB
-import com.dlfsystems.bartender.room.Bottle
-import com.dlfsystems.bartender.room.Drink
-import com.dlfsystems.bartender.room.Ingredient
+import com.dlfsystems.bartender.room.*
 import com.dlfsystems.bartender.views.IngredientsView
+import com.dlfsystems.bartender.views.Tag
+import com.dlfsystems.bartender.views.TagbarView
 import com.ms.square.android.expandabletextview.ExpandableTextView
 import kotlinx.android.parcel.Parcelize
 
@@ -39,7 +38,9 @@ class DrinkFragment : BaseFragment() {
         val make: Int = 0,
         val garnish: Int = 0,
         val boundIngredients: Boolean = false,
-        val ingredients: ArrayList<Ingredient> = ArrayList(0)
+        val ingredients: ArrayList<Ingredient> = ArrayList(0),
+        val boundTags: Boolean = false,
+        val tags: ArrayList<Tag> = ArrayList(0)
     ) : BaseState()
 
     @Parcelize
@@ -64,13 +65,18 @@ class DrinkFragment : BaseFragment() {
         class DrinkIngredientsViewModel(drinkId: Long, application: Application) : AndroidViewModel(application) {
             val bottles: LiveData<List<Ingredient>> = BarDB.getInstance(getApplication()).drinkDao().liveIngredientsForDrink(drinkId)
         }
+        class DrinkTagsViewModel(drinkId: Long, application: Application): AndroidViewModel(application) {
+            val tags: LiveData<List<Drinktag>> = BarDB.getInstance(getApplication()).drinktagDao().liveDrinktagsForDrink(drinkId)
+        }
 
         var drinkViewModel: DrinkViewModel? = null
         var drinkIngredientsViewModel: DrinkIngredientsViewModel? = null
+        var drinkTagsViewModel: DrinkTagsViewModel? = null
         var drinkName: TextView? = null
         var drinkFavorite: CheckBox? = null
         var drinkIngredients: IngredientsView? = null
         var drinkAbout: ExpandableTextView? = null
+        var drinkTagbar: TagbarView? = null
         var drinkAboutHeader: TextView? = null
         var drinkImage: ImageView? = null
         var drinkMake: TextView? = null
@@ -84,6 +90,7 @@ class DrinkFragment : BaseFragment() {
                 drinkIngredients = it.findViewById(R.id.drink_bottlelist) as IngredientsView
                 drinkAbout = it.findViewById(R.id.drink_about) as ExpandableTextView
                 drinkAboutHeader = it.findViewById(R.id.drink_aboutheader) as TextView
+                drinkTagbar = it.findViewById(R.id.drink_tagbar) as TagbarView
                 drinkImage = it.findViewById(R.id.drink_image) as ImageView
                 drinkMake = it.findViewById(R.id.drink_directions) as TextView
                 drinkGarnish = it.findViewById(R.id.drink_garnish) as TextView
@@ -130,7 +137,23 @@ class DrinkFragment : BaseFragment() {
                     action.onNext(Action.drinkLoadIngredients(it))
                 })
             }
+            if (state.boundTags) {
+                drinkTagbar?.populate(state.tags)
+            } else {
+                drinkTagsViewModel = DrinkTagsViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
+                drinkTagsViewModel?.tags?.observe(drinkFragment, Observer {
+                    action.onNext(Action.drinkLoadTags(it))
+                })
+            }
         }
+    }
+
+    private fun tagsFromDrinktags(drinktags: ArrayList<Drinktag>): ArrayList<Tag> {
+        val tags = ArrayList<Tag>(0)
+        drinktags.forEach {
+            tags.add(Tag(id = it.id, isBottleTag = false, tag = it.name, description = it.description))
+        }
+        return tags
     }
 
     override val layoutResource = R.layout.fragment_drink
@@ -168,6 +191,14 @@ class DrinkFragment : BaseFragment() {
                     (previousState as DrinkState).copy(
                         boundIngredients = true,
                         ingredients = ArrayList(action.load)
+                    )
+                )
+            }
+            is Action.drinkLoadTags -> {
+                changeState(
+                    (previousState as DrinkState).copy(
+                        boundTags = true,
+                        tags = tagsFromDrinktags(ArrayList(action.load))
                     )
                 )
             }

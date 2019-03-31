@@ -21,7 +21,10 @@ import com.dlfsystems.bartender.nav.FragAnimPair
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Drink
+import com.dlfsystems.bartender.room.Family
 import com.dlfsystems.bartender.views.DrinklistView
+import com.dlfsystems.bartender.views.Tag
+import com.dlfsystems.bartender.views.TagbarView
 import kotlinx.android.parcel.Parcelize
 import com.ms.square.android.expandabletextview.ExpandableTextView
 
@@ -36,7 +39,9 @@ class BottleFragment : BaseFragment() {
         val active: Boolean = false,
         val shopping: Boolean = false,
         val boundDrinks: Boolean = false,
-        val drinks: ArrayList<Drink> = ArrayList(0)
+        val drinks: ArrayList<Drink> = ArrayList(0),
+        val boundTags: Boolean = false,
+        val tags: ArrayList<Tag> = ArrayList(0)
     ) : BaseState()
 
     @Parcelize
@@ -61,14 +66,19 @@ class BottleFragment : BaseFragment() {
         class BottleDrinksViewModel(bottleId: Long, application: Application) : AndroidViewModel(application) {
             val drinks: LiveData<List<Drink>> = BarDB.getInstance(getApplication()).drinkDao().liveDrinksForBottle(bottleId)
         }
+        class BottleTagsViewModel(bottleId: Long, application: Application): AndroidViewModel(application) {
+            val tags: LiveData<List<Family>> = BarDB.getInstance(getApplication()).familyDao().liveFamiliesForBottle(bottleId)
+        }
 
         var bottleViewModel: BottleViewModel? = null
         var bottleDrinksViewModel: BottleDrinksViewModel? = null
+        var bottleTagsViewModel: BottleTagsViewModel? = null
         var bottleName: TextView? = null
         var bottleImage: ImageView? = null
         var bottleActive: CheckBox? = null
         var bottleShopping: CheckBox? = null
         var bottleAbout: ExpandableTextView? = null
+        var bottleTagbar: TagbarView? = null
         var bottleDrinklist: DrinklistView? = null
 
         override fun subscribeActions() {
@@ -78,6 +88,7 @@ class BottleFragment : BaseFragment() {
                 bottleActive = it.findViewById(R.id.bottle_active) as CheckBox
                 bottleShopping = it.findViewById(R.id.bottle_shopping) as CheckBox
                 bottleAbout = it.findViewById(R.id.bottle_about) as ExpandableTextView
+                bottleTagbar = it.findViewById(R.id.bottle_tagbar) as TagbarView
                 bottleDrinklist = it.findViewById(R.id.bottle_drinklist) as DrinklistView
 
                 bottleActive?.setOnClickListener { action.onNext(Action.bottleToggleActive()) }
@@ -117,7 +128,23 @@ class BottleFragment : BaseFragment() {
                     action.onNext(Action.bottleLoadDrinks(it))
                 })
             }
+            if (state.boundTags) {
+                bottleTagbar?.populate(state.tags)
+            } else {
+                bottleTagsViewModel = BottleTagsViewModel(state.id, bottleFragment.context!!.applicationContext as Application)
+                bottleTagsViewModel?.tags?.observe(bottleFragment, Observer {
+                    action.onNext(Action.bottleLoadTags(it))
+                })
+            }
         }
+    }
+
+    private fun tagsFromFamilies(families: ArrayList<Family>): ArrayList<Tag> {
+        val tags = ArrayList<Tag>(0)
+        families.forEach {
+            tags.add(Tag(id = it.id, isBottleTag = true, tag = it.name, description = it.description))
+        }
+        return tags
     }
 
     override val layoutResource = R.layout.fragment_bottle
@@ -158,6 +185,14 @@ class BottleFragment : BaseFragment() {
                     (previousState as BottleState).copy(
                         boundDrinks = true,
                         drinks = ArrayList(action.load)
+                    )
+                )
+            }
+            is Action.bottleLoadTags -> {
+                changeState(
+                    (previousState as BottleState).copy(
+                        boundTags = true,
+                        tags = tagsFromFamilies(ArrayList(action.load))
                     )
                 )
             }

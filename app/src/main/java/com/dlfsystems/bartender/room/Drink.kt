@@ -68,6 +68,9 @@ data class DrinkDrinktag(@PrimaryKey(autoGenerate = true) val id: Long,
 interface DrinktagDao {
     @Insert
     fun add(drinktag: Drinktag)
+
+    @Query("SELECT t.id, t.name, t.description FROM drink_drinktag dt INNER JOIN drinktags t ON t.id = dt.drinktagId WHERE dt.drinkId = :drinkId")
+    fun liveDrinktagsForDrink(drinkId: Long): LiveData<List<Drinktag>>
 }
 
 @Dao
