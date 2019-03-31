@@ -41,6 +41,41 @@ data class Ingredient(val bottleId: Long = 0,
                       val amount: String = ""
                       )
 
+@Entity(tableName = "drinktags")
+data class Drinktag(@PrimaryKey val id: Long,
+                    val name: String,
+                    val description: String)
+
+@Entity(tableName = "drink_drinktag",
+        foreignKeys = arrayOf(ForeignKey(
+            entity = Drink::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("drinkId")
+        ), ForeignKey(
+            entity = Drinktag::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("drinktagId")
+        )),
+    indices = arrayOf(
+        Index(value = ["drinkId"]),
+        Index(value = ["drinktagId"])
+    ))
+data class DrinkDrinktag(@PrimaryKey(autoGenerate = true) val id: Long,
+                         val drinkId: Long,
+                         val drinktagId: Long)
+
+@Dao
+interface DrinktagDao {
+    @Insert
+    fun add(drinktag: Drinktag)
+}
+
+@Dao
+interface DrinkDrinktagDao {
+    @Insert
+    fun add(drinkdrinktag: DrinkDrinktag)
+}
+
 @Dao
 interface DrinkDao {
 
