@@ -48,7 +48,7 @@ class IngredientView @JvmOverloads constructor (
         var amount = ingredient.amount
         if (" oz" in amount) {
             if (PreferenceManager.getDefaultSharedPreferences(this.context).getBoolean("metric", false)) {
-                val ounces = Regex("""(\w+) oz""").find(amount)!!.groupValues[1].toFloat()
+                val ounces = Regex("""(\d+\.?\d*) oz""").find(amount)!!.groupValues[1].toFloat()
                 val centilitres = ounces * 3.0f
                 amount = "%.1f".format(centilitres) + " cL"
             }
@@ -62,5 +62,9 @@ class IngredientView @JvmOverloads constructor (
         bottleTopView.setOnClickListener {
             clickEvent.onNext(Bottle(id=ingredient.bottleId, name=ingredient.bottleName))
         }
+    }
+
+    fun metricOptionChanged(value: Boolean) {
+        bindIngredient(ingredient)
     }
 }

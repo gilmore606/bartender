@@ -50,4 +50,11 @@ class IngredientsView @JvmOverloads constructor (
         ingredients.clear()
         ingredients.addAll(newIngredients)
     }
+
+    fun metricOptionChanged(value: Boolean) {
+        views.filter { it is IngredientView }
+            .forEach {
+                (it as IngredientView).metricOptionChanged(value)
+            }
+    }
 }

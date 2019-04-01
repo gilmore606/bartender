@@ -120,5 +120,6 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
     fun setMeasureMetric(value: Boolean) {
         PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("metric", value).apply()
+        (supportFragmentManager.findFragmentById(R.id.base_frame) as BaseFragment).metricOptionChanged(value)
     }
 }

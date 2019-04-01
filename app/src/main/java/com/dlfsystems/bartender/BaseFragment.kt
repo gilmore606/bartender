@@ -90,6 +90,8 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         previousState = state
     }
 
+    open fun metricOptionChanged(value: Boolean) { }
+
     fun setBottleActive(bottleId: Long, bottleName: String, active: Boolean) {
         context?.also {
             BarDB.setBottleActive(context!!, bottleId, active)

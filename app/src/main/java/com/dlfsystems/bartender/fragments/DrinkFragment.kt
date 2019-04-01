@@ -156,6 +156,10 @@ class DrinkFragment : BaseFragment() {
         return tags
     }
 
+    override fun metricOptionChanged(value: Boolean) {
+        viewController.drinkIngredients?.metricOptionChanged(value)
+    }
+
     override val layoutResource = R.layout.fragment_drink
     override val viewController = DrinkView(this)
     override fun getDefaultState() = DrinkState()
