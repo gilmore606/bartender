@@ -195,7 +195,15 @@
     <string name="aperol_spritz">There’s a reason the Aperol Spritz is making a comeback. It’s one of the most popular apéritifs in Italy, and it’s as tasty as it is refreshing. Low in alcohol, aromatic with citrus and slightly bitter, Aperol pairs perfectly with chilled prosecco. The Aperol Spritz is as easy to make as it is to drink, meaning it’s perfect for any time of day and any occasion. It doesn’t hurt that it has a gorgeous coral hue.\nMeeting friends for an after-work Spritz is a long-established Italian tradition and one that’s easily replicated anywhere.</string>
     <string name="sloeginfizz">The sloe gin fizz is a popular fruit cooler and a wonderful way to enjoy the sweet taste of a great sloe gin. This drink is easy to mix up and it is a nice cocktail for summer and spring days on the patio.\nIt is the perfect introductory cocktail for the sweet taste of sloe gin, which is seeing a comeback and used in a number of classic cocktails.</string>
     <string name="nutsandberries">A creamy dessert cocktail combining hazelnut and raspberry liqueurs.</string>
+    <string name="angelface">The story of the Angel Face cocktail begins in 1930 with its listing in the famous Savoy Cocktail Book.  It is thought to be named for the Prohibition-era Mafia gangster Felice \'Angel Face\' Maniero.</string>
+    <string name="bramble">English bartender Dick Bradsell\'s original recipe for the Bramble calls for creme de mure, a blackberry liqueur, rather than the Chambord listed here.  If you have it, by all means use it.</string>
+    <string name="sevenseven">This refreshing highball is traditionally made (as the name suggests) with Seagrams Seven Crown whiskey and 7Up soda.</string>
+    <string name="beesknees">This is a fun and very easy cocktail from the Prohibition era. Some stories claim that the drink was concocted because the honey masked the odor of the liquor. While that may be the case, one has to wonder if it really did the trick given some of the stories about the often pungent bathtub gins circulating during that time.\nThe original recipe calls for honey syrup; if you have it, use twice the amount listed for honey.  If not, shake the drink extra hard to ensure an even mixing.</string>
+    <string name="hankypanky">The recipe for the Hanky Panky cocktail was originally credited to Ada Coleman, head bartender at the American Bar in The Savoy in 1925.</string>
+    <string name="bamboo">Sherry cocktails are getting a lot of love from the bartender community, and this underrated 19th-century drink is a delicious way to go. Two kinds of bitters bring a remarkable complexity of flavor.</string>
 
+
+    <string name="garnish_blackberry">Blackberry or black raspberry.</string>
     <string name="make_stirice">Pour all ingredients into mixing glass with ice, stir well.\nStrain into glass.</string>
     <string name="make_shakeice">Shake all ingredients with ice, strain into glass and serve.</string>
     <string name="make_pourice">Pour all ingredients over ice in a glass.\nStir and serve.</string>

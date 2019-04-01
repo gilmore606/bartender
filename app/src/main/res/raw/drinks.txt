@@ -125,5 +125,11 @@
 125|0,3|Bay Breeze|baybreeze|pourice|limewheel|78|2 oz|38|2 oz|100|2 oz
 126|0,9|Nuts and Berries|nutsandberries|shakeice|nutmeg|55|0.5 oz|25|0.5 oz|87|2 oz
 127|0,3,4|Cuzco|cuzco|shakeice|lemontwist|102|2 oz|7|0.75 oz|121|0.5 oz|75|0.5 oz|62|0.5 oz
-128|0,3|Aperol Spritz|aperol_spritz|pourice|orangewheel|118|3 oz|7|2 oz|116|2 oz
-129|0,3|Sloe Gin Fizz|sloeginfizz|shakeice|none|115|1.5 oz|75|0.75 oz|121|0.5 oz|50|1|116|1 oz
+128|0,3,11|Aperol Spritz|aperol_spritz|pourice|orangewheel|118|3 oz|7|2 oz|116|2 oz
+129|0,3|Sloe Gin Fizz|sloeginfizz|shakeice|none|115|1.5 oz|75|0.75 oz|121|0.5 oz|50|1|116|1
+130|0,1|Angel Face|angelface|shakeice|apple|23|1 oz|10|1 oz|57|1 oz
+131|0,1|Bramble|bramble|shakeice|blackberry|57|1.5 oz|25|0.75 oz|81|0.75 oz|121|0.75 oz
+132|0,3,11|Seven and Seven|sevenseven|highball|none|131|1.5 oz|77|to top
+133|0,6,2,9|Bees Knees|beesknees|shakeice|none|57|2 oz|65|0.5 oz|75|0.5 oz
+134|0|Hanky Panky|hankypanky|stirice|orangetwist|57|1.5 oz|123|1.5 oz|54|2 dashes
+135|0,2,12|Bamboo|bamboo|stirice|lemontwist|114|1.5 oz|49|1.5 oz|6|1 dash|99|1 dash
