@@ -2,8 +2,11 @@ package com.dlfsystems.bartender
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragmentStateChanger
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(mainToolbar)
+        supportActionBar?.setTitle("OpenBar")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         fragmentStateChanger = FragmentStateChanger(supportFragmentManager, R.id.base_frame)
@@ -47,6 +51,15 @@ class MainActivity : AppCompatActivity(), StateChanger {
                 navigateTo(it)
             }
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.actionbar_menu, menu)
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("metric", false))
+            menu?.getItem(1)?.setChecked(true)
+        else
+            menu?.getItem(0)?.setChecked(true)
+        return true
     }
 
     private fun navigateTo(destKey: BaseKey) {
@@ -61,12 +74,30 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            (android.R.id.home) -> {
+            android.R.id.home -> {
                 onBackPressed()
+            }
+            R.id.action_menu_imperial -> {
+                item.isChecked = true
+                setMeasureMetric(false)
+            }
+            R.id.action_menu_metric -> {
+                item.isChecked = true
+                setMeasureMetric(true)
+            }
+            R.id.action_menu_about -> {
+                showAboutDialog()
             }
             else -> { return false }
         }
         return true
+    }
+
+    fun showAboutDialog() {
+        AlertDialog.Builder(this, R.style.DialogStyle)
+            .setTitle("OpenBar for Android")
+            .setMessage("Version 1.12\n2019 DLF Systems")
+            .create().show()
     }
 
     override fun handleStateChange(stateChange: StateChange, completionCallback: StateChanger.Callback) {
@@ -85,5 +116,9 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
     fun toggleBackButton(value: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(value)
+    }
+
+    fun setMeasureMetric(value: Boolean) {
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("metric", value).apply()
     }
 }

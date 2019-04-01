@@ -69,4 +69,9 @@
         <item name="android:textColor">#DDDDDD</item>
         <item name="android:textSize">12sp</item>
     </style>
+    <style name="DialogStyle" parent="android:Theme.Material.Light.Dialog.NoActionBar">
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 </resources>

@@ -2,6 +2,7 @@ package com.dlfsystems.bartender.views
 
 import android.content.Context
 import android.net.Uri
+import android.preference.PreferenceManager
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -44,7 +45,15 @@ class IngredientView @JvmOverloads constructor (
     fun bindIngredient(newingredient: Ingredient) {
         ingredient = newingredient
         bottleName.text = ingredient.bottleName
-        bottleAmount.text = ingredient.amount
+        var amount = ingredient.amount
+        if (" oz" in amount) {
+            if (PreferenceManager.getDefaultSharedPreferences(this.context).getBoolean("metric", false)) {
+                val ounces = Regex("""(\w+) oz""").find(amount)!!.groupValues[1].toFloat()
+                val centilitres = ounces * 3.0f
+                amount = "%.1f".format(centilitres) + " cL"
+            }
+        }
+        bottleAmount.text = amount
         Glide.with(context).load(Uri.parse("file:///android_asset/bottle_thumb/" + ingredient.bottleImage + ".png"))
             .asBitmap().into(bottleImage)
         setBackgroundResource(

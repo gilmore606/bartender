@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/action_menu_group_measures"
+            android:checkableBehavior="single" >
+        <item
+            android:id="@+id/action_menu_imperial"
+            android:title="Imperial units"
+            app:showAsAction="never"
+            android:orderInCategory="1"
+            />
+        <item
+            android:id="@+id/action_menu_metric"
+            android:title="Metric units"
+            app:showAsAction="never"
+            android:orderInCategory="2"
+            />
+    </group>
+
+    <item
+        android:id="@+id/action_menu_about"
+        android:title="About..."
+        app:showAsAction="never"
+        android:orderInCategory="3"
+        />
+
+</menu>
