@@ -10,13 +10,23 @@
 
         <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading_anim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="24dp"
                 app:lottie_rawRes="@raw/splash_anim"
                 app:lottie_loop="true"
                 app:lottie_autoPlay="true" />
+
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:id="@+id/loading_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="48dp"
+                android:minHeight="50dp"
+                android:minWidth="200dp" />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="Building database..."

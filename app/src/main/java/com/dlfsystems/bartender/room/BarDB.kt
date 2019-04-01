@@ -83,6 +83,7 @@ abstract class BarDB : RoomDatabase() {
             var eof = false
             while (!eof) {
                 val line = bottleReader.readLine()
+                Rudder.addLoadProgress(0.4f)
                 if (line == null) eof = true
                 else {
                     val chunks = line.split('|')
@@ -124,6 +125,7 @@ abstract class BarDB : RoomDatabase() {
             var ingredientId: Long = 1
             while (!eof) {
                 val line = drinkReader.readLine()
+                Rudder.addLoadProgress(0.4f)
                 if (line == null) eof = true
                 else {
                     val chunks = line.split('|')
