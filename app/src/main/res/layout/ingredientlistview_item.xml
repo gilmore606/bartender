@@ -10,7 +10,8 @@
                android:id="@+id/ingredientlistview_bottle_image" />
 
     <LinearLayout android:orientation="vertical" android:layout_gravity="center_vertical"
-                  android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_width="0dp" android:layout_height="wrap_content"
+                  android:layout_weight="1"
                   >
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:layout_margin="4dp"
@@ -21,6 +22,9 @@
                   style="@style/ingredientAmount"
                   android:id="@+id/ingredientlistview_amount" />
     </LinearLayout>
-
+    <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:button="@drawable/checkbox_shopping"
+              android:layout_marginEnd="16dp" android:layout_marginStart="8dp"
+              android:id="@+id/ingredientlistview_shopping" android:layout_gravity="center_vertical|end" />
 
 </LinearLayout>

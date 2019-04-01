@@ -54,6 +54,9 @@ interface FamilyDao {
 interface BottleFamilyDao {
     @Insert
     fun add(bottleFamily: BottleFamily)
+
+    @Insert
+    fun addAll(bottleFamilies: List<BottleFamily>)
 }
 
 @Dao
@@ -83,6 +86,9 @@ interface BottleDao {
 
     @Insert
     fun add(bottle: Bottle)
+
+    @Insert
+    fun addAll(bottles: List<Bottle>)
 
     @Update
     fun update(bottle: Bottle)

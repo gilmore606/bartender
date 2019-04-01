@@ -62,9 +62,11 @@ class CatalogDrinksFragment : CatalogListFragment() {
                 }
                 if (drink?.missingBottles ?: 0 > 0) {
                     drinkMissing.text = "need " + drink!!.missingBottles.toString()
+                    drinkMissing.visibility = View.VISIBLE
                     view.setBackgroundResource(R.drawable.bg_listitem_inactive)
                 } else {
                     drinkMissing.text = ""
+                    drinkMissing.visibility = View.GONE
                     view.setBackgroundResource(R.drawable.bg_listitem_active)
                 }
             }

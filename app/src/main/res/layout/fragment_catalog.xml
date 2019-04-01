@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:background="@drawable/bg_iconbar"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -9,11 +10,14 @@
 
         <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:id="@+id/catalog_button_bottles"
-                  android:layout_marginVertical="16dp" android:layout_marginHorizontal="10dp"
-                  android:button="@drawable/checkbox_bottles" />
+                  android:padding="16dp"
+                  android:layout_gravity="center" android:layout_weight="0"
+                  android:button="@drawable/checkbox_bottles"
+                  android:paddingStart="16dp" android:paddingEnd="16dp" android:gravity="center"/>
         <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:id="@+id/catalog_button_drinks"
-                  android:layout_marginVertical="16dp" android:layout_marginHorizontal="10dp"
+                  android:layout_gravity="center" android:layout_weight="0"
+                  android:padding="16dp"
                   android:button="@drawable/checkbox_drinks" />
 
         <Spinner android:layout_width="0dp" android:layout_height="wrap_content"

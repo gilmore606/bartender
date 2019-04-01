@@ -63,6 +63,7 @@ class CatalogFragment : BaseFragment() {
                 spinnerDrinksFilter = it.findViewById(R.id.catalog_drinks_filter_spinner) as Spinner
 
                 buttonBottles?.isChecked = true
+                buttonBottles?.isClickable = false
                 buttonBottles?.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) action.onNext(Action.tabTo(Tabs.BOTTLES))
                 }
@@ -159,8 +160,20 @@ class CatalogFragment : BaseFragment() {
             }
 
             when (state.tab) {
-                Tabs.BOTTLES -> buttonDrinks?.isChecked = false
-                Tabs.DRINKS -> buttonBottles?.isChecked = false
+                Tabs.BOTTLES -> {
+                    buttonDrinks?.isChecked = false
+                    buttonDrinks?.isClickable = true
+                    buttonDrinks?.setBackgroundResource(R.drawable.bg_iconbar)
+                    buttonBottles?.isClickable = false
+                    buttonBottles?.setBackgroundResource(R.drawable.bg_iconbar_lit)
+                }
+                Tabs.DRINKS -> {
+                    buttonBottles?.isChecked = false
+                    buttonBottles?.isClickable = true
+                    buttonBottles?.setBackgroundResource(R.drawable.bg_iconbar)
+                    buttonDrinks?.isClickable = false
+                    buttonDrinks?.setBackgroundResource(R.drawable.bg_iconbar_lit)
+                }
             }
 
             spinnerBottles?.setSelection(when (state.bottleTab) {

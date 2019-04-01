@@ -5,11 +5,14 @@ import android.net.Uri
 import android.preference.PreferenceManager
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.Ingredient
@@ -24,12 +27,11 @@ class IngredientView @JvmOverloads constructor (
 
     var ingredient = Ingredient()
 
-    val clickEvent = PublishSubject.create<Bottle>()
-
     val bottleName: TextView
     val bottleAmount: TextView
     val bottleImage: ImageView
     val bottleTopView: LinearLayout
+    val bottleShopping: CheckBox
 
     init {
         LayoutInflater.from(context)
@@ -40,9 +42,10 @@ class IngredientView @JvmOverloads constructor (
         bottleAmount = findViewById(R.id.ingredientlistview_amount)
         bottleImage = findViewById(R.id.ingredientlistview_bottle_image)
         bottleTopView = findViewById(R.id.ingredientlistview_item_toplayer)
+        bottleShopping = findViewById(R.id.ingredientlistview_shopping)
     }
 
-    fun bindIngredient(newingredient: Ingredient) {
+    fun bindIngredient(newingredient: Ingredient, action: PublishSubject<Action>) {
         ingredient = newingredient
         bottleName.text = ingredient.bottleName
         var amount = ingredient.amount
@@ -60,11 +63,17 @@ class IngredientView @JvmOverloads constructor (
                 if (ingredient.bottleActive) R.drawable.bg_listitem_active else R.drawable.bg_listitem_inactive
         )
         bottleTopView.setOnClickListener {
-            clickEvent.onNext(Bottle(id=ingredient.bottleId, name=ingredient.bottleName))
+            action.onNext(Action.navToBottle(ingredient.bottleId))
+        }
+        bottleShopping.visibility = if (ingredient.bottleActive) View.GONE else View.VISIBLE
+        bottleShopping.setOnCheckedChangeListener { _,_ -> }
+        bottleShopping.isChecked = ingredient.bottleShopping
+        bottleShopping.setOnCheckedChangeListener { _, isChecked ->
+            action.onNext(Action.bottleToggleShopping(Bottle(id=ingredient.bottleId, name=ingredient.bottleName), shopping=!ingredient.bottleShopping))
         }
     }
 
-    fun metricOptionChanged(value: Boolean) {
-        bindIngredient(ingredient)
+    fun metricOptionChanged(value: Boolean, action: PublishSubject<Action>) {
+        bindIngredient(ingredient, action)
     }
 }

@@ -38,6 +38,7 @@ data class Ingredient(val bottleId: Long = 0,
                       val bottleName: String = "",
                       val bottleImage: String = "",
                       val bottleActive: Boolean = false,
+                      val bottleShopping: Boolean = false,
                       val amount: String = ""
                       )
 
@@ -77,6 +78,9 @@ interface DrinktagDao {
 interface DrinkDrinktagDao {
     @Insert
     fun add(drinkdrinktag: DrinkDrinktag)
+
+    @Insert
+    fun addAll(drinkdrinktags: List<DrinkDrinktag>)
 }
 
 @Dao
@@ -112,7 +116,7 @@ interface DrinkDao {
     @Query("SELECT * FROM drinks WHERE id=:drinkId")
     fun liveById(drinkId: Long): LiveData<Drink>
 
-    @Query("SELECT b.id bottleId, b.name bottleName, b.image bottleImage, b.active bottleActive, di.amount amount FROM drink_ingredients di INNER JOIN bottles b ON b.id = di.bottleId WHERE di.drinkId=:drinkId")
+    @Query("SELECT b.id bottleId, b.name bottleName, b.image bottleImage, b.active bottleActive, b.shopping bottleShopping, di.amount amount FROM drink_ingredients di INNER JOIN bottles b ON b.id = di.bottleId WHERE di.drinkId=:drinkId")
     fun liveIngredientsForDrink(drinkId: Long): LiveData<List<Ingredient>>
 
     @Query("SELECT COUNT(DISTINCT(di.drinkId)) FROM drink_ingredients di WHERE bottleId=:bottleId")
@@ -124,4 +128,7 @@ interface DrinkIngredientDao {
 
     @Insert
     fun add(drinkIngredient: DrinkIngredient)
+
+    @Insert
+    fun addAll(drinkIngredients: List<DrinkIngredient>)
 }

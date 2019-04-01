@@ -18,7 +18,7 @@
                   android:id="@+id/drinklistview_item_name" />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:layout_margin="4dp" android:layout_gravity="center_vertical|end"
+                  android:layout_margin="4dp" android:layout_gravity="center_vertical"
                   style="@style/bottleDrinkMissing"
                   android:id="@+id/drinklistview_item_missing" />
 

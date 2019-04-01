@@ -3,5 +3,5 @@
         android:shape="rectangle"
         android:thickness="0dp" >
 
-    <solid android:color="#FFF0DD99" />
+    <solid android:color="#FFFFFFFF" />
 </shape>

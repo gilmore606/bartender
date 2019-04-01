@@ -95,7 +95,9 @@ abstract class BarDB : RoomDatabase() {
                     val btype = chunks[4].toLong()
 
                     bottleDao.add(Bottle(id = id, name = name, image = imageName, descstr = stringId, type = btype))
-                    families.forEach { bottleFamilyDao.add(BottleFamily(id = 0, bottleId = id, familyId = it.toLong())) }
+                    val familyObjects = ArrayList<BottleFamily>(0)
+                    families.forEach { familyObjects.add(BottleFamily(id = 0, bottleId = id, familyId = it.toLong())) }
+                    bottleFamilyDao.addAll(familyObjects)
                 }
             }
 
@@ -140,20 +142,24 @@ abstract class BarDB : RoomDatabase() {
                     val garnishId = context.resources.getIdentifier("garnish_" + garnishstr, "string", context.packageName)
 
                     drinkDao.add(Drink(id = drinkId, name = name, image = image, info = infoId, make = makeId, garnish = garnishId))
-                    tagIds.forEach { if (it != "") drinkDrinktagDao.add(DrinkDrinktag(id = 0, drinkId = drinkId, drinktagId = it.toLong())) }
+                    val tagobjects = ArrayList<DrinkDrinktag>(0)
+                    tagIds.forEach { if (it != "") tagobjects.add(DrinkDrinktag(id = 0, drinkId = drinkId, drinktagId = it.toLong())) }
+                    drinkDrinktagDao.addAll(tagobjects)
 
                     var i = 6
                     var eol = false
+                    val ingredientObjects = ArrayList<DrinkIngredient>(0)
                     while (!eol) {
                         if (i >= chunks.size) eol = true
                         else {
                             val ingredient = chunks[i].toLong()
                             val amount = chunks[i+1]
-                            drinkIngredientDao.add(DrinkIngredient(id = ingredientId, drinkId = drinkId, bottleId = ingredient, amount = amount))
+                            ingredientObjects.add(DrinkIngredient(id = ingredientId, drinkId = drinkId, bottleId = ingredient, amount = amount))
                             ingredientId++
                             i += 2
                         }
                     }
+                    drinkIngredientDao.addAll(ingredientObjects)
                 }
             }
             Rudder.navTo(CatalogFragment.CatalogKey())

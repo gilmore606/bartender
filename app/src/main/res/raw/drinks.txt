@@ -1,5 +1,5 @@
 1|0,1,2|Old Fashioned|oldfashioned|oldfashioned|oldfashioned|131|1 oz|16|2 dashes
-2|0,1,2|Manhattan|manhattan|stirice|cherry|123|0.75 oz|18|2 1/2 oz|6|dash
+2|0,1,2|Manhattan|manhattan|stirice|cherry|123|0.75 oz|18|2.5 oz|6|dash
 3|0,1,2|Mojito|mojito|mojito|mojito|78|2 oz|81|juice of 1 lime|120|2 tsp|88|2-4 leaves|116|to top
 4|0,1,3|Long Island Iced Tea|longislandicedtea|longislandicedtea|lemonwheel|129|0.5 oz|78|1/2 oz|57|0.5 oz|124|0.5 oz|75|juice of 1/2 lemon|37|splash
 5|0,1,12,2|Negroni|negroni|stirice|orangetwist|57|1 oz|24|1 oz|123|1 oz
@@ -82,7 +82,7 @@
 82|0,1,2|Aviation|aviation|shakeice|cherry|57|2 oz|84|0.5 oz|43|0.25 oz|75|0.75 oz
 83|0,1,2|Between the Sheets|betweenthesheets|shakeice|orangetwist|19|1 oz|78|1 oz|127|1 oz|75|1 oz
 84|0,1,2|Mary Pickford|marypickford|shakeice|cherry|78|1.5 oz|100|1 oz|84|0.5 tsp|64|0.5 tsp
-85|0,1,2|Monkey Gland|monkeygland|shakeice|none|57|2 oz|15|1 tsp|93|1 oz|64|1 tsp
+85|0,1,2|Monkey Gland|monkeygland|shakeice|monkeygland|57|2 oz|15|1 tsp|93|1 oz|64|1 tsp
 86|0,1,3,4|Planters Punch|planterspunch|shakeice|orangewheel|47|1 oz|95|0.5 oz|93|2 oz|100|1 oz
 87|0,1,2|Porto Flip|portoflip|shakeice|nutmeg|19|0.5 oz|50|1|51|1|103|1.5 oz
 88|0,1,2|Stinger|stinger|stirice|none|19|1.5 oz|42|0.5 oz

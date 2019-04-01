@@ -19,6 +19,7 @@ import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.FragAnimPair
+import com.dlfsystems.bartender.nav.Rudder
 import com.dlfsystems.bartender.room.*
 import com.dlfsystems.bartender.views.IngredientsView
 import com.dlfsystems.bartender.views.Tag
@@ -130,7 +131,7 @@ class DrinkFragment : BaseFragment() {
                 })
             }
             if (state.boundIngredients) {
-                drinkIngredients?.populate(state.ingredients)
+                drinkIngredients?.populate(state.ingredients, action)
             } else {
                 drinkIngredientsViewModel = DrinkIngredientsViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
                 drinkIngredientsViewModel?.bottles?.observe(drinkFragment, Observer {
@@ -157,7 +158,7 @@ class DrinkFragment : BaseFragment() {
     }
 
     override fun metricOptionChanged(value: Boolean) {
-        viewController.drinkIngredients?.metricOptionChanged(value)
+        viewController.drinkIngredients?.metricOptionChanged(value, viewController.action)
     }
 
     override val layoutResource = R.layout.fragment_drink
@@ -205,6 +206,14 @@ class DrinkFragment : BaseFragment() {
                         tags = tagsFromDrinktags(ArrayList(action.load))
                     )
                 )
+            }
+            is Action.navToBottle -> {
+                Rudder.navTo(BottleFragment.BottleKey(action.bottleId))
+            }
+            is Action.bottleToggleShopping -> {
+                action.bottle?.also {
+                    setBottleShopping(action.bottle.id, action.bottle.name, action.shopping ?: true)
+                }
             }
             else -> { }
         }
