@@ -133,3 +133,4 @@
 133|0,6,2,9|Bees Knees|beesknees|shakeice|none|57|2 oz|65|0.5 oz|75|0.5 oz
 134|0|Hanky Panky|hankypanky|stirice|orangetwist|57|1.5 oz|123|1.5 oz|54|2 dashes
 135|0,2,12|Bamboo|bamboo|stirice|lemontwist|114|1.5 oz|49|1.5 oz|6|1 dash|99|1 dash
+136|0|Paloma|paloma|highball|limewheel|124|2 oz|81|0.5 oz|62|1 oz|116|to top
