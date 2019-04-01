@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dlfsystems.bartender.room.Bottle
 import com.dlfsystems.bartender.room.BottlesViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.BottleTabs
+import com.dlfsystems.bartender.ioThread
+import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.views
 import com.dlfsystems.bartender.views.BottleItemView
 
@@ -30,7 +32,8 @@ import io.reactivex.subjects.PublishSubject
 class CatalogBottlesFragment : CatalogListFragment() {
 
     data class BottlesState(
-        val tab: BottleTabs = BottleTabs.ALL
+        val tab: BottleTabs = BottleTabs.ALL,
+        val filter: Int = 0
     ) : BaseState()
 
 
@@ -105,6 +108,14 @@ class CatalogBottlesFragment : CatalogListFragment() {
         override fun render(previousState: BaseState?, state: BaseState) {
             state as BottlesState
             previousState as BottlesState?
+
+            if (state.filter != previousState?.filter) {
+                ioThread {
+                    BarDB.getInstance(bottlesFragment.context!!.applicationContext).filterDao()
+                        .set("bottle", state.filter)
+                }
+            }
+
             if (state.tab != previousState?.tab) {
                 bottlesViewModel.getLiveData().removeObservers(bottlesFragment)
                 bottlesViewModel = when (state.tab) {
@@ -154,6 +165,11 @@ class CatalogBottlesFragment : CatalogListFragment() {
             is Action.bottleTab -> {
                 changeState(state.copy(
                     tab = action.tab
+                ))
+            }
+            is Action.bottleFilter -> {
+                changeState(state.copy(
+                    filter = action.filter
                 ))
             }
             else -> { }

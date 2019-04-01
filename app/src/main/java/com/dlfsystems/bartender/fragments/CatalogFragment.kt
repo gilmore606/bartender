@@ -23,7 +23,9 @@ class CatalogFragment : BaseFragment() {
     data class CatalogState(
         val tab: Tabs = Tabs.BOTTLES,
         val bottleTab: BottleTabs = BottleTabs.ALL,
-        val drinkTab: DrinkTabs = DrinkTabs.ALL
+        val drinkTab: DrinkTabs = DrinkTabs.ALL,
+        val bottleFilter: Int = 0,
+        val drinkFilter: Int = 0
     ) : BaseState()
 
 
@@ -48,14 +50,19 @@ class CatalogFragment : BaseFragment() {
         var buttonDrinks: CheckBox? = null
         var spinnerBottles: Spinner? = null
         var spinnerDrinks: Spinner? = null
+        var spinnerBottlesFilter: Spinner? = null
+        var spinnerDrinksFilter: Spinner? = null
 
         override fun subscribeActions() {
-            mainView?.let {
+            mainView?.also {
                 buttonBottles = it.findViewById(R.id.catalog_button_bottles) as CheckBox
                 buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as CheckBox
                 spinnerBottles = it.findViewById(R.id.catalog_bottles_spinner) as Spinner
                 spinnerDrinks = it.findViewById(R.id.catalog_drinks_spinner) as Spinner
+                spinnerBottlesFilter = it.findViewById(R.id.catalog_bottles_filter_spinner) as Spinner
+                spinnerDrinksFilter = it.findViewById(R.id.catalog_drinks_filter_spinner) as Spinner
 
+                buttonBottles?.isChecked = true
                 buttonBottles?.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) action.onNext(Action.tabTo(Tabs.BOTTLES))
                 }
@@ -85,6 +92,21 @@ class CatalogFragment : BaseFragment() {
                 }
 
                 ArrayAdapter.createFromResource(mainView!!.context,
+                    R.array.bottle_filter_array,
+                    R.layout.spinner_item).also { adapter ->
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    spinnerBottlesFilter?.adapter = adapter
+                    spinnerBottlesFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            val filterAction = Action.bottleFilter(pos)
+                            action.onNext(filterAction)
+                            bottleAction.onNext(filterAction)
+                        }
+                        override fun onNothingSelected(parent: AdapterView<*>) { }
+                    }
+                }
+
+                ArrayAdapter.createFromResource(mainView!!.context,
                     R.array.drink_spin_array,
                     R.layout.spinner_item).also { adapter ->
                     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
@@ -100,6 +122,21 @@ class CatalogFragment : BaseFragment() {
                                 })
                             action.onNext(tabaction)
                             drinkAction.onNext(tabaction)
+                        }
+                        override fun onNothingSelected(parent: AdapterView<*>) { }
+                    }
+                }
+
+                ArrayAdapter.createFromResource(mainView!!.context,
+                    R.array.drink_filter_array,
+                    R.layout.spinner_item).also { adapter ->
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    spinnerDrinksFilter?.adapter = adapter
+                    spinnerDrinksFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            val filterAction = Action.drinkFilter(pos)
+                            action.onNext(filterAction)
+                            drinkAction.onNext(filterAction)
                         }
                         override fun onNothingSelected(parent: AdapterView<*>) { }
                     }
@@ -131,14 +168,19 @@ class CatalogFragment : BaseFragment() {
                 BottleTabs.ALL -> { 1 }
                 BottleTabs.SHOP -> { 2 }
             })
+            spinnerBottlesFilter?.setSelection(state.bottleFilter)
+
             spinnerDrinks?.setSelection(when (state.drinkTab) {
                 DrinkTabs.FAVORITE -> { 0 }
                 DrinkTabs.ALL -> { 1 }
                 DrinkTabs.ALPHA -> { 2 }
             })
+            spinnerDrinksFilter?.setSelection(state.drinkFilter)
 
             spinnerBottles?.visibility = if (state.tab == Tabs.BOTTLES) View.VISIBLE else View.GONE
+            spinnerBottlesFilter?.visibility = if (state.tab == Tabs.BOTTLES) View.VISIBLE else View.GONE
             spinnerDrinks?.visibility = if (state.tab == Tabs.DRINKS) View.VISIBLE else View.GONE
+            spinnerDrinksFilter?.visibility = if (state.tab == Tabs.DRINKS) View.VISIBLE else View.GONE
 
             if (state.tab != (previousState?.tab ?: state.tab)) {
                 val animIn = if (state.tab == Tabs.DRINKS) R.anim.slide_in_left else R.anim.slide_in_right
@@ -189,6 +231,16 @@ class CatalogFragment : BaseFragment() {
             is Action.drinkTab -> {
                 changeState(state.copy(
                     drinkTab = action.tab
+                ))
+            }
+            is Action.bottleFilter -> {
+                changeState(state.copy(
+                    bottleFilter = action.filter
+                ))
+            }
+            is Action.drinkFilter -> {
+                changeState(state.copy(
+                    drinkFilter = action.filter
                 ))
             }
             else -> { }

@@ -9,6 +9,31 @@
         <item>Makeable</item>
         <item>All A-Z</item>
     </string-array>
+    <string-array name="bottle_filter_array">
+        <item>All</item>
+        <item>Spirits</item>
+        <item>Liqueurs</item>
+        <item>Mixers</item>
+        <item>Amari</item>
+        <item>Wines</item>
+        <item>Groceries</item>
+        <item>Flavorings</item>
+    </string-array>
+    <string-array name="drink_filter_array">
+        <item>All</item>
+        <item>IBA</item>
+        <item>Short</item>
+        <item>Highball</item>
+        <item>Tiki</item>
+        <item>Shooter</item>
+        <item>Classic</item>
+        <item>Blended</item>
+        <item>Sour</item>
+        <item>Sweet</item>
+        <item>Strong</item>
+        <item>Easy</item>
+        <item>Complex</item>
+    </string-array>
     <string name="app_name">Bartender</string>
     <string name="vodka">Vodka is a distilled beverage composed primarily of water and ethanol, sometimes with traces of impurities and flavorings. Traditionally, vodka is made by the distillation of fermented cereal grains or potatoes, though some modern brands use other substances, such as fruits or sugar.   Vodka is traditionally drunk neat (not mixed with any water, ice, or other mixer), though it is often served chilled in the vodka belt countries (Belarus, Estonia, Finland, Iceland, Latvia, Lithuania, Norway, Poland, Russia, Sweden, Ukraine). </string>
     <string name="gin">Gin is a liquor with some level of juniper flavor that’s bottled at at least 40 percent alcohol by volume. The U.S. government defines gin as a liquid “produced by distillation or mixing of spirits with juniper berries and other aromatics or extracts.”  Juniper, gin’s defining characteristic, tastes primarily like pine, but is also herbaceous and floral. Gin production dates back to the Dutch genever, a wine-based medicinal spirit. The English got a hold of genever during the 80 Years War and the 30 Years War in the 1600s, where it was referred to as “Dutch courage.”</string>

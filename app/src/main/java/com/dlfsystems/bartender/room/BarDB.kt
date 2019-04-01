@@ -12,7 +12,7 @@ import com.dlfsystems.bartender.fragments.LoadingFragment
 import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.nav.Rudder
 
-@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class), (Family::class), (BottleFamily::class), (Drinktag::class), (DrinkDrinktag::class)], version = 1)
+@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class), (Family::class), (BottleFamily::class), (Drinktag::class), (DrinkDrinktag::class), (Filter::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
     abstract fun drinkDao(): DrinkDao
     abstract fun bottleDao(): BottleDao
@@ -21,6 +21,7 @@ abstract class BarDB : RoomDatabase() {
     abstract fun bottleFamilyDao(): BottleFamilyDao
     abstract fun drinktagDao(): DrinktagDao
     abstract fun drinkDrinktagDao(): DrinkDrinktagDao
+    abstract fun filterDao(): FilterDao
 
     companion object {
         @Volatile
@@ -55,8 +56,16 @@ abstract class BarDB : RoomDatabase() {
 
             Rudder.navTo(LoadingFragment.LoadingKey())
 
+            val filterDao = getInstance(context).filterDao()
+
+            filterDao.removeAll("bottle")
+            filterDao.removeAll("drink")
+            filterDao.add(Filter(0, "bottle", 0))
+            filterDao.add(Filter(0, "drink", 0))
+
             val familyDao = getInstance(context).familyDao()
 
+            familyDao.add(Family(0, "All", "All ingredients."))
             familyDao.add(Family(1, "Spirit", "Spirits, or base spirits, are distilled hard liquors used as the base of a cocktail."))
             familyDao.add(Family(2, "Liqueur", "Liqueurs are sweetened and flavored lower-alcohol products, often mixed into base spirits in cocktails."))
             familyDao.add(Family(3, "Mixer", "Mixers are non-alcoholic beverages such as fruit juices and sodas."))
@@ -91,23 +100,19 @@ abstract class BarDB : RoomDatabase() {
 
             val drinktagDao = getInstance(context).drinktagDao()
 
+            drinktagDao.add(Drinktag(0, "All", "All drinks."))
             drinktagDao.add(Drinktag(1, "IBA", "Classic and contemporary cocktails recognized by the International Bartenders Association."))
-            drinktagDao.add(Drinktag(2, "Short", "Drinks served in short rocks glasses, usually fairly potent."))
-            drinktagDao.add(Drinktag(3, "Highball", "Long drinks served in tall glasses, usually less potent and more refreshing."))
+            drinktagDao.add(Drinktag(2, "Short", "Drinks served in short glasses such as rocks or coupe glasses, usually fairly potent."))
+            drinktagDao.add(Drinktag(3, "Highball", "Topped with a mixer, highball type drinks are served in tall glasses, usually less potent and more refreshing."))
             drinktagDao.add(Drinktag(4, "Tiki", "Tropics-inspired drinks full of fruit and sweet."))
             drinktagDao.add(Drinktag(5, "Shooter", "Drinks served in small glasses meant to be downed in a single gulp."))
-            drinktagDao.add(Drinktag(6, "IBA Contemporary", "From the IBA's official Contemporary Classics list."))
+            drinktagDao.add(Drinktag(6, "Classic", "Drinks with a long and storied history."))
             drinktagDao.add(Drinktag(7, "Blended", "Drinks made in a blender."))
             drinktagDao.add(Drinktag(8, "Sour", "Tart and tangy drinks made with citrus juice."))
             drinktagDao.add(Drinktag(9, "Sweet", "Drinks on the sweeter side."))
             drinktagDao.add(Drinktag(10, "Strong", "Drinks that pack an alcoholic punch."))
-            drinktagDao.add(Drinktag(11, "Mild", "Easy-drinkers that won't inebriate you too quickly."))
-            drinktagDao.add(Drinktag(12, "IBA Unforgettable", "From the IBA's official Unforgettables list."))
-            drinktagDao.add(Drinktag(13, "IBA New Era", "From the IBA's official New Era drink list."))
-            drinktagDao.add(Drinktag(14, "Aperitif", "Appetite stimulating drinks to begin a meal."))
-            drinktagDao.add(Drinktag(15, "Digestif", "Stomach settling drinks to finish a meal."))
-            drinktagDao.add(Drinktag(16, "Complex", "Drinks with complex flavor combinations that may not be for everyone."))
-            drinktagDao.add(Drinktag(17, "Nutty", "Savory-sweet nut, coffee, or chocolate flavors are prominent."))
+            drinktagDao.add(Drinktag(11, "Easy", "Simple drinks of only two or three ingredients.  Easy to make even if you've had a few."))
+            drinktagDao.add(Drinktag(12, "Complex", "Drinks with complex flavor combinations that may not be for everyone."))
 
             val drinkDao = getInstance(context).drinkDao()
             val drinkIngredientDao = getInstance(context).drinkIngredientDao()

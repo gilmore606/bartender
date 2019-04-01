@@ -26,7 +26,8 @@ class TagbarView @JvmOverloads constructor (
         removeAllViewsInLayout()
         tags.clear()
         tags.addAll(newtags)
-        tags.forEach {
+        tags.filter { it.tag != "All" }
+            .forEach {
             val view = TagView(it, context)
             val params = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             params.setMargins(20,0,20,0)

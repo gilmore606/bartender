@@ -14,6 +14,9 @@ sealed class Action {
     class bottleTab(val tab: CatalogFragment.BottleTabs) : Action()
     class drinkTab(val tab: CatalogFragment.DrinkTabs) : Action()
 
+    class bottleFilter(val filter: Int): Action()
+    class drinkFilter(val filter: Int): Action()
+
     class bottleToggleActive(val bottle: Bottle? = null, val active: Boolean? = null) : Action()
     class bottleToggleShopping(val bottle: Bottle? = null, val shopping: Boolean? = null): Action()
 

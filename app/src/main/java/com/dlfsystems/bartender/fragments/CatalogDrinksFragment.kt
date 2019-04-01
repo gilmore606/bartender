@@ -23,12 +23,14 @@ import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.room.Drink
 import com.dlfsystems.bartender.room.DrinksViewModel
 import com.dlfsystems.bartender.fragments.CatalogFragment.DrinkTabs
+import com.dlfsystems.bartender.ioThread
 import io.reactivex.subjects.PublishSubject
 
 class CatalogDrinksFragment : CatalogListFragment() {
 
     data class DrinksState(
-        val tab: DrinkTabs = DrinkTabs.ALL
+        val tab: DrinkTabs = DrinkTabs.ALL,
+        val filter: Int = 0
     ) : BaseState()
 
     class DrinkAdapter(val action: PublishSubject<Action>, val context: Context): PagedListAdapter<Drink, DrinkAdapter.DrinkViewHolder>(DrinkDiffCallback()) {
@@ -112,6 +114,12 @@ class CatalogDrinksFragment : CatalogListFragment() {
         override fun render(previousState: BaseState?, state: BaseState) {
             state as DrinksState
             previousState as DrinksState?
+            if (state.filter != previousState?.filter) {
+                ioThread {
+                    BarDB.getInstance(drinksFragment.context!!.applicationContext).filterDao()
+                        .set("drink", state.filter)
+                }
+            }
             if (state.tab != previousState?.tab) {
                 drinksViewModel.getLiveData().removeObservers(drinksFragment)
                 drinksViewModel = when (state.tab) {
@@ -153,6 +161,11 @@ class CatalogDrinksFragment : CatalogListFragment() {
             is Action.drinkTab -> {
                 changeState(state.copy(
                     tab = action.tab
+                ))
+            }
+            is Action.drinkFilter -> {
+                changeState(state.copy(
+                    filter = action.filter
                 ))
             }
             else -> { }

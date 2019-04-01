@@ -62,21 +62,23 @@ interface BottleDao {
     companion object {
         const val bottleWithDrinkCount =
             "b.id, b.name, b.image, b.descstr, b.type, b.active, b.shopping, (SELECT count(DISTINCT(di.drinkId)) FROM drink_ingredients di WHERE bottleId = b.id) drinkCount FROM bottles b"
+        const val filterByFamily =
+            "b.id in (SELECT bottleId FROM bottle_family WHERE familyId IN (SELECT filter FROM filter WHERE kind=\"bottle\"))"
     }
 
     @Query("SELECT * FROM bottles")
     fun getAll(): List<Bottle>
 
-    @Query("SELECT $bottleWithDrinkCount ORDER BY name")
+    @Query("SELECT $bottleWithDrinkCount WHERE $filterByFamily ORDER BY name")
     fun getAllPaged(): DataSource.Factory<Int, Bottle>
 
     @Query("SELECT $bottleWithDrinkCount WHERE active=1")
     fun getActive(): List<Bottle>
 
-    @Query("SELECT $bottleWithDrinkCount WHERE active=1 ORDER BY NAME")
+    @Query("SELECT $bottleWithDrinkCount WHERE active=1 AND $filterByFamily ORDER BY NAME")
     fun getActivePaged(): DataSource.Factory<Int, Bottle>
 
-    @Query("SELECT $bottleWithDrinkCount WHERE shopping=1 ORDER BY NAME")
+    @Query("SELECT $bottleWithDrinkCount WHERE shopping=1 AND $filterByFamily ORDER BY NAME")
     fun getShoppingPaged(): DataSource.Factory<Int, Bottle>
 
     @Insert
