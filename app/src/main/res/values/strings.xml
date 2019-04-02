@@ -2,7 +2,7 @@
     <string-array name="bottle_spin_array">
         <item>My Bar</item>
         <item>Add to Bar</item>
-        <item>Shopping List</item>
+        <item>Shopping</item>
     </string-array>
     <string-array name="drink_spin_array">
         <item>Favorites</item>

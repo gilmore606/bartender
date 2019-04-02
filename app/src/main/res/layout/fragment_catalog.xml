@@ -18,23 +18,35 @@
                   android:drawableTop="@drawable/checkbox_drinks" />
 
         <TextView android:layout_width="0dp" android:layout_height="5dp"
-               android:layout_weight="1" />
+               android:layout_weight="1" android:visibility="invisible" />
 
         <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/catalog_bottles_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical" />
+                 android:elevation="6dp"
+                 android:stateListAnimator="@drawable/sla_spinner"
+                 android:layout_marginRight="12dp" android:textAlignment="center"
+                 android:background="@drawable/bg_spinner" android:layout_gravity="center_vertical" />
 
         <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
                  android:id="@+id/catalog_bottles_filter_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical" />
+                 android:elevation="6dp"
+                 android:layout_marginRight="12dp" android:textAlignment="center"
+                 android:stateListAnimator="@drawable/sla_spinner"
+                 android:background="@drawable/bg_spinner" android:layout_gravity="center_vertical" />
 
         <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
                  android:id="@+id/catalog_drinks_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical" />
+                 android:elevation="6dp"
+                 android:layout_marginRight="12dp" android:textAlignment="center"
+                 android:stateListAnimator="@drawable/sla_spinner"
+                 android:background="@drawable/bg_spinner" android:layout_gravity="center_vertical" />
 
         <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
                  android:id="@+id/catalog_drinks_filter_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical" />
+                 android:elevation="6dp"
+                 android:layout_marginRight="12dp" android:textAlignment="center"
+                 android:stateListAnimator="@drawable/sla_spinner"
+                 android:background="@drawable/bg_spinner" android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
