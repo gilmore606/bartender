@@ -100,8 +100,8 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         context?.also {
             BarDB.setBottleActive(context!!, bottleId, active)
             Toast.makeText(context!!,
-                if (active) ("Added " + bottleName + " to bar.")
-                else ("Removed " + bottleName + " from bar."),
+                if (active) ("Added " + bottleName + " to My Bar.")
+                else ("Removed " + bottleName + " from My Bar."),
                 Toast.LENGTH_SHORT).show()
         }
     }

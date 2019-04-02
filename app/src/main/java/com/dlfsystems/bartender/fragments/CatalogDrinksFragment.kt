@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -97,6 +98,9 @@ class CatalogDrinksFragment : CatalogListFragment() {
         lateinit var drinksViewModel: DrinksViewModel
         lateinit var recyclerView: RecyclerView
         lateinit var recyclerAdapter: DrinkAdapter
+        lateinit var emptyLayout: LinearLayout
+        lateinit var emptyText1: TextView
+        lateinit var emptyText2: TextView
 
         override fun subscribeActions() {
             mainView?.let {
@@ -110,6 +114,10 @@ class CatalogDrinksFragment : CatalogListFragment() {
                 recyclerAdapter = DrinkAdapter(action, it.context)
                 recyclerView.adapter = recyclerAdapter
                 subscribeLiveData(drinksViewModel)
+
+                emptyLayout = it.findViewById(R.id.drinks_emptylayout)
+                emptyText1 = it.findViewById(R.id.drinks_emptytext1)
+                emptyText2 = it.findViewById(R.id.drinks_emptytext2)
             }
         }
 
@@ -136,8 +144,37 @@ class CatalogDrinksFragment : CatalogListFragment() {
 
         private fun subscribeLiveData(viewModel: DrinksViewModel) {
             viewModel.getLiveData().observe(drinksFragment, Observer {
-                it?.let { recyclerAdapter.submitList(it) }
+                it?.also {
+                    if (it.size == 0) {
+                        showEmptyContent(true)
+                    } else {
+                        showEmptyContent(false)
+                    }
+                    recyclerAdapter.submitList(it)
+                }
             })
+        }
+
+        private fun showEmptyContent(isEmpty: Boolean) {
+            if (!drinksFragment.isHidden) {
+                if (isEmpty) {
+                    recyclerView.visibility = View.GONE
+                    emptyLayout.visibility = View.VISIBLE
+                    emptyText1.text = "You have no Favorite drinks."
+                    emptyText2.text = "To add some, tap the star icon\non drinks in the\nAll or Makeable views."
+                    emptyText1.apply {
+                        alpha = 0f
+                        animate().alpha(1f).setDuration(1000).setListener(null)
+                    }
+                    emptyText2.apply {
+                        alpha = 0f
+                        animate().alpha(1f).setDuration(2000).setListener(null)
+                    }
+                } else {
+                    emptyLayout.visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
+                }
+            }
         }
     }
 

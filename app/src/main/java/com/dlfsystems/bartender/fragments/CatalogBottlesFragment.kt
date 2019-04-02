@@ -153,9 +153,9 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 it?.also {
                     if (it.size == 0) {
                         recyclerView.afterMeasured { }
-                        showEmptyContent(true)
+                        showEmptyContent(true, state)
                     } else {
-                        showEmptyContent(false)
+                        showEmptyContent(false, state)
                         recyclerView.afterMeasured {
                             if (isBarEmpty) showHelperTips()
                             recyclerAdapter.configureForTab(recyclerView, state.tab)
@@ -167,18 +167,25 @@ class CatalogBottlesFragment : CatalogListFragment() {
             })
         }
 
-        private fun showEmptyContent(isEmpty: Boolean) {
+        private fun showEmptyContent(isEmpty: Boolean, state: BottlesState) {
             if (!bottlesFragment.isHidden) {
                 if (isEmpty) {
                     recyclerView.visibility = View.GONE
                     emptyLayout.visibility = View.VISIBLE
-                    SimpleTooltip.Builder(mainView!!.context)
-                        .anchorView(emptyTipAnchor)
-                        .text("Pick 'Add to Bar'!")
-                        .gravity(Gravity.BOTTOM)
-                        .animated(true)
-                        .build()
-                        .show()
+                    if (state.tab == BottleTabs.MINE) {
+                        SimpleTooltip.Builder(mainView!!.context)
+                            .anchorView(emptyTipAnchor)
+                            .text("Pick 'Add to Bar'!")
+                            .gravity(Gravity.BOTTOM)
+                            .animated(true)
+                            .build()
+                            .show()
+                        emptyText1.text = "Your bar is empty.  Fill it up!"
+                        emptyText2.text = "Pick 'Add to Bar' from the dropdown at the top."
+                    } else {
+                        emptyText1.text = "Your shopping list is empty."
+                        emptyText2.text = "Add items from the 'Add to Bar' view."
+                    }
                     emptyText1.apply {
                         alpha = 0f
                         animate().alpha(1f).setDuration(1000).setListener(null)
@@ -188,8 +195,8 @@ class CatalogBottlesFragment : CatalogListFragment() {
                         animate().alpha(1f).setDuration(2000).setListener(null)
                     }
                 } else {
-                    recyclerView.visibility = View.VISIBLE
                     emptyLayout.visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
                 }
             }
         }
