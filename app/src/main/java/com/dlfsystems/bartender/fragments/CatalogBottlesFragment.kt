@@ -92,6 +92,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
         lateinit var activeBottleCount: LiveData<Int>
 
         var isBarEmpty = false
+        var lastState: BottlesState? = null
 
         override fun subscribeActions() {
             mainView?.let {
@@ -126,7 +127,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
         override fun render(previousState: BaseState?, state: BaseState) {
             state as BottlesState
             previousState as BottlesState?
-
+            lastState = state
             if (state.filter != previousState?.filter) {
                 ioThread {
                     BarDB.getInstance(bottlesFragment.context!!.applicationContext).filterDao()
@@ -170,6 +171,10 @@ class CatalogBottlesFragment : CatalogListFragment() {
         private fun showEmptyContent(isEmpty: Boolean, state: BottlesState) {
             if (!bottlesFragment.isHidden) {
                 if (isEmpty) {
+                    var filterString = "is empty"
+                    if (lastState?.filter ?: 0 > 0) {
+                        filterString = "has no " + bottlesFragment.resources.getStringArray(R.array.bottle_filter_array)[lastState!!.filter]
+                    }
                     recyclerView.visibility = View.GONE
                     emptyLayout.visibility = View.VISIBLE
                     if (state.tab == BottleTabs.MINE) {
@@ -180,10 +185,10 @@ class CatalogBottlesFragment : CatalogListFragment() {
                             .animated(true)
                             .build()
                             .show()
-                        emptyText1.text = "Your bar is empty.  Fill it up!"
+                        emptyText1.text = "Your bar $filterString.  Fill it up!"
                         emptyText2.text = "Pick 'Add to Bar' from the dropdown at the top."
                     } else {
-                        emptyText1.text = "Your shopping list is empty."
+                        emptyText1.text = "Your shopping list $filterString."
                         emptyText2.text = "Add items from the 'Add to Bar' view."
                     }
                     emptyText1.apply {

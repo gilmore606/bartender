@@ -102,6 +102,8 @@ class CatalogDrinksFragment : CatalogListFragment() {
         lateinit var emptyText1: TextView
         lateinit var emptyText2: TextView
 
+        var lastState: DrinksState? = null
+
         override fun subscribeActions() {
             mainView?.let {
                 allDrinksViewModel = ViewModelProviders.of(drinksFragment).get(DrinksViewModel.All::class.java)
@@ -124,6 +126,7 @@ class CatalogDrinksFragment : CatalogListFragment() {
         override fun render(previousState: BaseState?, state: BaseState) {
             state as DrinksState
             previousState as DrinksState?
+            lastState = state
             if (state.filter != previousState?.filter) {
                 ioThread {
                     BarDB.getInstance(drinksFragment.context!!.applicationContext).filterDao()
@@ -158,9 +161,13 @@ class CatalogDrinksFragment : CatalogListFragment() {
         private fun showEmptyContent(isEmpty: Boolean) {
             if (!drinksFragment.isHidden) {
                 if (isEmpty) {
+                    var filterString = "Favorite"
+                    if (lastState?.filter ?: 0 > 0) {
+                        filterString += " " + drinksFragment.resources.getStringArray(R.array.drink_filter_array)[lastState!!.filter]
+                    }
                     recyclerView.visibility = View.GONE
                     emptyLayout.visibility = View.VISIBLE
-                    emptyText1.text = "You have no Favorite drinks."
+                    emptyText1.text = "You have no $filterString drinks."
                     emptyText2.text = "To add some, tap the star icon\non drinks in the\nAll or Makeable views."
                     emptyText1.apply {
                         alpha = 0f
