@@ -10,8 +10,9 @@
 
         <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading_anim"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:paddingRight="20dp"
                 android:layout_gravity="center_horizontal"
                 app:lottie_rawRes="@raw/splash_anim"
                 app:lottie_loop="true"
@@ -29,7 +30,7 @@
                 android:minWidth="300dp" />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Building database..."
+                android:text="Building your new empty bar!"
                   android:layout_gravity="center_horizontal"
                   android:layout_margin="18dp"
                 style="@style/loadingText"/>

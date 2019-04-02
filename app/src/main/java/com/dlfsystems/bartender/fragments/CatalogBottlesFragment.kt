@@ -84,6 +84,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
         lateinit var bottlesViewModel: BottlesViewModel
         lateinit var recyclerView: RecyclerView
         lateinit var recyclerAdapter: BottleAdapter
+        lateinit var emptyText: TextView
 
         override fun subscribeActions() {
             mainView?.let {
@@ -102,6 +103,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
                     override fun onAnimationFinished(holder: RecyclerView.ViewHolder) =
                         (holder.itemView as BottleItemView).configureForTab(recyclerAdapter.tab)
                 }
+                emptyText = it.findViewById(R.id.bottles_emptytext)
             }
         }
 
@@ -130,11 +132,20 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
         private fun subscribeLiveData(viewModel: BottlesViewModel, state: BottlesState) {
             viewModel.getLiveData().observe(bottlesFragment, Observer {
-                it?.let {
+                it?.also {
                     recyclerAdapter.submitList(it)
                     recyclerAdapter.configureForTab(recyclerView, state.tab)
+                    showEmptyContent(it.size == 0)
                 }
             })
+        }
+
+        private fun showEmptyContent(isEmpty: Boolean) {
+            if (isEmpty) {
+                recyclerView.visibility = View.GONE
+            } else {
+                recyclerView.visibility = View.VISIBLE
+            }
         }
     }
 

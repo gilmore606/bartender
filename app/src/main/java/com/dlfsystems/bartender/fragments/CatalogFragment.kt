@@ -9,6 +9,7 @@ import com.dlfsystems.bartender.Action
 import com.dlfsystems.bartender.BaseFragment
 import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.nav.BaseKey
+import com.dlfsystems.bartender.views.MySpinnerAdapter
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.parcel.Parcelize
 
@@ -71,13 +72,15 @@ class CatalogFragment : BaseFragment() {
                     if (isChecked) action.onNext(Action.tabTo(Tabs.DRINKS))
                 }
 
-                ArrayAdapter.createFromResource(mainView!!.context,
-                    R.array.bottle_spin_array,
-                    R.layout.spinner_item).also { adapter ->
+                spinnerBottles?.also {
+                    val adapter = MySpinnerAdapter(mainView!!.context,
+                        R.layout.spinner_item,
+                        catalogFragment.resources.getStringArray(R.array.bottle_spin_array))
                     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-                    spinnerBottles?.adapter = adapter
-                    spinnerBottles?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    it.adapter = adapter
+                    it.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            (parent.adapter as MySpinnerAdapter).setSelection(pos)
                             val tabaction = Action.bottleTab(
                                 when (pos) {
                                     0 -> { BottleTabs.MINE }
@@ -92,13 +95,15 @@ class CatalogFragment : BaseFragment() {
                     }
                 }
 
-                ArrayAdapter.createFromResource(mainView!!.context,
-                    R.array.bottle_filter_array,
-                    R.layout.spinner_item).also { adapter ->
+                spinnerBottlesFilter?.also {
+                    val adapter = MySpinnerAdapter(mainView!!.context,
+                        R.layout.spinner_item,
+                        catalogFragment.resources.getStringArray(R.array.bottle_filter_array))
                     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-                    spinnerBottlesFilter?.adapter = adapter
-                    spinnerBottlesFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    it.adapter = adapter
+                    it.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            (parent.adapter as MySpinnerAdapter).setSelection(pos)
                             val filterAction = Action.bottleFilter(pos)
                             action.onNext(filterAction)
                             bottleAction.onNext(filterAction)
@@ -107,13 +112,15 @@ class CatalogFragment : BaseFragment() {
                     }
                 }
 
-                ArrayAdapter.createFromResource(mainView!!.context,
-                    R.array.drink_spin_array,
-                    R.layout.spinner_item).also { adapter ->
+                spinnerDrinks?.also {
+                    val adapter = MySpinnerAdapter(mainView!!.context,
+                        R.layout.spinner_item,
+                        catalogFragment.resources.getStringArray(R.array.drink_spin_array))
                     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-                    spinnerDrinks?.adapter = adapter
-                    spinnerDrinks?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    it.adapter = adapter
+                    it.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            (parent.adapter as MySpinnerAdapter).setSelection(pos)
                             val tabaction = Action.drinkTab(
                                 when (pos) {
                                     0 -> { DrinkTabs.FAVORITE }
@@ -128,13 +135,15 @@ class CatalogFragment : BaseFragment() {
                     }
                 }
 
-                ArrayAdapter.createFromResource(mainView!!.context,
-                    R.array.drink_filter_array,
-                    R.layout.spinner_item).also { adapter ->
+                spinnerDrinksFilter?.also {
+                    val adapter = MySpinnerAdapter(mainView!!.context,
+                        R.layout.spinner_item,
+                        catalogFragment.resources.getStringArray(R.array.drink_filter_array))
                     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-                    spinnerDrinksFilter?.adapter = adapter
-                    spinnerDrinksFilter?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    it.adapter = adapter
+                    it.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                            (parent.adapter as MySpinnerAdapter).setSelection(pos)
                             val filterAction = Action.drinkFilter(pos)
                             action.onNext(filterAction)
                             drinkAction.onNext(filterAction)

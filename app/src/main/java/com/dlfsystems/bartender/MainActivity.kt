@@ -20,6 +20,8 @@ import com.zhuinden.simplestack.StateChanger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 class MainActivity : AppCompatActivity(), StateChanger {
 
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
         backstackDelegate.registerForLifecycleCallbacks(this)
 
         super.onCreate(savedInstanceState)
+        Fabric.with(this, Crashlytics())
         setContentView(R.layout.activity_main)
         setSupportActionBar(mainToolbar)
         supportActionBar?.setTitle("OpenBar")
