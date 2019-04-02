@@ -33,7 +33,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
     data class BottlesState(
         val tab: BottleTabs = BottleTabs.MINE,
-        val filter: Int = 1,
+        val filter: Int = 0,
         val emptyBar: Boolean = true
     ) : BaseState()
 
