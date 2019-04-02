@@ -45,6 +45,10 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         // Render a state to the UI elements
         open fun render(previousState: BaseState?, state: BaseState) { }
 
+        open fun onHide() { }
+
+        open fun onUnhide() { }
+
     }
 
 
@@ -137,13 +141,14 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
     }
 
     protected open fun onHide() {
-        //disposables.dispose()
+        viewController.onHide()
     }
 
     open val backButtonEnabled = true
     protected open fun onUnhide() {
         //bindActions()
         toggleBackButton(backButtonEnabled)
+        viewController.onUnhide()
     }
 
     override fun onDestroy() {

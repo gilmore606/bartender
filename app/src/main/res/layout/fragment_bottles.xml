@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:background="@drawable/bg_iconbar_lit"
+              android:id="@+id/bottles_layout"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -10,9 +11,33 @@
         android:layout_width="match_parent" android:layout_height="match_parent"
         android:scrollbars="vertical" />
 
-    <TextView android:id="@+id/bottles_emptytext"
-              android:layout_width="match_parent" android:layout_height="match_parent"
-              android:textAlignment="center"
-              android:text="Your bar is empty." />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:id="@+id/bottles_emptylayout" android:visibility="gone"
+                  android:orientation="vertical" >
+        <TextView android:layout_width="1dp" android:layout_height="1dp" android:layout_weight="0"
+                  android:layout_marginRight="170dp"
+                    android:layout_gravity="end"
+                  android:id="@+id/bottles_empty_tipanchor" />
+        <TextView android:id="@+id/bottles_emptytext_blank1"
+                  android:layout_width="match_parent" android:layout_height="0dp"
+                  android:text=""
+                  android:layout_weight="0.4" />
+        <TextView android:id="@+id/bottles_emptytext1"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textAlignment="center" android:layout_weight="0"
+                  android:gravity="center"
+                  style="@style/helpText" android:layout_margin="24dp"
+                  android:text="Your bar is empty." />
+        <TextView android:id="@+id/bottles_emptytext2"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textAlignment="center" android:layout_weight="0"
+                  android:gravity="center"
+                  style="@style/helpText" android:layout_margin="24dp"
+                  android:text="Fill it up by choosing Add To Bar from the dropdown at the top." />
+        <TextView android:id="@+id/bottles_emptytext_blank2"
+                  android:layout_width="match_parent" android:layout_height="0dp"
+                  android:text=""
+                  android:layout_weight="0.6" />
+    </LinearLayout>
 
 </LinearLayout>

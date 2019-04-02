@@ -1,11 +1,14 @@
 package com.dlfsystems.bartender.fragments
 
+import android.animation.Animator
 import android.content.Context
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
@@ -26,14 +29,15 @@ import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.room.BarDB
 import com.dlfsystems.bartender.views
 import com.dlfsystems.bartender.views.BottleItemView
+import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip
 
 import io.reactivex.subjects.PublishSubject
 
 class CatalogBottlesFragment : CatalogListFragment() {
 
     data class BottlesState(
-        val tab: BottleTabs = BottleTabs.ALL,
-        val filter: Int = 0
+        val tab: BottleTabs = BottleTabs.MINE,
+        val filter: Int = 1
     ) : BaseState()
 
 
@@ -84,7 +88,10 @@ class CatalogBottlesFragment : CatalogListFragment() {
         lateinit var bottlesViewModel: BottlesViewModel
         lateinit var recyclerView: RecyclerView
         lateinit var recyclerAdapter: BottleAdapter
-        lateinit var emptyText: TextView
+        lateinit var emptyLayout: LinearLayout
+        lateinit var emptyTipAnchor: TextView
+        lateinit var emptyText1: TextView
+        lateinit var emptyText2: TextView
 
         override fun subscribeActions() {
             mainView?.let {
@@ -103,7 +110,10 @@ class CatalogBottlesFragment : CatalogListFragment() {
                     override fun onAnimationFinished(holder: RecyclerView.ViewHolder) =
                         (holder.itemView as BottleItemView).configureForTab(recyclerAdapter.tab)
                 }
-                emptyText = it.findViewById(R.id.bottles_emptytext)
+                emptyLayout = it.findViewById(R.id.bottles_emptylayout)
+                emptyTipAnchor = it.findViewById(R.id.bottles_empty_tipanchor)
+                emptyText1 = it.findViewById(R.id.bottles_emptytext1)
+                emptyText2 = it.findViewById(R.id.bottles_emptytext2)
             }
         }
 
@@ -143,8 +153,25 @@ class CatalogBottlesFragment : CatalogListFragment() {
         private fun showEmptyContent(isEmpty: Boolean) {
             if (isEmpty) {
                 recyclerView.visibility = View.GONE
+                emptyLayout.visibility = View.VISIBLE
+                SimpleTooltip.Builder(mainView!!.context)
+                    .anchorView(emptyTipAnchor)
+                    .text("Pick 'Add to Bar'!")
+                    .gravity(Gravity.BOTTOM)
+                    .animated(true)
+                    .build()
+                    .show()
+                emptyText1.apply {
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(1000).setListener(null)
+                }
+                emptyText2.apply {
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(2000).setListener(null)
+                }
             } else {
                 recyclerView.visibility = View.VISIBLE
+                emptyLayout.visibility = View.GONE
             }
         }
     }

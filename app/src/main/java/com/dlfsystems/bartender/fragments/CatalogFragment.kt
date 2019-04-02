@@ -23,7 +23,7 @@ class CatalogFragment : BaseFragment() {
 
     data class CatalogState(
         val tab: Tabs = Tabs.BOTTLES,
-        val bottleTab: BottleTabs = BottleTabs.ALL,
+        val bottleTab: BottleTabs = BottleTabs.MINE,
         val drinkTab: DrinkTabs = DrinkTabs.ALL,
         val bottleFilter: Int = 0,
         val drinkFilter: Int = 0
