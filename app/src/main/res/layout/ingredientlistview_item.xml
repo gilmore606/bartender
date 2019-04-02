@@ -23,8 +23,8 @@
                   android:id="@+id/ingredientlistview_amount" />
     </LinearLayout>
     <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:button="@drawable/checkbox_shopping"
-              android:layout_marginEnd="16dp" android:layout_marginStart="8dp"
+              android:button="@drawable/checkbox_shopping" android:padding="8dp"
+              android:layout_marginEnd="10dp" android:layout_marginStart="8dp"
               android:id="@+id/ingredientlistview_shopping" android:layout_gravity="center_vertical|end" />
 
 </LinearLayout>
