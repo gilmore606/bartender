@@ -8,37 +8,33 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:orientation="horizontal" >
 
-        <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <ToggleButton android:layout_width="60dp" android:layout_height="60dp"
                   android:id="@+id/catalog_button_bottles"
-                  android:padding="16dp"
-                  android:layout_gravity="center" android:layout_weight="0"
-                  android:button="@drawable/checkbox_bottles"
-                  android:paddingStart="16dp" android:paddingEnd="16dp" android:gravity="center"/>
-        <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textOn="@null" android:textOff="@null" android:text="" android:textSize="0dp"
+                  android:drawableTop="@drawable/checkbox_bottles" />
+        <ToggleButton android:layout_width="60dp" android:layout_height="60dp"
                   android:id="@+id/catalog_button_drinks"
-                  android:layout_gravity="center" android:layout_weight="0"
-                  android:padding="16dp"
-                  android:button="@drawable/checkbox_drinks" />
+                      android:textOn="@null" android:textOff="@null" android:text="" android:textSize="0dp"
+                  android:drawableTop="@drawable/checkbox_drinks" />
 
-        <Spinner android:layout_width="0dp" android:layout_height="wrap_content"
-                 android:layout_weight="1"
+        <TextView android:layout_width="0dp" android:layout_height="5dp"
+               android:layout_weight="1" />
+
+        <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:id="@+id/catalog_bottles_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical|end" />
+                 android:background="@null" android:layout_gravity="center_vertical" />
 
         <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
-                 android:layout_weight="0" android:layout_marginHorizontal="16dp"
                  android:id="@+id/catalog_bottles_filter_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical|end" />
-
-        <Spinner android:layout_width="0dp" android:layout_height="wrap_content"
-                 android:layout_weight="1"
-                 android:id="@+id/catalog_drinks_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical|end" />
+                 android:background="@null" android:layout_gravity="center_vertical" />
 
         <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
-                 android:layout_weight="0" android:layout_marginHorizontal="16dp"
+                 android:id="@+id/catalog_drinks_spinner" android:visibility="gone"
+                 android:background="@null" android:layout_gravity="center_vertical" />
+
+        <Spinner android:layout_width="wrap_content" android:layout_height="wrap_content"
                  android:id="@+id/catalog_drinks_filter_spinner" android:visibility="gone"
-                 android:background="@null" android:layout_gravity="center_vertical|end" />
+                 android:background="@null" android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 

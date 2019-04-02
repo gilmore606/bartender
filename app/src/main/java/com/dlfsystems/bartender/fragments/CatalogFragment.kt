@@ -46,8 +46,8 @@ class CatalogFragment : BaseFragment() {
 
         var attachedSubFragments = false
 
-        var buttonBottles: CheckBox? = null
-        var buttonDrinks: CheckBox? = null
+        var buttonBottles: ToggleButton? = null
+        var buttonDrinks: ToggleButton? = null
         var spinnerBottles: Spinner? = null
         var spinnerDrinks: Spinner? = null
         var spinnerBottlesFilter: Spinner? = null
@@ -55,8 +55,8 @@ class CatalogFragment : BaseFragment() {
 
         override fun subscribeActions() {
             mainView?.also {
-                buttonBottles = it.findViewById(R.id.catalog_button_bottles) as CheckBox
-                buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as CheckBox
+                buttonBottles = it.findViewById(R.id.catalog_button_bottles) as ToggleButton
+                buttonDrinks = it.findViewById(R.id.catalog_button_drinks) as ToggleButton
                 spinnerBottles = it.findViewById(R.id.catalog_bottles_spinner) as Spinner
                 spinnerDrinks = it.findViewById(R.id.catalog_drinks_spinner) as Spinner
                 spinnerBottlesFilter = it.findViewById(R.id.catalog_bottles_filter_spinner) as Spinner
