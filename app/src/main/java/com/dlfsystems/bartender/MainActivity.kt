@@ -21,6 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import com.crashlytics.android.Crashlytics;
+import com.dlfsystems.bartender.fragments.LoadingFragment
 import io.fabric.sdk.android.Fabric;
 
 class MainActivity : AppCompatActivity(), StateChanger {
@@ -33,10 +34,14 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
+        val startScreen =
+            if (PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("populated", false)) CatalogFragment.CatalogKey()
+            else LoadingFragment.LoadingKey()
+
         backstackDelegate = BackstackDelegate()
         backstackDelegate.onCreate(savedInstanceState,
             lastCustomNonConfigurationInstance,
-            History.single(CatalogFragment.CatalogKey()))
+            History.single(startScreen))
         backstackDelegate.registerForLifecycleCallbacks(this)
 
         super.onCreate(savedInstanceState)
@@ -54,6 +59,9 @@ class MainActivity : AppCompatActivity(), StateChanger {
                 navigateTo(it)
             }
 
+        ioThread {
+            BarDB.getInstance(applicationContext).bottleDao().byId(1)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -66,6 +74,9 @@ class MainActivity : AppCompatActivity(), StateChanger {
     }
 
     private fun navigateTo(destKey: BaseKey) {
+        if (destKey is CatalogFragment.CatalogKey) {
+            backstackDelegate.backstack.setHistory(History.single(destKey), StateChange.REPLACE)
+        }
         backstackDelegate.backstack.goTo(destKey)
     }
 

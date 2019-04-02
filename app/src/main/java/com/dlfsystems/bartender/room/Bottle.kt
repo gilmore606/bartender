@@ -108,5 +108,6 @@ interface BottleDao {
     @Query("SELECT b.* FROM bottles b INNER JOIN drink_ingredients di ON b.id = di.bottleId WHERE di.drinkId=:drinkId")
     fun liveBottlesForDrink(drinkId: Long): LiveData<List<Bottle>>
 
-
+    @Query("SELECT count(*) FROM bottles WHERE bottles.active = 1")
+    fun liveActiveBottleCount(): LiveData<Int>
 }

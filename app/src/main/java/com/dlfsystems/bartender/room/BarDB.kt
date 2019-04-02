@@ -1,6 +1,7 @@
 package com.dlfsystems.bartender.room
 
 import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
@@ -77,6 +78,10 @@ abstract class BarDB : RoomDatabase() {
 
             val bottleDao = getInstance(context).bottleDao()
             val bottleFamilyDao = getInstance(context).bottleFamilyDao()
+            val drinkDao = getInstance(context).drinkDao()
+            val drinkIngredientDao = getInstance(context).drinkIngredientDao()
+            val drinkDrinktagDao = getInstance(context).drinkDrinktagDao()
+            val drinktagDao = getInstance(context).drinktagDao()
 
             val bottleInputStream = context.resources.openRawResource(R.raw.bottles)
             val bottleReader = bottleInputStream.bufferedReader()
@@ -100,8 +105,7 @@ abstract class BarDB : RoomDatabase() {
                     bottleFamilyDao.addAll(familyObjects)
                 }
             }
-
-            val drinktagDao = getInstance(context).drinktagDao()
+            Log.d("bartender", "FNORD done loading bottles")
 
             drinktagDao.add(Drinktag(0, "All", "All drinks."))
             drinktagDao.add(Drinktag(1, "IBA", "Classic and contemporary cocktails recognized by the International Bartenders Association."))
@@ -117,9 +121,7 @@ abstract class BarDB : RoomDatabase() {
             drinktagDao.add(Drinktag(11, "Easy", "Simple drinks of only two or three ingredients.  Easy to make even if you've had a few."))
             drinktagDao.add(Drinktag(12, "Complex", "Drinks with complex flavor combinations that may not be for everyone."))
 
-            val drinkDao = getInstance(context).drinkDao()
-            val drinkIngredientDao = getInstance(context).drinkIngredientDao()
-            val drinkDrinktagDao = getInstance(context).drinkDrinktagDao()
+            Log.d("bartender", "FNORD loading drinks")
 
             val drinkInputStream = context.resources.openRawResource(R.raw.drinks)
             val drinkReader = drinkInputStream.bufferedReader()
@@ -162,6 +164,9 @@ abstract class BarDB : RoomDatabase() {
                     drinkIngredientDao.addAll(ingredientObjects)
                 }
             }
+            Log.d("bartender", "FNORD setting populated pref")
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("populated", true).apply()
+            Log.d("bartender", "FNORD moving to catalog")
             Rudder.navTo(CatalogFragment.CatalogKey())
         }
 

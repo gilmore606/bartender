@@ -2,12 +2,10 @@ package com.dlfsystems.bartender.fragments
 
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import com.dlfsystems.bartender.Action
-import com.dlfsystems.bartender.BaseFragment
-import com.dlfsystems.bartender.R
+import com.dlfsystems.bartender.*
 import com.dlfsystems.bartender.nav.BaseKey
 import com.dlfsystems.bartender.nav.Rudder
-import com.dlfsystems.bartender.plusAssign
+import com.dlfsystems.bartender.room.BarDB
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.parcel.Parcelize

@@ -158,7 +158,7 @@ class CatalogFragment : BaseFragment() {
             state as CatalogState
             previousState as CatalogState?
 
-            if (!attachedSubFragments) {
+            if (!attachedSubFragments && previousState != null) {
                 catalogFragment.activity?.supportFragmentManager?.beginTransaction()?.disallowAddToBackStack()?.apply {
                     add(R.id.catalog_pane, bottlesFragment, "bottles")
                     add(R.id.catalog_pane, drinksFragment, "drinks")
