@@ -34,7 +34,8 @@ class CatalogBottlesFragment : CatalogListFragment() {
     data class BottlesState(
         val tab: BottleTabs = BottleTabs.MINE,
         val filter: Int = 0,
-        val emptyBar: Boolean = true
+        val emptyBar: Boolean = true,
+        val parentHidden: Boolean = false
     ) : BaseState()
 
 
@@ -158,7 +159,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
                     } else {
                         showEmptyContent(false, state)
                         recyclerView.afterMeasured {
-                            if (isBarEmpty) showHelperTips()
+                            if (isBarEmpty && state.tab == BottleTabs.ALL) showHelperTips()
                             recyclerAdapter.configureForTab(recyclerView, state.tab)
                         }
                     }
@@ -169,15 +170,15 @@ class CatalogBottlesFragment : CatalogListFragment() {
         }
 
         private fun showEmptyContent(isEmpty: Boolean, state: BottlesState) {
-            if (!bottlesFragment.isHidden) {
-                if (isEmpty) {
-                    var filterString = "is empty"
-                    if (lastState?.filter ?: 0 > 0) {
-                        filterString = "has no " + bottlesFragment.resources.getStringArray(R.array.bottle_filter_array)[lastState!!.filter]
-                    }
-                    recyclerView.visibility = View.GONE
-                    emptyLayout.visibility = View.VISIBLE
-                    if (state.tab == BottleTabs.MINE) {
+            if (isEmpty) {
+                var filterString = "is empty"
+                if (lastState?.filter ?: 0 > 0) {
+                    filterString = "has no " + bottlesFragment.resources.getStringArray(R.array.bottle_filter_array)[lastState!!.filter]
+                }
+                recyclerView.visibility = View.GONE
+                emptyLayout.visibility = View.VISIBLE
+                if (state.tab == BottleTabs.MINE) {
+                    if (!(lastState?.parentHidden ?: false)) {
                         SimpleTooltip.Builder(mainView!!.context)
                             .anchorView(emptyTipAnchor)
                             .text("Pick 'Add to Bar'!")
@@ -185,29 +186,29 @@ class CatalogBottlesFragment : CatalogListFragment() {
                             .animated(true)
                             .build()
                             .show()
-                        emptyText1.text = "Your bar $filterString.  Fill it up!"
-                        emptyText2.text = "Pick 'Add to Bar' from the dropdown at the top."
-                    } else {
-                        emptyText1.text = "Your shopping list $filterString."
-                        emptyText2.text = "Add items from the 'Add to Bar' view."
                     }
-                    emptyText1.apply {
-                        alpha = 0f
-                        animate().alpha(1f).setDuration(1000).setListener(null)
-                    }
-                    emptyText2.apply {
-                        alpha = 0f
-                        animate().alpha(1f).setDuration(2000).setListener(null)
-                    }
+                    emptyText1.text = "Your bar $filterString.  Fill it up!"
+                    emptyText2.text = "Pick 'Add to Bar' from the dropdown at the top."
                 } else {
-                    emptyLayout.visibility = View.GONE
-                    recyclerView.visibility = View.VISIBLE
+                    emptyText1.text = "Your shopping list $filterString."
+                    emptyText2.text = "Add items from the 'Add to Bar' view."
                 }
+                emptyText1.apply {
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(1000).setListener(null)
+                }
+                emptyText2.apply {
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(2000).setListener(null)
+                }
+            } else {
+                emptyLayout.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
             }
         }
 
         private fun showHelperTips() {
-            if (!bottlesFragment.isHidden) {
+            if (!(lastState?.parentHidden ?: false)) {
                 recyclerView.layoutManager?.findViewByPosition(2)?.also {
                     (it.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox).also {
                         SimpleTooltip.Builder(mainView!!.context)
@@ -260,6 +261,11 @@ class CatalogBottlesFragment : CatalogListFragment() {
             is Action.bottlesActiveChanged -> {
                 changeState(state.copy(
                     emptyBar = action.count < 1
+                ))
+            }
+            is Action.catalogHiddenChanged -> {
+                changeState(state.copy(
+                    parentHidden = action.hidden
                 ))
             }
             else -> { }

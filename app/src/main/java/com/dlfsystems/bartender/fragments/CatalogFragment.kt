@@ -54,6 +54,8 @@ class CatalogFragment : BaseFragment() {
         var spinnerBottlesFilter: Spinner? = null
         var spinnerDrinksFilter: Spinner? = null
 
+        var lastState: CatalogState? = null
+
         override fun subscribeActions() {
             mainView?.also {
                 buttonBottles = it.findViewById(R.id.catalog_button_bottles) as ToggleButton
@@ -157,6 +159,7 @@ class CatalogFragment : BaseFragment() {
         override fun render(previousState: BaseState?, state: BaseState) {
             state as CatalogState
             previousState as CatalogState?
+            lastState = state
 
             if (!attachedSubFragments && previousState != null) {
                 catalogFragment.activity?.supportFragmentManager?.beginTransaction()?.disallowAddToBackStack()?.apply {
@@ -215,20 +218,23 @@ class CatalogFragment : BaseFragment() {
             }
         }
 
-        private fun tintButton(button: Button?, lit: Boolean) {
-            button?.background = ContextCompat.getDrawable(mainView!!.context,
-                if (lit) R.drawable.button_background_lit
-                else R.drawable.button_background_unlit)
-        }
-
         private fun fragmentForTab(tab: Tabs) : Fragment {
             return when (tab) {
                 Tabs.BOTTLES -> { bottlesFragment }
                 Tabs.DRINKS -> { drinksFragment }
             }
         }
-    }
 
+        override fun onHide() {
+            bottleAction.onNext(Action.catalogHiddenChanged(true))
+            drinkAction.onNext(Action.catalogHiddenChanged(true))
+        }
+
+        override fun onUnhide() {
+            bottleAction.onNext(Action.catalogHiddenChanged(false))
+            drinkAction.onNext(Action.catalogHiddenChanged(false))
+        }
+    }
 
     override val layoutResource = R.layout.fragment_catalog
     override val viewController = CatalogView(this)

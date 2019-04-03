@@ -19,6 +19,8 @@ sealed class Action {
 
     class bottlesActiveChanged(val count: Int): Action()
 
+    class catalogHiddenChanged(val hidden: Boolean): Action()
+
     class bottleToggleActive(val bottle: Bottle? = null, val active: Boolean? = null) : Action()
     class bottleToggleShopping(val bottle: Bottle? = null, val shopping: Boolean? = null): Action()
 
