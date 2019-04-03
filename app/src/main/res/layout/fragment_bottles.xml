@@ -18,6 +18,9 @@
                   android:layout_marginRight="170dp"
                     android:layout_gravity="end"
                   android:id="@+id/bottles_empty_tipanchor" />
+        <TextView android:layout_width="1dp" android:layout_height="1dp" android:layout_weight="0"
+                  android:layout_marginLeft="80dp"
+                  android:id="@+id/bottles_empty_tabtipanchor" />
         <TextView android:id="@+id/bottles_emptytext_blank1"
                   android:layout_width="match_parent" android:layout_height="0dp"
                   android:text=""

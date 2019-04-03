@@ -89,6 +89,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
         lateinit var recyclerAdapter: BottleAdapter
         lateinit var emptyLayout: LinearLayout
         lateinit var emptyTipAnchor: TextView
+        lateinit var emptyTabTipAnchor: TextView
         lateinit var emptyText1: TextView
         lateinit var emptyText2: TextView
         lateinit var activeBottleCount: LiveData<Int>
@@ -116,6 +117,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
 
                 emptyLayout = it.findViewById(R.id.bottles_emptylayout)
                 emptyTipAnchor = it.findViewById(R.id.bottles_empty_tipanchor)
+                emptyTabTipAnchor = it.findViewById(R.id.bottles_empty_tabtipanchor)
                 emptyText1 = it.findViewById(R.id.bottles_emptytext1)
                 emptyText2 = it.findViewById(R.id.bottles_emptytext2)
 
@@ -181,14 +183,7 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 if (lastState?.tab == BottleTabs.MINE) {
                     if (!(lastState?.parentHidden ?: false)) {
                         if (!prefs(bottlesFragment.context!!).getBoolean("onboard", false)) {
-                            SimpleTooltip.Builder(mainView!!.context)
-                                .anchorView(emptyTipAnchor)
-                                .text("Pick 'Add to Bar'!")
-                                .gravity(Gravity.BOTTOM)
-                                .animated(true)
-                                .build()
-                                .show()
-                            prefs(bottlesFragment.context!!).edit().putBoolean("onboard", true).apply()
+                            showTopbarTip()
                         }
                     }
                     emptyText1.text = "Your bar $filterString.  Fill it up!"
@@ -211,17 +206,37 @@ class CatalogBottlesFragment : CatalogListFragment() {
             }
         }
 
+        private fun showTopbarTip() {
+            SimpleTooltip.Builder(mainView!!.context)
+                .anchorView(emptyTipAnchor)
+                .text("Pick 'Add to Bar'!")
+                .gravity(Gravity.BOTTOM)
+                .animated(true)
+                .build()
+                .show()
+        }
+
         private fun showHelperTips() {
             if (!(lastState?.parentHidden ?: false)) {
-                recyclerView.layoutManager?.findViewByPosition(2)?.also {
-                    (it.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox).also {
+                if (!prefs(bottlesFragment.context!!).getBoolean("onboard", false)) {
+                    recyclerView.layoutManager?.findViewByPosition(2)?.also {
+                        (it.findViewById(R.id.item_bottle_owned_checkbox) as CheckBox).also {
+                            SimpleTooltip.Builder(mainView!!.context)
+                                .anchorView(it)
+                                .text("Pick bottles you own!")
+                                .gravity(Gravity.START)
+                                .animated(true)
+                                .build()
+                                .show()
+                        }
                         SimpleTooltip.Builder(mainView!!.context)
-                            .anchorView(it)
-                            .text("Pick bottles you own!")
+                            .anchorView(emptyTabTipAnchor)
+                            .text("Switch to Drink view to see\nwhat you can make!")
                             .gravity(Gravity.BOTTOM)
                             .animated(true)
                             .build()
                             .show()
+                        prefs(bottlesFragment.context!!).edit().putBoolean("onboard", true).apply()
                     }
                 }
             }
