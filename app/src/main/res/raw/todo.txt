@@ -1,0 +1,35 @@
+
+release on play store:
+
+search text in title bar
+
+style:
+	- list items -- divider lines, background shading
+	- drink screen - favorite button position
+
+add more drinks for missing ingredients
+	- Buttery Nipple (shot)
+	Irish Car Bomb (shot)
+	Melon Ball (shot)
+	Red-Headed Slut (shot)
+	Blow Job (shot)
+	Jungle Bird
+	Rum Old Fashioned
+	Rob Roy
+	Penicillin
+	Parasol
+
+
+
+
+replace images:
+	elderflower
+	grapefruit juice
+	lemon juice
+	grenadine
+
+replace milk with cream/half+half
+
+add 'glass type' to drinks, with thumb clickable to page
+
+add '?' to directions with clickable to explanation page
