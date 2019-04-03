@@ -2,6 +2,7 @@ package com.dlfsystems.bartender.fragments
 
 import android.animation.Animator
 import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.*
 import android.widget.CheckBox
@@ -177,15 +178,18 @@ class CatalogBottlesFragment : CatalogListFragment() {
                 }
                 recyclerView.visibility = View.GONE
                 emptyLayout.visibility = View.VISIBLE
-                if (state.tab == BottleTabs.MINE) {
+                if (lastState?.tab == BottleTabs.MINE) {
                     if (!(lastState?.parentHidden ?: false)) {
-                        SimpleTooltip.Builder(mainView!!.context)
-                            .anchorView(emptyTipAnchor)
-                            .text("Pick 'Add to Bar'!")
-                            .gravity(Gravity.BOTTOM)
-                            .animated(true)
-                            .build()
-                            .show()
+                        if (!prefs(bottlesFragment.context!!).getBoolean("onboard", false)) {
+                            SimpleTooltip.Builder(mainView!!.context)
+                                .anchorView(emptyTipAnchor)
+                                .text("Pick 'Add to Bar'!")
+                                .gravity(Gravity.BOTTOM)
+                                .animated(true)
+                                .build()
+                                .show()
+                            prefs(bottlesFragment.context!!).edit().putBoolean("onboard", true).apply()
+                        }
                     }
                     emptyText1.text = "Your bar $filterString.  Fill it up!"
                     emptyText2.text = "Pick 'Add to Bar' from the dropdown at the top."

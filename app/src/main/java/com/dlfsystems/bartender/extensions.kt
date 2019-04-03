@@ -1,5 +1,8 @@
 package com.dlfsystems.bartender
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -54,4 +57,8 @@ inline fun <T: View> T.afterMeasured(crossinline f: T.() -> Unit) {
             }
         }
     })
+}
+
+fun prefs(context: Context) : SharedPreferences {
+    return PreferenceManager.getDefaultSharedPreferences(context)
 }

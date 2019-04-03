@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
         val startScreen =
-            if (PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("populated", false)) CatalogFragment.CatalogKey()
+            if (prefs(applicationContext).getBoolean("populated", false)) CatalogFragment.CatalogKey()
             else LoadingFragment.LoadingKey()
 
         backstackDelegate = BackstackDelegate()
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.actionbar_menu, menu)
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("metric", false))
+        if (prefs(this).getBoolean("metric", false))
             menu?.getItem(1)?.setChecked(true)
         else
             menu?.getItem(0)?.setChecked(true)
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
     }
 
     fun setMeasureMetric(value: Boolean) {
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("metric", value).apply()
+        prefs(this).edit().putBoolean("metric", value).apply()
         (supportFragmentManager.findFragmentById(R.id.base_frame) as BaseFragment).metricOptionChanged(value)
     }
 }

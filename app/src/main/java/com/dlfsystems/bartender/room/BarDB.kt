@@ -12,6 +12,7 @@ import com.dlfsystems.bartender.fragments.CatalogFragment
 import com.dlfsystems.bartender.fragments.LoadingFragment
 import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.nav.Rudder
+import com.dlfsystems.bartender.prefs
 
 @Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class), (Family::class), (BottleFamily::class), (Drinktag::class), (DrinkDrinktag::class), (Filter::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
@@ -165,7 +166,7 @@ abstract class BarDB : RoomDatabase() {
                 }
             }
             Log.d("bartender", "FNORD setting populated pref")
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("populated", true).apply()
+            prefs(context).edit().putBoolean("populated", true).apply()
             Log.d("bartender", "FNORD moving to catalog")
             Rudder.navTo(CatalogFragment.CatalogKey())
         }
