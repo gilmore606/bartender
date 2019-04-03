@@ -13,6 +13,8 @@ data class Drink(@PrimaryKey val id: Long,
                         val info: Int = 0,
                         val make: Int = 0,
                         val garnish: Int = 0,
+                        val glass: Long = 1,
+                        val ice: String = "none",
                         val missingBottles: Int = 0)
 
 @Entity(tableName = "drink_ingredients",
@@ -88,7 +90,7 @@ interface DrinkDao {
 
     companion object {
         const val drinkWithMissingCount =
-                "d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id"
+                "d.id id, d.name name, d.favorite favorite, d.image, d.info, d.make, d.garnish, d.glass, d.ice, count(di.bottleId) - sum(b.active) missingBottles FROM drink_ingredients di INNER JOIN bottles b ON di.bottleId = b.id INNER JOIN drinks d on di.drinkId = d.id"
         const val filterByDrinktag =
                 "d.id in (SELECT drinkId FROM drink_drinktag WHERE drinktagId IN (SELECT filter FROM filter WHERE kind=\"drink\"))"
     }
@@ -101,10 +103,10 @@ interface DrinkDao {
     @Query("UPDATE drinks SET favorite=:favorite WHERE id=:drinkId")
     fun setFavorite(drinkId: Long, favorite: Int)
 
-    @Query("SELECT $drinkWithMissingCount WHERE di.drinkId in (SELECT drinkId from drink_ingredients WHERE bottleId=:bottleId) GROUP BY d.name ORDER BY 8,2")
+    @Query("SELECT $drinkWithMissingCount WHERE di.drinkId in (SELECT drinkId from drink_ingredients WHERE bottleId=:bottleId) GROUP BY d.name ORDER BY 10,2")
     fun liveDrinksForBottle(bottleId: Long): LiveData<List<Drink>>
 
-    @Query("SELECT $drinkWithMissingCount WHERE $filterByDrinktag GROUP BY d.name ORDER BY 8,2")
+    @Query("SELECT $drinkWithMissingCount WHERE $filterByDrinktag GROUP BY d.name ORDER BY 10,2")
     fun getAllPaged(): DataSource.Factory<Int, Drink>
 
     @Query("SELECT $drinkWithMissingCount WHERE d.favorite = 1 AND $filterByDrinktag GROUP BY d.name ORDER BY 8,2")

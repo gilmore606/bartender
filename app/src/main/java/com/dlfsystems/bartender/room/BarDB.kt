@@ -14,7 +14,9 @@ import com.dlfsystems.bartender.ioThread
 import com.dlfsystems.bartender.nav.Rudder
 import com.dlfsystems.bartender.prefs
 
-@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class), (Family::class), (BottleFamily::class), (Drinktag::class), (DrinkDrinktag::class), (Filter::class)], version = 1)
+@Database(entities = [(Drink::class), (DrinkIngredient::class), (Bottle::class), (Family::class),
+    (BottleFamily::class), (Drinktag::class), (DrinkDrinktag::class), (Filter::class),
+    (Glass::class)], version = 1)
 abstract class BarDB : RoomDatabase() {
     abstract fun drinkDao(): DrinkDao
     abstract fun bottleDao(): BottleDao
@@ -24,6 +26,7 @@ abstract class BarDB : RoomDatabase() {
     abstract fun drinktagDao(): DrinktagDao
     abstract fun drinkDrinktagDao(): DrinkDrinktagDao
     abstract fun filterDao(): FilterDao
+    abstract fun glassDao(): GlassDao
 
     companion object {
         @Volatile
@@ -83,6 +86,7 @@ abstract class BarDB : RoomDatabase() {
             val drinkIngredientDao = getInstance(context).drinkIngredientDao()
             val drinkDrinktagDao = getInstance(context).drinkDrinktagDao()
             val drinktagDao = getInstance(context).drinktagDao()
+            val glassDao = getInstance(context).glassDao()
 
             val bottleInputStream = context.resources.openRawResource(R.raw.bottles)
             val bottleReader = bottleInputStream.bufferedReader()
@@ -122,6 +126,16 @@ abstract class BarDB : RoomDatabase() {
             drinktagDao.add(Drinktag(11, "Easy", "Simple drinks of only two or three ingredients.  Easy to make even if you've had a few."))
             drinktagDao.add(Drinktag(12, "Complex", "Drinks with complex flavor combinations that may not be for everyone."))
 
+            glassDao.add(Glass(1, "Coupe", "coupe"))
+            glassDao.add(Glass(2, "Champagne Flute", "flute"))
+            glassDao.add(Glass(3, "Highball / Collins", "highball"))
+            glassDao.add(Glass(4, "Hurricane", "hurricane"))
+            glassDao.add(Glass(5, "Martini", "martini"))
+            glassDao.add(Glass(6, "Mug", "mug"))
+            glassDao.add(Glass(7, "Nick and Nora", "nicknora"))
+            glassDao.add(Glass(8, "Rocks", "rocks"))
+            glassDao.add(Glass(9, "Shot", "shot"))
+
             Log.d("bartender", "FNORD loading drinks")
 
             val drinkInputStream = context.resources.openRawResource(R.raw.drinks)
@@ -130,6 +144,7 @@ abstract class BarDB : RoomDatabase() {
             var ingredientId: Long = 1
             while (!eof) {
                 val line = drinkReader.readLine()
+                Log.d("bartender", "FNORD " + line)
                 Rudder.addLoadProgress(0.4f)
                 if (line == null) eof = true
                 else {
@@ -140,16 +155,18 @@ abstract class BarDB : RoomDatabase() {
                     val image = chunks[3]
                     val makestr = chunks[4]
                     val garnishstr = chunks[5]
+                    val glass = chunks[6].toLong()
+                    val ice = chunks[7]
                     val infoId = context.resources.getIdentifier(image, "string", context.packageName)
                     val makeId = context.resources.getIdentifier("make_" + makestr, "string", context.packageName)
                     val garnishId = context.resources.getIdentifier("garnish_" + garnishstr, "string", context.packageName)
 
-                    drinkDao.add(Drink(id = drinkId, name = name, image = image, info = infoId, make = makeId, garnish = garnishId))
+                    drinkDao.add(Drink(id = drinkId, name = name, image = image, info = infoId, make = makeId, garnish = garnishId, glass = glass, ice = ice))
                     val tagobjects = ArrayList<DrinkDrinktag>(0)
                     tagIds.forEach { if (it != "") tagobjects.add(DrinkDrinktag(id = 0, drinkId = drinkId, drinktagId = it.toLong())) }
                     drinkDrinktagDao.addAll(tagobjects)
 
-                    var i = 6
+                    var i = 8
                     var eol = false
                     val ingredientObjects = ArrayList<DrinkIngredient>(0)
                     while (!eol) {

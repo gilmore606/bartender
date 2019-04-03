@@ -38,6 +38,11 @@ class DrinkFragment : BaseFragment() {
         val info: Int = 0,
         val make: Int = 0,
         val garnish: Int = 0,
+        val ice: String = "",
+        val glass: Long = 1,
+        val glassName: String = "",
+        val glassImage: String = "",
+        val boundGlass: Boolean = false,
         val boundIngredients: Boolean = false,
         val ingredients: ArrayList<Ingredient> = ArrayList(0),
         val boundTags: Boolean = false,
@@ -69,10 +74,14 @@ class DrinkFragment : BaseFragment() {
         class DrinkTagsViewModel(drinkId: Long, application: Application): AndroidViewModel(application) {
             val tags: LiveData<List<Drinktag>> = BarDB.getInstance(getApplication()).drinktagDao().liveDrinktagsForDrink(drinkId)
         }
+        class DrinkGlassViewModel(glassId: Long, application: Application): AndroidViewModel(application) {
+            val glass: LiveData<Glass> = BarDB.getInstance(getApplication()).glassDao().liveById(glassId)
+        }
 
         var drinkViewModel: DrinkViewModel? = null
         var drinkIngredientsViewModel: DrinkIngredientsViewModel? = null
         var drinkTagsViewModel: DrinkTagsViewModel? = null
+        var drinkGlassViewModel: DrinkGlassViewModel? = null
         var drinkName: TextView? = null
         var drinkFavorite: CheckBox? = null
         var drinkIngredients: IngredientsView? = null
@@ -82,6 +91,9 @@ class DrinkFragment : BaseFragment() {
         var drinkImage: ImageView? = null
         var drinkMake: TextView? = null
         var drinkGarnish: TextView? = null
+        var drinkGlassImage: ImageView? = null
+        var drinkGlassText: TextView? = null
+        var drinkIceText: TextView? = null
         var scrollView: ScrollView? = null
 
         override fun subscribeActions() {
@@ -95,6 +107,9 @@ class DrinkFragment : BaseFragment() {
                 drinkImage = it.findViewById(R.id.drink_image) as ImageView
                 drinkMake = it.findViewById(R.id.drink_directions) as TextView
                 drinkGarnish = it.findViewById(R.id.drink_garnish) as TextView
+                drinkGlassImage = it.findViewById(R.id.drink_glassimage) as ImageView
+                drinkGlassText = it.findViewById(R.id.drink_glasstext) as TextView
+                drinkIceText = it.findViewById(R.id.drink_icetext) as TextView
                 scrollView = it.findViewById(R.id.drink_scrollview) as ScrollView
 
                 drinkFavorite?.setOnClickListener { action.onNext(Action.drinkToggleFavorite()) }
@@ -124,6 +139,7 @@ class DrinkFragment : BaseFragment() {
                 }
                 drinkMake?.text = (try { drinkFragment.getString(state.make) } catch (e: Exception) { " ??? " }).replace("\n", "\n\n")
                 drinkGarnish?.text = try { drinkFragment.getString(state.garnish) } catch (e: Exception) { "none" }
+                drinkIceText?.text = state.ice
             } else {
                 drinkViewModel = DrinkViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
                 drinkViewModel?.drink?.observe(drinkFragment, Observer {
@@ -144,6 +160,20 @@ class DrinkFragment : BaseFragment() {
                 drinkTagsViewModel = DrinkTagsViewModel(state.id, drinkFragment.context!!.applicationContext as Application)
                 drinkTagsViewModel?.tags?.observe(drinkFragment, Observer {
                     action.onNext(Action.drinkLoadTags(it))
+                })
+            }
+            if (state.boundGlass) {
+                if (!(previousState?.boundGlass ?: false) && state.glassImage != "") {
+                    drinkGlassImage?.also {
+                        Glide.with(mainView!!.context).load(Uri.parse("file:///android_asset/glass_thumb/" + state.glassImage + ".jpg"))
+                            .asBitmap().into(it)
+                    }
+                }
+                drinkGlassText?.text = state.glassName
+            } else if (state.boundDrink) {
+                drinkGlassViewModel = DrinkGlassViewModel(state.glass, drinkFragment.context!!.applicationContext as Application)
+                drinkGlassViewModel?.glass?.observe(drinkFragment, Observer {
+                    action.onNext(Action.drinkLoadGlass(it))
                 })
             }
         }
@@ -187,7 +217,9 @@ class DrinkFragment : BaseFragment() {
                         image = action.load.image,
                         info = action.load.info,
                         make = action.load.make,
-                        garnish = action.load.garnish
+                        garnish = action.load.garnish,
+                        ice = action.load.ice,
+                        glass = action.load.glass
                     )
                 )
             }
@@ -204,6 +236,15 @@ class DrinkFragment : BaseFragment() {
                     (previousState as DrinkState).copy(
                         boundTags = true,
                         tags = tagsFromDrinktags(ArrayList(action.load))
+                    )
+                )
+            }
+            is Action.drinkLoadGlass -> {
+                changeState(
+                    (previousState as DrinkState).copy(
+                        boundGlass = true,
+                        glassName = action.load.name,
+                        glassImage = action.load.resourcename
                     )
                 )
             }

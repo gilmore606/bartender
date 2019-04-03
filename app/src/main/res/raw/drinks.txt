@@ -1,136 +1,155 @@
-1|0,1,2|Old Fashioned|oldfashioned|oldfashioned|oldfashioned|131|1 oz|16|2 dashes
-2|0,1,2|Manhattan|manhattan|stirice|cherry|123|0.75 oz|18|2.5 oz|6|dash
-3|0,1,2|Mojito|mojito|mojito|mojito|78|2 oz|81|juice of 1 lime|120|2 tsp|88|2-4 leaves|116|to top
-4|0,1,3|Long Island Iced Tea|longislandicedtea|longislandicedtea|lemonwheel|129|0.5 oz|78|1/2 oz|57|0.5 oz|124|0.5 oz|75|juice of 1/2 lemon|37|splash
-5|0,1,12,2|Negroni|negroni|stirice|orangetwist|57|1 oz|24|1 oz|123|1 oz
-6|0,1,2|Whiskey Sour|whiskysour|shakeice|lemonwheel|131|2 oz|75|juice of 1/2 lemon|104|0.5 tsp
-7|0,1,2|Dry Martini|martini|stirice|martini|57|2 oz|49|0.5 oz
-8|0,1,4|Margarita|margarita|shakeice|margarita|124|1.5 oz|127|0.5 oz|81|1 oz|111|to coat rim
-9|0,3|Moscow Mule|moscowmule|moscowmule|limewheel|129|2 oz|81|2 oz|59|to top
-10|0,10,9,3|Alabama Slammer|alabamaslammer|pourice|orangewheel|117|1 oz|4|1 oz|115|0.5 oz|75|dash
-11|0,12,10,2|Alaska Cocktail|alaska|stirice|lemontwist|92|2 dashes|57|1.5 oz|134|0.75 oz
-12|0,1,2|Alexander|alexander|shakeice|nutmeg|57|0.5 oz|40|0.5 oz|87|2 oz|89|dash
-13|0,9,2|Brandy Alexander|alexander|shakeice|nutmeg|19|1 oz|40|1 oz|87|1 oz|89|dash
-14|0,10,2|Algonquin|algonquin|shakeice|none|131|1.5 oz|49|1 oz|100|1 oz
-15|0,10,12,2|Allies Cocktail|allies|stirice|none|49|1 oz|57|1 oz|73|0.5 tsp
-16|0,2|Almeria|almeria|shakeice|none|47|2 oz|34|1 oz|50|1
-17|0,9,3|Amaretto Rose|amarettorose|amarettorose|limewheel|4|1.5 oz|81|0.5 oz|116|to top
-18|0,9,2|Amaretto Stinger|amarettostinger|shakeice|none|4|1.5 oz|42|0.75 oz
-19|0,9,2|Applecar|applecar|shakeice|apple|9|1 oz|127|1 oz|75|1 oz
-20|0,2|Arthur Tompkins|arthurtompkins|shakeice|lemontwist|57|2 oz|61|0.5 oz|75|2 tsp
-21|0,2,12|Balmoral|balmoral|stirice|lemontwist|113|1.5 oz|123|0.5 oz|49|0.5 oz|16|2 dashes
-22|0,3,7,1,4|Daiquiri|daiquiri|shakeice|limewheel|78|1.5 oz|81|0.5 oz|104|1 tsp
-23|0,2|Artillery|artillery|stirice|lemontwist|123|1.5 tsp|57|1.5 oz|16|2 dashes
-24|0,3,10|Bermuda Highball|bermudahighball|highball|lemontwist|19|0.75 oz|57|0.75 oz|49|0.75 oz|116|to top
-25|0,2,1|Black Russian|blackrussian|pourice|none|34|0.75 oz|129|1.5 oz
-26|0,2|Blackthorn|blackthorn|stirice|lemontwist|69|2 oz|123|1 oz|6|2 dashes|1|1 dash
-27|0,1,3|Bloody Mary|bloodymary|stirglass|bloodymary|129|1.5 oz|125|3 oz|75|1 dash|133|1/2 tsp|66|2-3 drops
-28|0,3,4|Blue Lagoon|bluelagoon|bluelagoon|lemonwheel|129|1 oz|17|1 oz|75|0.5 oz|116|to top
-29|0,2,4|Blue Margarita|bluemargarita|margarita|margarita|124|1.5 oz|17|1 oz|81|1 oz|111|to coat rim
-30|0,2|Bluebird|bluebird|stirice|lemontwist|57|1.5 oz|127|0.5 oz|17|0.5 oz|16|2 dashes
-31|0,2|Bobby Burns|bobbyburns|stirice|lemontwist|123|1.5 oz|113|1.5 oz|15|1.5 tsp
-32|0,2|Boomerang|boomerang|stirice|cherry|57|2 oz|49|0.5 oz|16|2 dashes|84|1 tsp
-33|0,2|Boston Sidecar|bostonsidecar|shakeice|cherry|78|0.75 oz|19|0.75 oz|127|0.75 oz|81|0.5 oz
-34|0,2|Boxcar|boxcar|shakeice|none|57|1.5 oz|127|1 oz|75|1 tsp|64|0.5 tsp|50|white of 1 egg
-35|0,1,3|Caipirinha|caipirinha|caipirinha|limewheel|120|2 tsp|80|1|22|2.5 oz
-36|0,2|Casablanca|casablanca|shakeice|cherry|78|2 oz|127|1.5 tsp|81|1.5 tsp|84|1.5 tsp
-37|0,2|Casino Royale|casinoroyale|shakeice|none|57|2 oz|75|0.5 oz|84|1 tsp|92|1 dash|51|yolk from 1 egg
-38|0,1,2|Champagne Cocktail|champagnecocktail|champagnecocktail|orangetwist|120|1 cube|16|2 dashes|35|1 dash|118|to top
-39|0,3|Chicago Fizz|chicagofizz|fizz|lemonwheel|78|1 oz|103|1 oz|75|1 oz|104|1 tsp|50|1|116|to top
-40|0,2|City Slicker|cityslicker|shakeice|orangewheel|19|2 oz|127|0.5 oz|75|1 tbsp
-41|0,1,3|Cuba Libre|cubalibre|cubalibre|limewheel|78|2 oz|81|1 oz|37|to top
-42|0,3|Dragonfly|dragonfly|cubalibre|limewheel|57|1.5 oz|59|4 oz
-43|0,2|Dry Rob Roy|dryrobroy|stirice|lemontwist|113|2.5 oz|49|1.5 tsp
-44|0,2|Foxy Lady|foxylady|shakeice|none|4|0.5 oz|40|0.5 oz|87|2 oz
-45|0,1,3|French 75|french75|french75|lemontwist|57|1.5 oz|104|2 tsp|75|1.5 oz|118|4 oz
-46|0,2,8|Frisco Sour|friscosour|shakeice|lemonwheel|131|2 oz|15|0.5 oz|75|0.5 oz|81|0.5 oz
-47|0,2|Gin and Tonic|ginandtonic|ginandtonic|limewheel|57|2 oz|126|4 oz
-48|0,1,3|Gin Fizz|ginfizz|fizz|lemontwist|57|2 oz|75|1 oz|104|1 tsp|50|1|116|to top
-49|0,1,2|Godfather|godfather|stirglassice|lemontwist|113|1.5 oz|4|0.75 oz
-50|0,1,3|Harvey Wallbanger|harveywallbanger|harveywallbanger|orangewheel|129|1 oz|56|0.5 oz|93|4 oz
-51|0,2|Havana Cocktail|havana|shakeice|lemontwist|78|1 oz|100|1 oz|75|1 tsp
-52|0,2|Jack Rose|jackrose|shakeice|limetwist|8|1.5 oz|64|1 tsp|81|1 oz
-53|0,2|Jewel of the Nile|jewelofthenile|stirice|none|57|1.5 oz|63|0.5 oz|134|0.5 oz
-54|0,1,3|John Collins|johncollins|highball|orangewheel|18|2 oz|75|1 oz|104|1 tsp|116|3 oz|6|1 dash
-55|0,1,2|Kamikaze|kamikaze|shakeice|limewheel|129|1 oz|127|1 oz|81|1 oz
-56|0,2|Loch Lomond|lochlomond|stirice|lemontwist|113|2 oz|48|0.5 oz|49|0.5 oz
-57|0,2|London Town|londontown|stirice|cherry|57|1.5 oz|84|0.5 oz|92|2 dashes
-58|0,1,4,2|Mai Tai|maitai|shakeice|limewheel|47|2 oz|45|0.5 oz|95|0.5 oz|81|0.75 oz|121|0.25 oz
-59|0,2|Martinez|martinez|stirice|cherry|57|1 oz|49|1 oz|127|1 tsp|92|1 dash
-60|0,2|Pink Lady|pinklady|shakeice|strawberry|57|1.5 oz|64|1 tsp|87|2 tsp|50|1
-61|0,3|Queen Charlotte|queencharlotte|highball|lemonwheel|105|2 oz|64|1 oz|77|to top
-62|0,3|Rum Cooler|rumcooler|stirglassice|limewheel|47|2 oz|77|4 oz
-63|0,1,2|Rusty Nail|rustynail|stirglassice|lemontwist|113|1.5 oz|48|0.5 oz
-64|0,2|Salty Dog|saltydog|stirglassice|limewheel|62|4 oz|57|1.5 oz|111|dash
-65|0,1,2|Sazerac|sazerac|sazerac|lemontwist|109|1.5 oz|35|1.5 oz|120|1 cube|99|3 dashes|6|1 dash
-66|0,1,3|Screwdriver|screwdriver|stirglassice|orangewheel|129|2 oz|93|to top
-67|0,1,2|Sidecar|sidecar|shakeice|lemontwist|35|2 oz|36|0.5 oz|75|1 oz
-68|0,0,3|Tom Collins|tomcollins|tomcollins|lemontwist|57|2 oz|75|1 oz|104|1 tsp|116|to top
-69|0,2|Turf Cocktail|turf|stirice|orangetwist|57|1 oz|49|1 oz|98|1/2 tsp|16|1 dash
-70|0,1,2|Tuxedo|tuxedo|stirice|orangetwist|57|2 oz|114|1 oz|92|2 dashes
-71|0,3|Vermouth Cassis|vermouthcassis|highball|lemonwheel|49|1.5 oz|41|0.75 oz|116|to top
-72|0,2|White Russian|whiterussian|pourice|none|129|2 oz|34|1 oz|87|to top
-73|0,1,3|Sex on the Beach|sexonthebeach|cubalibre|orangewheel|129|1 oz|97|0.75 oz|38|2 oz|62|2 oz
-74|0,2,8|Pisco Sour|piscosour|shakeice|bitters|102|2 oz|81|1 oz|121|0.5 oz|50|1|16|2 dashes
-75|0,1,5|B-52|b52|b52|none|34|0.33 oz|68|0.33 oz|61|0.33 oz
-76|0,1,3|Tequila Sunrise|tequilasunrise|tequilasunrise|cherry|124|2 oz|93|4 oz|64|0.25 oz
-77|0,1,2|Kir Royale|kirroyale|kirroyale|none|41|0.5 oz|118|2.5 oz
-78|0,2,10|Vodka Martini|vodkamartini|shakeice|martini|129|1.5 oz|49|0.75 oz
-79|0,2,10|Lemon Drop|lemondrop|shakeice|lemontwist|129|1.5 oz|36|1.5 oz|75|0.25 oz
-80|0,1,3|Americano|americano|highball|orangetwist|24|1 oz|123|1 oz|116|to top
-81|0,3|GG|gg|stirglassice|none|56|2 oz|59|to top
-82|0,1,2|Aviation|aviation|shakeice|cherry|57|2 oz|84|0.5 oz|43|0.25 oz|75|0.75 oz
-83|0,1,2|Between the Sheets|betweenthesheets|shakeice|orangetwist|19|1 oz|78|1 oz|127|1 oz|75|1 oz
-84|0,1,2|Mary Pickford|marypickford|shakeice|cherry|78|1.5 oz|100|1 oz|84|0.5 tsp|64|0.5 tsp
-85|0,1,2|Monkey Gland|monkeygland|shakeice|monkeygland|57|2 oz|15|1 tsp|93|1 oz|64|1 tsp
-86|0,1,3,4|Planters Punch|planterspunch|shakeice|orangewheel|47|1 oz|95|0.5 oz|93|2 oz|100|1 oz
-87|0,1,2|Porto Flip|portoflip|shakeice|nutmeg|19|0.5 oz|50|1|51|1|103|1.5 oz
-88|0,1,2|Stinger|stinger|stirice|none|19|1.5 oz|42|0.5 oz
-89|0,1,2|White Lady|whitelady|shakeice|lemontwist|57|2 oz|36|0.5 oz|75|0.5 oz|50|1
-90|0,1,2|Cosmopolitan|cosmopolitan|shakeice|limewheel|129|1.5 oz|36|1 oz|81|0.5 oz|38|dash
-91|0,2|French Connection|frenchconnection|pourice|none|35|1.5 oz|4|0.75 oz
-92|0,2|Golden Dream|goldendream|shakeice|none|56|1 oz|127|1 oz|93|1 oz|87|0.5 oz
-93|0,1,2|Grasshopper|grasshopper|shakeice|none|42|0.75 oz|40|0.75 oz|87|0.75 oz
-94|0,4|Hemingway Daiquiri|hemingway|shakeice|limewheel|78|2 oz|81|0.75 oz|84|0.5 oz|62|0.5 oz
-95|0,3|Horse's Neck|horseneck|pourice|lemontwist|131|2 oz|59|to top
-96|0,1,3|Mimosa|mimosa|mimosa|orangewheel|118|2 oz|93|2 oz
-97|0,1,3|Mint Julep|mintjulep|mintjulep|mint|18|2 oz|121|0.25 oz|88|8 leaves
-98|0,1,3,4|Pina Colada|pinacolada|blendice|cherry|78|2 oz|32|1 oz|100|1 oz
-99|0,2|Rose|rose|shakeice|cherry|49|2 oz|27|1 oz|25|0.5 oz
-100|0,1,4,3|Barracuda|barracuda|barracuda|orangewheel|47|1.5 oz|56|0.5 oz|100|2 oz|81|dash|118|to top
-101|0,1,3|Dark and Stormy|darknstormy|highball|limewheel|47|1.5 oz|60|to top
-102|0,1,2,10|French Martini|frenchmartini|shakeice|lemontwist|129|2 oz|25|1 oz|100|1 oz
-103|0,1,3|Russian Spring Punch|russianspringpunch|stirglassice|lemonwheel|129|0.75 oz|75|0.5 oz|121|0.5 oz|41|0.25 oz|118|to top
-104|0,1,2|Vampiro|vampiro|shakeice|limewheel|124|2 oz|125|1 oz|93|1 oz|81|1 oz|64|0.5 oz|66|several dashes|111|pinch
-105|0,1,2,10|Vesper|vesper|vesper|lemontwist|57|3 oz|129|1 oz|79|0.5 oz
-106|0,1,2|Yellow Bird|yellowbird|shakeice|lemontwist|78|1 oz|56|0.5 oz|127|0.5 oz|81|0.5 oz
-107|0,2|Adam and Eve|adamneve|stirice|apple|23|1.5 oz|114|0.5 oz|41|0.5 oz|118|3 oz
-108|0,2|Addington|addington|shakeice|lemontwist|123|2 oz|49|1 oz|116|to top
-109|0,3|Gin Rickey|ginrickey|highball|limewheel|57|1.5 oz|80|1 (juice and shell)|116|to top
-110|0,4,3|Zombie|zombie|blendice|mint|78|2 oz|47|2 oz|53|0.5 oz|98|2 dashes|64|1 tsp|81|0.75 oz|6|1 dash
-111|0,12,2|Last Word|lastword|shakeice|none|57|0.75 oz|63|0.75 oz|84|0.75 oz|81|0.75 oz
-112|0,2|Pegu Club|peguclub|shakeice|limetwist|57|1.5 oz|45|0.75 oz|81|0.75 oz|6|1 dash|92|1 dash
-113|0,4|Corpse Reviver 2|corpsereviver2|shakeice|cherry|57|0.75 oz|127|0.75 oz|79|0.75 oz|75|0.75 oz|1|1 dash
-114|0,2|Boulevardier|boulevardier|stirice|cherry|109|1.5 oz|123|1 oz|24|1 oz
-115|0,2|Bijou|bijou|stirice|none|57|1 oz|63|1 oz|123|1 oz|92|1 dash
-116|0,3|Gimlet|gimlet|shakeice|limewheel|57|2.5 oz|81|0.5 oz|121|0.5 oz
-117|0,3,9|Oatmeal Cookie|oatmealcookie|shakeice|nutmeg|34|1 oz|68|1 oz|21|2 oz|71|0.5 oz|29|0.5 oz
-118|0,2|Laverstoke|laverstoke|pourice|mint|57|2 oz|52|0.5 oz|123|0.5 oz|81|dash|59|to top
-119|0,2,12|Tipperary|tipperary|stirice|orangetwist|69|2 oz|63|0.5 oz|123|1 oz
-120|0,2|Adonis|adonis|stirice|orangetwist|123|0.75 oz|114|1.5 oz|92|1 dash
-121|0,2|Affinity|affinity|stirice|cherry|113|1.5 oz|123|1 oz|49|1 oz|92|2 dashes
-122|0,2|Vieux Carre|vieuxcarre|stirice|lemontwist|109|0.75 oz|35|0.75 oz|123|0.75 oz|15|2 tsp|99|4 dashes
-123|0,2|Blood and Sand|bloodnsand|shakeice|orangetwist|113|0.75 oz|123|0.75 oz|27|0.75 oz|93|0.75 oz
-124|0,12,2|Ward Eight|wardeight|shakeice|cherry|109|2 oz|75|0.5 oz|93|0.5 oz|64|2 tsp
-125|0,3|Bay Breeze|baybreeze|pourice|limewheel|78|2 oz|38|2 oz|100|2 oz
-126|0,9|Nuts and Berries|nutsandberries|shakeice|nutmeg|55|0.5 oz|25|0.5 oz|87|2 oz
-127|0,3,4|Cuzco|cuzco|shakeice|lemontwist|102|2 oz|7|0.75 oz|121|0.5 oz|75|0.5 oz|62|0.5 oz
-128|0,3,11|Aperol Spritz|aperol_spritz|pourice|orangewheel|118|3 oz|7|2 oz|116|2 oz
-129|0,3|Sloe Gin Fizz|sloeginfizz|shakeice|none|115|1.5 oz|75|0.75 oz|121|0.5 oz|50|1|116|1
-130|0,1|Angel Face|angelface|shakeice|apple|23|1 oz|10|1 oz|57|1 oz
-131|0,1|Bramble|bramble|shakeice|blackberry|57|1.5 oz|25|0.75 oz|81|0.75 oz|121|0.75 oz
-132|0,3,11|Seven and Seven|sevenseven|highball|none|131|1.5 oz|77|to top
-133|0,6,2,9|Bees Knees|beesknees|shakeice|none|57|2 oz|65|0.5 oz|75|0.5 oz
-134|0|Hanky Panky|hankypanky|stirice|orangetwist|57|1.5 oz|123|1.5 oz|54|2 dashes
-135|0,2,12|Bamboo|bamboo|stirice|lemontwist|114|1.5 oz|49|1.5 oz|6|1 dash|99|1 dash
-136|0|Paloma|paloma|highball|limewheel|124|2 oz|81|0.5 oz|62|1 oz|116|to top
+1|0,1,2|Old Fashioned|oldfashioned|oldfashioned|oldfashioned|8|large cube|131|1 oz|16|2 dashes
+2|0,1,2|Manhattan|manhattan|stirice|cherry|1|none|123|0.75 oz|18|2.5 oz|6|dash
+3|0,1,2|Mojito|mojito|mojito|mojito|8|cubes or crushed|78|2 oz|81|juice of 1 lime|120|2 tsp|88|2-4 leaves|116|to top
+4|0,1,3|Long Island Iced Tea|longislandicedtea|longislandicedtea|lemonwheel|3|cubes|129|0.5 oz|78|1/2 oz|57|0.5 oz|124|0.5 oz|75|juice of 1/2 lemon|37|splash
+5|0,1,12,2|Negroni|negroni|stirice|orangetwist|8|large cube|57|1 oz|24|1 oz|123|1 oz
+6|0,1,2|Whiskey Sour|whiskysour|shakeice|lemonwheel|8|optional cubes|131|2 oz|75|juice of 1/2 lemon|104|0.5 tsp|50|1
+7|0,1,2|Dry Martini|martini|stirice|martini|5|none|57|2 oz|49|0.5 oz
+8|0,1,4|Margarita|margarita|shakeice|margarita|1|optional crushed|124|1.5 oz|127|0.5 oz|81|1 oz|111|to coat rim
+9|0,3|Moscow Mule|moscowmule|moscowmule|limewheel|6|crushed|129|2 oz|81|2 oz|59|to top
+10|0,10,9,3|Alabama Slammer|alabamaslammer|pourice|orangewheel|3|none|117|1 oz|4|1 oz|115|0.5 oz|75|dash
+11|0,12,10,2|Alaska Cocktail|alaska|stirice|lemontwist|1|none|92|2 dashes|57|1.5 oz|134|0.75 oz
+12|0,1,2|Alexander|alexander|shakeice|nutmeg|1|none|57|0.5 oz|40|0.5 oz|87|2 oz|89|dash
+13|0,9,2|Brandy Alexander|alexander|shakeice|nutmeg|1|none|19|1 oz|40|1 oz|87|1 oz|89|dash
+14|0,10,2|Algonquin|algonquin|shakeice|none|1|none|131|1.5 oz|49|1 oz|100|1 oz
+15|0,10,12,2|Allies Cocktail|allies|stirice|none|1|none|49|1 oz|57|1 oz|73|0.5 tsp
+16|0,2|Almeria|almeria|shakeice|none|1|none|47|2 oz|34|1 oz|50|1
+17|0,9,3|Amaretto Rose|amarettorose|amarettorose|limewheel|3|cubes|4|1.5 oz|81|0.5 oz|116|to top
+18|0,9,2|Amaretto Stinger|amarettostinger|shakeice|none|1|none|4|1.5 oz|42|0.75 oz
+19|0,9,2|Applecar|applecar|shakeice|apple|1|none|9|1 oz|127|1 oz|75|1 oz
+20|0,2|Arthur Tompkins|arthurtompkins|shakeice|lemontwist|8|cubes|57|2 oz|61|0.5 oz|75|2 tsp
+21|0,2,12|Balmoral|balmoral|stirice|lemontwist|8|cubes|113|1.5 oz|123|0.5 oz|49|0.5 oz|16|2 dashes
+22|0,3,7,1,4|Daiquiri|daiquiri|shakeice|limewheel|4|crushed|78|1.5 oz|81|0.5 oz|104|1 tsp
+23|0,2|Artillery|artillery|stirice|lemontwist|1|none|123|1.5 tsp|57|1.5 oz|16|2 dashes
+24|0,3,10|Bermuda Highball|bermudahighball|highball|lemontwist|3|cubes|19|0.75 oz|57|0.75 oz|49|0.75 oz|116|to top
+25|0,2,1|Black Russian|blackrussian|pourice|none|8|cubes|34|0.75 oz|129|1.5 oz
+26|0,2|Blackthorn|blackthorn|stirice|lemontwist|1|none|69|2 oz|123|1 oz|6|2 dashes|1|1 dash
+27|0,1,3|Bloody Mary|bloodymary|stirglass|bloodymary|3|cubes|129|1.5 oz|125|3 oz|75|1 dash|133|1/2 tsp|66|2-3 drops
+28|0,3,4|Blue Lagoon|bluelagoon|bluelagoon|lemonwheel|4|cubes|129|1 oz|17|1 oz|75|0.5 oz|116|to top
+29|0,2,4|Blue Margarita|bluemargarita|shakeice|margarita|1|none|124|1.5 oz|17|1 oz|81|1 oz|111|to coat rim
+30|0,2|Bluebird|bluebird|stirice|lemontwist|5|none|57|1.5 oz|127|0.5 oz|17|0.5 oz|16|2 dashes
+31|0,2|Bobby Burns|bobbyburns|stirice|lemontwist|8|large cube|123|1.5 oz|113|1.5 oz|15|1.5 tsp
+32|0,2|Boomerang|boomerang|stirice|cherry|1|none|57|2 oz|49|0.5 oz|16|2 dashes|84|1 tsp
+33|0,2|Boston Sidecar|bostonsidecar|shakeice|cherry|1|none|78|0.75 oz|19|0.75 oz|127|0.75 oz|81|0.5 oz
+34|0,2|Boxcar|boxcar|shakeice|none|1|none|57|1.5 oz|127|1 oz|75|1 tsp|64|0.5 tsp|50|white of 1 egg
+35|0,1,3|Caipirinha|caipirinha|caipirinha|limewheel|8|crushed or cubes|120|2 tsp|80|1|22|2.5 oz
+36|0,2|Casablanca|casablanca|shakeice|cherry|1|none|78|2 oz|127|1.5 tsp|81|1.5 tsp|84|1.5 tsp
+37|0,2|Casino Royale|casinoroyale|shakeice|none|8|optional cubes|57|2 oz|75|0.5 oz|84|1 tsp|92|1 dash|51|yolk from 1 egg
+38|0,1,2|Champagne Cocktail|champagnecocktail|champagnecocktail|orangetwist|2|none|120|1 cube|16|2 dashes|35|1 dash|118|to top
+39|0,3|Chicago Fizz|chicagofizz|fizz|lemonwheel|3|none|78|1 oz|103|1 oz|75|1 oz|104|1 tsp|50|1|116|to top
+40|0,2|City Slicker|cityslicker|shakeice|orangewheel|1|none|19|2 oz|127|0.5 oz|75|1 tbsp
+41|0,1,3|Cuba Libre|cubalibre|cubalibre|limewheel|3|cubes or crushed|78|2 oz|81|1 oz|37|to top
+42|0,3|Dragonfly|dragonfly|cubalibre|limewheel|3|cubes|57|1.5 oz|59|4 oz
+43|0,2|Dry Rob Roy|dryrobroy|stirice|lemontwist|1|none|113|2.5 oz|49|1.5 tsp
+44|0,2|Foxy Lady|foxylady|shakeice|none|5|none|4|0.5 oz|40|0.5 oz|87|2 oz
+45|0,1,3|French 75|french75|french75|lemontwist|2|none|57|1.5 oz|104|2 tsp|75|1.5 oz|118|4 oz
+46|0,2,8|Frisco Sour|friscosour|shakeice|lemonwheel|8|none|131|2 oz|15|0.5 oz|75|0.5 oz|81|0.5 oz
+47|0,2|Gin and Tonic|ginandtonic|ginandtonic|limewheel|8|optional cubes|57|2 oz|126|4 oz
+48|0,1,3|Gin Fizz|ginfizz|fizz|lemontwist|1|none|57|2 oz|75|1 oz|104|1 tsp|50|1|116|to top
+49|0,1,2|Godfather|godfather|stirglassice|lemontwist|8|large cube|113|1.5 oz|4|0.75 oz
+50|0,1,3|Harvey Wallbanger|harveywallbanger|harveywallbanger|orangewheel|4|cubes|129|1 oz|56|0.5 oz|93|4 oz
+51|0,2|Havana Cocktail|havana|shakeice|lemontwist|1|none|78|1 oz|100|1 oz|75|1 tsp
+52|0,2|Jack Rose|jackrose|shakeice|limetwist|1|none|8|1.5 oz|64|1 tsp|81|1 oz
+53|0,2|Jewel of the Nile|jewelofthenile|stirice|none|1|none|57|1.5 oz|63|0.5 oz|134|0.5 oz
+54|0,1,3|John Collins|johncollins|highball|orangewheel|3|cubes|18|2 oz|75|1 oz|104|1 tsp|116|3 oz|6|1 dash
+55|0,1,2|Kamikaze|kamikaze|shakeice|limewheel|5|none|129|1 oz|127|1 oz|81|1 oz
+56|0,2|Loch Lomond|lochlomond|stirice|lemontwist|1|none|113|2 oz|48|0.5 oz|49|0.5 oz
+57|0,2|London Town|londontown|stirice|cherry|1|none|57|1.5 oz|84|0.5 oz|92|2 dashes
+58|0,1,4,2|Mai Tai|maitai|shakeice|limewheel|4|cubes or crushed|47|2 oz|45|0.5 oz|95|0.5 oz|81|0.75 oz|121|0.25 oz
+59|0,2|Martinez|martinez|stirice|cherry|1|none|57|1 oz|49|1 oz|127|1 tsp|92|1 dash
+60|0,2|Pink Lady|pinklady|shakeice|strawberry|5|none|57|1.5 oz|64|1 tsp|87|2 tsp|50|1
+61|0,3|Queen Charlotte|queencharlotte|highball|lemonwheel|8|cubes|105|2 oz|64|1 oz|77|to top
+62|0,3|Rum Cooler|rumcooler|stirglassice|limewheel|3|cubes|47|2 oz|77|4 oz
+63|0,1,2|Rusty Nail|rustynail|stirglassice|lemontwist|8|optional cubes|113|1.5 oz|48|0.5 oz
+64|0,2|Salty Dog|saltydog|stirglassice|limewheel|8|cubes|62|4 oz|57|1.5 oz|111|dash
+65|0,1,2|Sazerac|sazerac|sazerac|lemontwist|8|none|109|1.5 oz|35|1.5 oz|120|1 cube|99|3 dashes|6|1 dash
+66|0,1,3|Screwdriver|screwdriver|stirglassice|orangewheel|3|optional cubes|129|2 oz|93|to top
+67|0,1,2|Sidecar|sidecar|shakeice|lemontwist|1|none|35|2 oz|36|0.5 oz|75|1 oz
+68|0,0,3|Tom Collins|tomcollins|tomcollins|lemontwist|3|cubes|57|2 oz|75|1 oz|104|1 tsp|116|to top
+69|0,2|Turf Cocktail|turf|stirice|orangetwist|8|cubes|57|1 oz|49|1 oz|98|1/2 tsp|16|1 dash
+70|0,1,2|Tuxedo|tuxedo|stirice|orangetwist|5|none|57|2 oz|114|1 oz|92|2 dashes
+71|0,3|Vermouth Cassis|vermouthcassis|highball|lemonwheel|8|cubes|49|1.5 oz|41|0.75 oz|116|to top
+72|0,2|White Russian|whiterussian|pourice|none|8|cubes|129|2 oz|34|1 oz|87|to top
+73|0,1,3|Sex on the Beach|sexonthebeach|cubalibre|orangewheel|4|cubes or crushed|129|1 oz|97|0.75 oz|38|2 oz|62|2 oz
+74|0,2,8|Pisco Sour|piscosour|shakeice|bitters|1|none|102|2 oz|81|1 oz|121|0.5 oz|50|1|16|2 dashes
+75|0,1,5|B-52|b52|b52|none|9|none|34|0.33 oz|68|0.33 oz|61|0.33 oz
+76|0,1,3|Tequila Sunrise|tequilasunrise|tequilasunrise|cherry|8|cubes|124|2 oz|93|4 oz|64|0.25 oz
+77|0,1,2|Kir Royale|kirroyale|kirroyale|none|2|none|41|0.5 oz|118|2.5 oz
+78|0,2,10|Vodka Martini|vodkamartini|shakeice|martini|5|none|129|1.5 oz|49|0.75 oz
+79|0,2,10|Lemon Drop|lemondrop|shakeice|lemontwist|5|none|129|1.5 oz|36|1.5 oz|75|0.25 oz
+80|0,1,3|Americano|americano|highball|orangetwist|8|cubes|24|1 oz|123|1 oz|116|to top
+81|0,3|GG|gg|stirglassice|none|8|cubes|56|2 oz|59|to top
+82|0,1,2|Aviation|aviation|shakeice|cherry|1|none|57|2 oz|84|0.5 oz|43|0.25 oz|75|0.75 oz
+83|0,1,2|Between the Sheets|betweenthesheets|shakeice|orangetwist|1|none|19|1 oz|78|1 oz|127|1 oz|75|1 oz
+84|0,1,2|Mary Pickford|marypickford|shakeice|cherry|1|none|78|1.5 oz|100|1 oz|84|0.5 tsp|64|0.5 tsp
+85|0,1,2|Monkey Gland|monkeygland|shakeice|monkeygland|1|none|57|2 oz|15|1 tsp|93|1 oz|64|1 tsp
+86|0,1,3,4|Planters Punch|planterspunch|shakeice|orangewheel|4|cubes or crushed|47|1 oz|95|0.5 oz|93|2 oz|100|1 oz
+87|0,1,2|Porto Flip|portoflip|shakeice|nutmeg|1|none|19|0.5 oz|50|1|51|1|103|1.5 oz
+88|0,1,2|Stinger|stinger|stirice|none|1|none|19|1.5 oz|42|0.5 oz
+89|0,1,2|White Lady|whitelady|shakeice|lemontwist|5|none|57|2 oz|36|0.5 oz|75|0.5 oz|50|1
+90|0,1,2|Cosmopolitan|cosmopolitan|shakeice|limewheel|5|none|129|1.5 oz|36|1 oz|81|0.5 oz|38|dash
+91|0,2|French Connection|frenchconnection|pourice|none|8|large cube|35|1.5 oz|4|0.75 oz
+92|0,2|Golden Dream|goldendream|shakeice|none|1|none|56|1 oz|127|1 oz|93|1 oz|87|0.5 oz
+93|0,1,2|Grasshopper|grasshopper|shakeice|none|1|none|42|0.75 oz|40|0.75 oz|87|0.75 oz
+94|0,4|Hemingway Daiquiri|hemingway|shakeice|limewheel|4|optional crushed|78|2 oz|81|0.75 oz|84|0.5 oz|62|0.5 oz
+95|0,3|Horse's Neck|horseneck|pourice|lemontwist|3|cubes|131|2 oz|59|to top
+96|0,1,3|Mimosa|mimosa|mimosa|orangewheel|2|none|118|2 oz|93|2 oz
+97|0,1,3|Mint Julep|mintjulep|mintjulep|mint|6|crushed|18|2 oz|121|0.25 oz|88|8 leaves
+98|0,1,3,4|Pina Colada|pinacolada|blendice|cherry|4|blended into drink|78|2 oz|32|1 oz|100|1 oz
+99|0,2|Rose|rose|shakeice|cherry|5|none|49|2 oz|27|1 oz|25|0.5 oz
+100|0,1,4,3|Barracuda|barracuda|barracuda|orangewheel|4|crushed or cubes|47|1.5 oz|56|0.5 oz|100|2 oz|81|dash|118|to top
+101|0,1,3|Dark and Stormy|darknstormy|highball|limewheel|3|cubes|47|1.5 oz|60|to top
+102|0,1,2,10|French Martini|frenchmartini|shakeice|lemontwist|5|none|129|2 oz|25|1 oz|100|1 oz
+103|0,1,3|Russian Spring Punch|russianspringpunch|stirglassice|lemonwheel|3|cubes|129|0.75 oz|75|0.5 oz|121|0.5 oz|41|0.25 oz|118|to top
+104|0,1,2|Vampiro|vampiro|shakeice|limewheel|1|none|124|2 oz|125|1 oz|93|1 oz|81|1 oz|64|0.5 oz|66|several dashes|111|pinch
+105|0,1,2,10|Vesper|vesper|vesper|lemontwist|5|none|57|3 oz|129|1 oz|79|0.5 oz
+106|0,1,2|Yellow Bird|yellowbird|shakeice|lemontwist|1|none|78|1 oz|56|0.5 oz|127|0.5 oz|81|0.5 oz
+107|0,2|Adam and Eve|adamneve|stirice|apple|7|none|23|1.5 oz|114|0.5 oz|41|0.5 oz|118|3 oz
+108|0,2|Addington|addington|shakeice|lemontwist|1|none|123|2 oz|49|1 oz|116|to top
+109|0,3|Gin Rickey|ginrickey|highball|limewheel|3|cubes|57|1.5 oz|80|1 (juice and shell)|116|to top
+110|0,4,3|Zombie|zombie|blendice|mint|4|cubes|78|2 oz|47|2 oz|53|0.5 oz|98|2 dashes|64|1 tsp|81|0.75 oz|6|1 dash
+111|0,12,2|Last Word|lastword|shakeice|none|7|none|57|0.75 oz|63|0.75 oz|84|0.75 oz|81|0.75 oz
+112|0,2|Pegu Club|peguclub|shakeice|limetwist|1|none|57|1.5 oz|45|0.75 oz|81|0.75 oz|6|1 dash|92|1 dash
+113|0,4|Corpse Reviver 2|corpsereviver2|shakeice|cherry|1|none|57|0.75 oz|127|0.75 oz|79|0.75 oz|75|0.75 oz|1|1 dash
+114|0,2|Boulevardier|boulevardier|stirice|cherry|1|none|109|1.5 oz|123|1 oz|24|1 oz
+115|0,2|Bijou|bijou|stirice|none|1|none|57|1 oz|63|1 oz|123|1 oz|92|1 dash
+116|0,3|Gimlet|gimlet|shakeice|limewheel|5|none|57|2.5 oz|81|0.5 oz|121|0.5 oz
+117|0,3,9|Oatmeal Cookie|oatmealcookie|shakeice|nutmeg|6|optional cubes|34|1 oz|68|1 oz|21|2 oz|71|0.5 oz|29|0.5 oz
+118|0,2|Laverstoke|laverstoke|pourice|mint|1|none|57|2 oz|52|0.5 oz|123|0.5 oz|81|dash|59|to top
+119|0,2,12|Tipperary|tipperary|stirice|orangetwist|7|none|69|2 oz|63|0.5 oz|123|1 oz
+120|0,2|Adonis|adonis|stirice|orangetwist|1|none|123|0.75 oz|114|1.5 oz|92|1 dash
+121|0,2|Affinity|affinity|stirice|cherry|1|none|113|1.5 oz|123|1 oz|49|1 oz|92|2 dashes
+122|0,2|Vieux Carre|vieuxcarre|stirice|lemontwist|8|optional large cube|109|0.75 oz|35|0.75 oz|123|0.75 oz|15|2 tsp|99|4 dashes
+123|0,2|Blood and Sand|bloodnsand|shakeice|orangetwist|1|none|113|0.75 oz|123|0.75 oz|27|0.75 oz|93|0.75 oz
+124|0,12,2|Ward Eight|wardeight|shakeice|cherry|1|none|109|2 oz|75|0.5 oz|93|0.5 oz|64|2 tsp
+125|0,3|Bay Breeze|baybreeze|pourice|limewheel|4|cubes|78|2 oz|38|2 oz|100|2 oz
+126|0,9|Nuts and Berries|nutsandberries|shakeice|nutmeg|7|none|55|0.5 oz|25|0.5 oz|87|2 oz
+127|0,3,4|Cuzco|cuzco|shakeice|lemontwist|3|cubes|102|2 oz|7|0.75 oz|121|0.5 oz|75|0.5 oz|62|0.5 oz
+128|0,3,11|Aperol Spritz|aperol_spritz|pourice|orangewheel|3|cubes|118|3 oz|7|2 oz|116|2 oz
+129|0,3|Sloe Gin Fizz|sloeginfizz|shakeice|none|1|none|115|1.5 oz|75|0.75 oz|121|0.5 oz|50|1|116|1
+130|0,1|Angel Face|angelface|shakeice|apple|1|none|23|1 oz|10|1 oz|57|1 oz
+131|0,1|Bramble|bramble|shakeice|blackberry|8|cubes or crushed|57|1.5 oz|25|0.75 oz|81|0.75 oz|121|0.75 oz
+132|0,3,11|Seven and Seven|sevenseven|highball|none|3|cubes|131|1.5 oz|77|to top
+133|0,6,2,9|Bees Knees|beesknees|shakeice|none|7|none|57|2 oz|65|0.5 oz|75|0.5 oz
+134|0|Hanky Panky|hankypanky|stirice|orangetwist|7|none|57|1.5 oz|123|1.5 oz|54|2 dashes
+135|0,2,12|Bamboo|bamboo|stirice|lemontwist|1|none|114|1.5 oz|49|1.5 oz|6|1 dash|99|1 dash
+136|0|Paloma|paloma|highball|limewheel|3|cubes|124|2 oz|81|0.5 oz|62|1 oz|116|to top
+137|0,2,10|Slope|slope|stirice|cherry|1|none|109|2.5 oz|123|0.75 oz|10|0.25 oz|6|1 dash
+138|0,2|Stone Fruit Sour|stonefruitsour|shakeice|none|1|none|57|0.75 oz|79|0.75 oz|75|0.75 oz|10|0.75 oz|16|1 dash
+139|0,2|Black Manhattan|blackmanhattan|stirice|grapefruit|1|none|109|2 oz|12|1 oz|6|1 dash
+140|0,2|Averna y Tequila|avernaytequila|shakeice|grapefruit|8|cubes|124|1.5 oz|62|1 oz|12|0.75 oz
+141|0,3|Pearl Button|pearlbutton|highball|grapefruit|3|cubes|22|2 oz|79|0.75 oz|81|0.5 oz|77|to top
+142|0,2|Campari Spritz|camparispritz|pourice|olive|8|cubes|24|2 oz|118|to top
+143|0,2|La Alcachofa|alcachofa|stirice|lemontwist|7|none|46|1 oz|124|2 oz
+144|0,2|Presbyterians Revenge|presbyterian|shakeice|grapefruit|8|cubes|113|2 oz|46|0.75 oz|75|0.25 oz|121|0.25 oz|92|1 dash
+145|0,3,11|St Germain Cocktail|stgermain|pourice|lemontwist|3|cubes|52|1.5 oz|118|2 oz|116|to top
+146|0,3,4,12|Chartreuse Swizzle|charswizzle|charswizzle|mint|4|crushed|63|1.5 oz|100|1 oz|81|0.75 oz|53|0.5 oz
+147|0,3|Esplanade|esplanade|charswizzle|mint|4|crushed|85|1 oz|114|1 oz|81|0.75 oz|53|0.5 oz|60|1 oz
+148|0,2|Ode to Viceroy|odetoviceroy|shakeice|limewheel|8|none|113|1.5 oz|53|0.5 oz|81|0.5 oz|60|1 oz
+149|0,2|Tree Fort|treefort|treefort|orangetwist|3|cubes|18|1 oz|54|0.5 oz|121|0.5 oz|75|0.5 oz|99|1 dash|37|to top
+150|0,2,12|Eeyores Requiem|eeyore|stirice|orangetwist|1|none|24|1.5 oz|49|0.5 oz|46|0.25 oz|54|0.25 oz|92|2 dashes
+151|0,3,8,11|Chilcano|chilcano|pourice|limewheel|4|cubes or crushed|102|2 oz|81|0.25 oz|60|to top
+152|0,2|Oaxaca Mule|oaxacamule|pourice|limewheel|6|cubes or crushed|85|1.5 oz|81|0.5 oz|60|to top
+153|0,2,12|Vichy Cycle|vichycycle|stirice|lemontwist|7|none|23|2 oz|49|1 oz|73|0.5 oz|16|2 dashes
+154|0,3|Pomme Petillant|pommepetillant|highball|apple|4|cubes|23|2 oz|126|to top
+155|0,3,11|Vodka Tonic|vodkatonic|pourice|limewheel|3|cubes|129|2 oz|126|to top

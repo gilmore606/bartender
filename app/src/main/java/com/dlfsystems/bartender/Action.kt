@@ -33,4 +33,5 @@ sealed class Action {
     class drinkLoad(val load: Drink): Action()
     class drinkLoadIngredients(val load: List<Ingredient>): Action()
     class drinkLoadTags(val load: List<Drinktag>): Action()
+    class drinkLoadGlass(val load: Glass): Action()
 }
