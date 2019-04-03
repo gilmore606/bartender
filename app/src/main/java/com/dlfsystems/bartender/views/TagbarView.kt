@@ -1,9 +1,11 @@
 package com.dlfsystems.bartender.views
 
+import android.app.AlertDialog
 import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.LinearLayout
+import com.dlfsystems.bartender.R
 import com.dlfsystems.bartender.plusAssign
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -28,11 +30,21 @@ class TagbarView @JvmOverloads constructor (
         tags.addAll(newtags)
         tags.filter { it.tag != "All" }
             .forEach {
-            val view = TagView(it, context)
-            val params = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-            params.setMargins(20,0,20,0)
-            view.layoutParams = params
-            addView(view)
+                val view = TagView(it, context)
+                val params = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+                params.setMargins(20,0,20,0)
+                view.layoutParams = params
+                addView(view)
+                view.setOnClickListener {
+                    tagClick((it as TagView).theTag)
+                }
         }
+    }
+
+    private fun tagClick(tag: Tag) {
+        AlertDialog.Builder(context, R.style.DialogStyle)
+            .setTitle(tag.tag)
+            .setMessage(tag.description)
+            .create().show()
     }
 }
